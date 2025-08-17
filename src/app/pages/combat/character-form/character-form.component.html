@@ -1,0 +1,25 @@
+
+
+<h2 mat-dialog-title>New character</h2>
+
+<mat-dialog-content (keydown.enter)="onEnter($event)">
+
+  <section class="character-form">
+    <mat-form-field class="example-form-field">
+      <mat-label>Name</mat-label>
+      <input #nameInput matInput type="text" [(ngModel)]="name">
+    </mat-form-field>
+
+    <mat-form-field class="example-form-field">
+      <mat-label>Initiative</mat-label>
+      <input matInput type="number" [(ngModel)]="initiative">
+    </mat-form-field>
+
+  </section>
+
+</mat-dialog-content>
+
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+  <button mat-flat-button [disabled]="!valid()" (click)="submit(nameInput)">Add</button>
+</mat-dialog-actions>

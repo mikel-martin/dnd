@@ -1,0 +1,51 @@
+$navbar-height: 60px;
+
+.navbar {
+
+  height: $navbar-height;
+  padding: 0rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__title {
+    cursor: pointer;
+    margin: 0;
+    font-size: 1.5rem;
+    font-family: Deutsch;
+
+    .route {
+      text-decoration: none;
+      color: var(--mat-sys-on-background);
+      transition: color 0.15s;
+
+      &:hover {
+        color: var(--mat-sys-primary);
+      }
+    }
+
+  }
+
+  &__route {
+    cursor: pointer;
+    text-decoration: none;
+    color: var(--mat-sys-on-background);
+    transition: color 0.15s;
+
+    &.active {
+      color: var(--mat-sys-primary);
+    }
+
+    &:hover {
+      color: var(--mat-sys-primary);
+    }
+  }
+
+}
+
+.app {
+    height: calc(100% - #{$navbar-height});
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

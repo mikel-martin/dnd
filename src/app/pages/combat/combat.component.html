@@ -1,0 +1,38 @@
+<article class="combat">
+
+  @if (combatService.characters.length === 0) {
+    <p class="empty">No characters in combat</p>
+  }
+
+  @if (combatService.characters.length > 0) {
+
+    <section class="combat-list">
+
+      <span class="combat-list__round-counter">Round {{ combatService.roundCounter }}</span>
+
+      @for (character of combatService.characters; track character.name; let index = $index) {
+        <app-character [character]="character" [index]="index"></app-character>
+      }
+    </section>
+
+  }
+
+  @if (combatService.characters.length > 1) {
+
+    <button mat-fab (click)="previous()" class="fab-button fab-button--previous">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+
+    <button mat-fab (click)="next()" class="fab-button fab-button--next">
+      <mat-icon>arrow_forward</mat-icon>
+    </button>
+
+  }
+
+
+
+  <button mat-fab (click)="add()" class="fab-button fab-button--add">
+    <mat-icon>add</mat-icon>
+  </button>
+
+</article>

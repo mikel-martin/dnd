@@ -1,0 +1,51 @@
+.character {
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 200px;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 2px solid transparent;
+
+  &.active {
+    border-color: var(--mat-sys-error);
+    animation: glow 1s infinite;
+  }
+
+  .section {
+    gap: 0.25rem;
+    display: flex;
+    align-items: center;
+  }
+
+  &__header {
+    gap: 0.5rem !important;
+  }
+
+  &__info {
+    flex-direction: column;
+    align-items: baseline !important;
+    justify-content: start;
+
+    .character__name {
+      margin: 0;
+      font-weight: normal;
+    }
+  }
+
+  @keyframes glow {
+    0% {
+      border-color: transparent;
+    }
+
+    30% {
+      border-color: var(--mat-sys-error);
+    }
+
+    100% {
+      border-color: transparent;
+    }
+  }
+
+}

@@ -1,1 +1,57 @@
-/* You can add global styles to this file, and also import other style files */
+:root {
+  --on-primary: #fff;
+  --on-primary-disabled: #b5b5b5;
+  --primary: #1A1A1A;
+  --primary-dark: #1a1a1a;
+  --primary-light: #242424;
+  --primary-lighter: #303030;
+
+  --secondary: #8B0000;
+  --secondary-hover: #A30000;
+  --secondary-disabled: #3A1A1A;
+
+  --info: #2f6be3;
+  --info-hover: #1f5bd4;
+  --info-disabled: #1545a6;
+
+  --danger: #ff4c29;
+  --danger-hover: #e53c1a;
+  --danger-disabled: #802716;
+
+  --warning: #eec232;
+  --warning-hover: #dbb022;
+  --warning-disabled: #b4911d;
+
+  /* Colores neutrales */
+  --neutral: #6c757d;
+  --neutral-hover: #5a6268;
+  --neutral-disabled: #3d4144;
+  --on-neutral: #ffffff;
+  --on-neutral-disabled: #b5b5b5;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('../public/fonts/Roboto-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Deutsch';
+  src: url('../public/fonts/Deutsch.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html, body { height: 100%; }
+
+.status-menu {
+  max-height: 300px;
+}
