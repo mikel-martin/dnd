@@ -1,5 +1,5 @@
 import { CombatCharacter } from './../../../interfaces/combat-character.interface';
-import { Component, inject } from '@angular/core';
+import { Component, inject, ViewChild, type ElementRef } from '@angular/core';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -33,6 +33,8 @@ export class CharacterFormComponent {
 
   private _combatService = inject(CombatService);
 
+  @ViewChild('nameInput') nameInput!: ElementRef<HTMLInputElement>;
+
   valid(): boolean {
     return this.name.trim().length > 0 && this.initiative !== undefined;
   }
@@ -40,7 +42,7 @@ export class CharacterFormComponent {
   onEnter(event: any) {
     if (this.valid()) {
       event.preventDefault();
-      this.submit(document.querySelector<HTMLInputElement>('#nameInput')!);
+      this.submit(this.nameInput.nativeElement);
     }
   }
 
