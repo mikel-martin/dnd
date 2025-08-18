@@ -22,13 +22,14 @@
 
   @if (combatService.characters.length > 1) {
 
-    <button mat-fab (click)="previous()" class="fab-button fab-button--previous">
-      <mat-icon>arrow_back</mat-icon>
-    </button>
-
-    <button mat-fab (click)="next()" class="fab-button fab-button--next">
-      <mat-icon>arrow_forward</mat-icon>
-    </button>
+    <section class="controls">
+      <button mat-icon-button (click)="previous()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+      <button mat-icon-button (click)="next()">
+        <mat-icon mat-suffix>arrow_forward</mat-icon>
+      </button>
+    </section>
 
   }
 

@@ -44,10 +44,24 @@ export class CombatComponent {
 
   private _scrollToSelected() {
     const index = this.combatService.activeCharacter;
-    const el = this.characterEls.get(index)?.nativeElement;
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+    const el = this.characterEls.get(index)?.nativeElement as HTMLElement;
+
+    if (!el) return;
+
+    const container = el.parentElement as HTMLElement;
+    if (!container) return;
+
+    const containerRect = container.getBoundingClientRect();
+    const elRect = el.getBoundingClientRect();
+
+    const offsetTop = elRect.top - containerRect.top + container.scrollTop;
+
+    const scrollTo = offsetTop - container.clientHeight / 2 + el.clientHeight / 2;
+
+    container.scrollTo({
+      top: scrollTo,
+      behavior: 'smooth'
+    });
   }
 
 }
