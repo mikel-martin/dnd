@@ -1,7 +1,16 @@
 <article class="combat">
 
   @if (combatService.characters.length === 0) {
-    <p class="empty">No characters in combat</p>
+    <section class="empty">
+      <section class="empty__content">
+        <p class="empty__title">No characters in combat</p>
+        <button mat-flat-button (click)="add()">
+          Add character
+          <mat-icon>add</mat-icon>
+        </button>
+      </section>
+      <img src="img/fireball.png" alt="Fireball meme" width="400">
+    </section>
   }
 
   @if (combatService.characters.length > 0) {
@@ -32,8 +41,6 @@
     </section>
 
   }
-
-
 
   <button mat-fab (click)="add()" class="fab-button fab-button--add">
     <mat-icon>add</mat-icon>

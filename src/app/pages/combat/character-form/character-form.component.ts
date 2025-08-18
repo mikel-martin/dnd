@@ -66,6 +66,7 @@ export class CharacterFormComponent {
     this._snackbar.open("Character added successfully", "Close", {
       horizontalPosition: 'right',
       verticalPosition: 'top',
+      duration: 2000,
     });
   }
 

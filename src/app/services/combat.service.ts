@@ -13,70 +13,70 @@ export class CombatService {
 
   private _activeCharacter?: number;
 
-  // private _characters: CombatCharacter[] = [];
+  private _characters: CombatCharacter[] = [];
 
-  private _characters: CombatCharacter[] = [
-    {
-      id: uuidv4(),
-      name: 'Kethan',
-      initiative: 15
-    },
-    {
-      id: uuidv4(),
-      name: 'Drakthar',
-      initiative: 12
-    },
-    {
-      id: uuidv4(),
-      name: 'Karlox',
-      initiative: 15
-    },
-    {
-      id: uuidv4(),
-      name: 'Grothar',
-      initiative: 12
-    },
-    {
-      id: uuidv4(),
-      name: 'Warrior',
-      initiative: 15
-    },
-    {
-      id: uuidv4(),
-      name: 'Mage',
-      initiative: 12
-    },
-    {
-      id: uuidv4(),
-      name: 'Warrior',
-      initiative: 15
-    },
-    {
-      id: uuidv4(),
-      name: 'Mage',
-      initiative: 12
-    },
-    {
-      id: uuidv4(),
-      name: 'Warrior',
-      initiative: 15
-    },
-    {
-      id: uuidv4(),
-      name: 'Mage',
-      initiative: 12
-    },
-    {
-      id: uuidv4(),
-      name: 'Warrior',
-      initiative: 15
-    },
-    {
-      id: uuidv4(),
-      name: 'Mage',
-      initiative: 12
-    },
-  ];
+  // private _characters: CombatCharacter[] = [
+  //   {
+  //     id: uuidv4(),
+  //     name: 'Kethan',
+  //     initiative: 15
+  //   },
+  //   {
+  //     id: uuidv4(),
+  //     name: 'Drakthar',
+  //     initiative: 12
+  //   },
+  //   {
+  //     id: uuidv4(),
+  //     name: 'Karlox',
+  //     initiative: 15
+  //   },
+  //   {
+  //     id: uuidv4(),
+  //     name: 'Grothar',
+  //     initiative: 12
+  //   },
+  //   {
+  //     id: uuidv4(),
+  //     name: 'Warrior',
+  //     initiative: 15
+  //   },
+  //   {
+  //     id: uuidv4(),
+  //     name: 'Mage',
+  //     initiative: 12
+  //   },
+  //   {
+  //     id: uuidv4(),
+  //     name: 'Warrior',
+  //     initiative: 15
+  //   },
+  //   {
+  //     id: uuidv4(),
+  //     name: 'Mage',
+  //     initiative: 12
+  //   },
+  //   {
+  //     id: uuidv4(),
+  //     name: 'Warrior',
+  //     initiative: 15
+  //   },
+  //   {
+  //     id: uuidv4(),
+  //     name: 'Mage',
+  //     initiative: 12
+  //   },
+  //   {
+  //     id: uuidv4(),
+  //     name: 'Warrior',
+  //     initiative: 15
+  //   },
+  //   {
+  //     id: uuidv4(),
+  //     name: 'Mage',
+  //     initiative: 12
+  //   },
+  // ];
 
   private _statusService = inject(CharacterStatusService);
 

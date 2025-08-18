@@ -47,4 +47,6 @@ $navbar-height: 60px;
     height: calc(100% - #{$navbar-height});
     display: flex;
     overflow: hidden;
+    align-items: center;
+    justify-content: center;
 }

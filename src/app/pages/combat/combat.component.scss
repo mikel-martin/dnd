@@ -13,10 +13,30 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  // padding: 2rem 0;
 
   .empty {
-    opacity: 0.5;
+
+    height: 100%;
+
+    gap: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    &__content {
+      gap: 1rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    &__title {
+      opacity: 0.5;
+      margin: 0;
+    }
+
   }
 
   .combat-list {
