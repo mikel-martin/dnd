@@ -6,12 +6,15 @@
 
   @if (combatService.characters.length > 0) {
 
-    <section class="combat-list">
-
+    <section>
+      <app-combat-timer></app-combat-timer>
       <span class="combat-list__round-counter">Round {{ combatService.roundCounter }}</span>
+    </section>
 
-      @for (character of combatService.characters; track character.name; let index = $index) {
-        <app-character [character]="character" [index]="index"></app-character>
+
+    <section class="combat-list">
+      @for (character of combatService.characters; track character.id; let index = $index) {
+        <app-character #character [character]="character" [index]="index"></app-character>
       }
     </section>
 

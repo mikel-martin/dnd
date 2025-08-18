@@ -1,11 +1,19 @@
+:host {
+  display: block;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+}
+
 .combat {
 
+  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 2rem;
-
-  max-width: 450px;
+  padding: 2rem 0;
 
   .empty {
     opacity: 0.5;
@@ -13,9 +21,11 @@
 
   .combat-list {
 
+    height: 100%;
     gap: 1rem;
     display: flex;
     flex-direction: column;
+    overflow: auto;
 
     &__round-counter {
       opacity: 0.5;
