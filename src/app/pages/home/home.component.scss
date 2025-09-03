@@ -1,6 +1,11 @@
 .home {
 
-  padding: 0 1rem;
+  width: 100vw;
+  height: calc(100vh - 60px);
+  padding: 2rem;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
 
   .banner-image {
     width: 100%;

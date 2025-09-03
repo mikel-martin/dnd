@@ -1,23 +1,36 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
+import { ProyectionComponent } from './pages/proyection/proyection.component';
+import { AppLayoutComponent } from './shared/components/app-layout/app-layout.component';
 
-const appRoutes = {
+export const appRoutes = {
     HOME: 'home',
-    COMBAT: 'combat',
+    CHARACTERS: 'characters',
+    PROYECTION: 'proyection',
 }
 
 export const routes: Routes = [
-    {
-        path: appRoutes.COMBAT,
-        loadComponent: () => import('./pages/combat/combat.component').then(m => m.CombatComponent)
-    },
-    {
+  {
+    path: "",
+    component: AppLayoutComponent,
+    children: [
+      {
         path: appRoutes.HOME,
         loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent)
-    },
-    {
-        path: '**',
-        pathMatch: 'full',
-        redirectTo: appRoutes.HOME
-    }
+      },
+      {
+        path: appRoutes.CHARACTERS,
+        loadComponent: () => import('./pages/characters/characters.component').then(m => m.CharactersComponent)
+      },
+    ]
+  },
+  {
+    path: appRoutes.PROYECTION,
+    component: ProyectionComponent,
+    loadChildren: () => import('./pages/proyection/proyection.routes').then(m => m.routes)
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: appRoutes.HOME
+  }
 ];

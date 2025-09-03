@@ -1,3 +1,9 @@
 <section class="home">
-  <img src="img/banner.png" alt="Banner" class="banner-image" />
+
+  <div>
+    <mat-slide-toggle [(ngModel)]="showingCombatMenu" (change)="combatToggleChange($event)">Show combat menu</mat-slide-toggle>
+  </div>
+
+  <app-file-input label="Select background image" accept="image/*" (clear)="clearBackgroundImage()" (change)="emit($event)"></app-file-input>
+
 </section>

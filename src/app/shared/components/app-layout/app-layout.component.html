@@ -1,0 +1,16 @@
+<nav class="navbar">
+  <section>
+    <h4 class="navbar__title">
+      <a routerLink="home" class="route">D&D</a>
+    </h4>
+  </section>
+  <section class="navbar__routes">
+    <a [routerLink]="homeRoute" routerLinkActive="active" class="navbar__route">Home</a>
+    <a [routerLink]="charactersRoute" routerLinkActive="active" class="navbar__route">Characters</a>
+    <a [routerLink]="proyectionRoute" routerLinkActive="active" target="_blank" class="navbar__route button">Proyection</a>
+  </section>
+</nav>
+
+<main class="app">
+    <router-outlet></router-outlet>
+</main>

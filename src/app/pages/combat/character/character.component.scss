@@ -3,6 +3,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  box-sizing: border-box;
+  width: 100%;
   min-width: 200px;
   padding: 0.5rem;
   border-radius: 0.5rem;
