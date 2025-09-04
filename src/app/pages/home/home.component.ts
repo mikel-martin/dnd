@@ -31,7 +31,6 @@ export class HomeComponent {
 
   ngOnInit() {
     this.showingCombatMenu = this.proyection.showingCombatMenu();
-    console.log(this.proyection.showingCombatMenu());
   }
 
   clearBackgroundImage() {

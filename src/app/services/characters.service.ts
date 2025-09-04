@@ -1,0 +1,37 @@
+import { HttpClient } from '@angular/common/http';
+import { inject, Injectable } from '@angular/core';
+import type { Character } from '../interfaces/characters.interface';
+import { map } from 'rxjs';
+import { FirebaseUtils } from '../shared/utils/firebase.utils';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CharactersService {
+
+  private baseURL: string = "https://no-dungeons-no-dragons-c8f58-default-rtdb.europe-west1.firebasedatabase.app/characters"
+
+  private http = inject(HttpClient);
+
+  constructor() { }
+
+  all() {
+    return this.http.get(`${this.baseURL}.json`).pipe(
+      map(res => FirebaseUtils.parseFirebaseRes(res))
+    );
+  }
+
+  find(id: string) {
+    return this.http.get(`${this.baseURL}/${id}.json`);
+  }
+
+  create(event: Character) {
+    return this.http.post(`${this.baseURL}.json`, event);
+  }
+
+  delete(id: string) {
+    const url = `${this.baseURL}/${id}.json`;
+    return this.http.delete(url);
+  }
+
+}

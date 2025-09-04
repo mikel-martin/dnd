@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import type { CombatCharacterStatus } from '../interfaces/combat-character-status-interface';
+import type { CharacterStatus } from '../interfaces/character-status.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CharacterStatusService {
 
-  private _statuses: CombatCharacterStatus[] = [
+  private _statuses: CharacterStatus[] = [
     {
       id: "blinded",
       icon: "🙈",
@@ -189,11 +190,11 @@ export class CharacterStatusService {
     },
   ];
 
-  get statuses(): CombatCharacterStatus[] {
+  get statuses(): CharacterStatus[] {
     return this._statuses;
   }
 
-  find(id: string): CombatCharacterStatus | undefined {
+  find(id: string): CharacterStatus | undefined {
     return this._statuses.find(status => status.id === id);
   }
 
