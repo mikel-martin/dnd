@@ -7,8 +7,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { FileInputComponent } from '../../shared/components/file-input/file-input.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EncodingUtils } from '../../shared/utils/encoding.utils';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { CharactersService } from '../../services/characters.service';
+import type { Character } from '../../interfaces/characters.interface';
+import { map, startWith } from 'rxjs';
+import { MatSelectModule } from '@angular/material/select';
+import { CombatService } from '../../services/combat.service';
 
 @Component({
   selector: 'app-home',
@@ -19,6 +26,9 @@ import { EncodingUtils } from '../../shared/utils/encoding.utils';
     MatFormFieldModule,
     MatInputModule,
     MatSlideToggleModule,
+    MatExpansionModule,
+    ReactiveFormsModule,
+    MatSelectModule,
     FormsModule
   ],
   templateUrl: './home.component.html',
@@ -28,10 +38,24 @@ export class HomeComponent {
 
   private proyection = inject(ProyectionService);
 
+  private charactersService = inject(CharactersService);
+
+  combat = inject(CombatService);
+
+  selectedCharactersControl = new FormControl<Character[]>([]);
+
+  characters: Character[] = [];
+
   showingCombatMenu = false;
 
   ngOnInit() {
+
     this.showingCombatMenu = this.proyection.showingCombatMenu();
+
+    this.charactersService.all().subscribe({
+      next: res => this.characters = res
+    });
+
   }
 
   clearBackgroundImage() {
@@ -55,4 +79,10 @@ export class HomeComponent {
 
   }
 
+  addCharacters() {
+    this.combat.addCharacters(this.selectedCharactersControl.value || []);
+    this.selectedCharactersControl.reset();
+  }
+
 }
+

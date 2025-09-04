@@ -13,6 +13,8 @@ export class FileInputComponent {
 
   label = input('Select file');
 
+  emptyLabel = input('No file selected');
+
   accept = input('');
 
   showClearButton = input(true);

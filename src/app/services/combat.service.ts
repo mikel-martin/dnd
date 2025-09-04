@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import type { CombatCharacter } from '../interfaces/combat-character.interface';
 import { CharacterStatusService } from './character-status.service';
+import type { Character } from '../interfaces/characters.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,69 +15,6 @@ export class CombatService {
   private _activeCharacter?: number;
 
   private _characters: CombatCharacter[] = [];
-
-  // private _characters: CombatCharacter[] = [
-  //   {
-  //     id: uuidv4(),
-  //     name: 'Kethan',
-  //     initiative: 15
-  //   },
-  //   {
-  //     id: uuidv4(),
-  //     name: 'Drakthar',
-  //     initiative: 12
-  //   },
-  //   {
-  //     id: uuidv4(),
-  //     name: 'Karlox',
-  //     initiative: 15
-  //   },
-  //   {
-  //     id: uuidv4(),
-  //     name: 'Grothar',
-  //     initiative: 12
-  //   },
-  //   {
-  //     id: uuidv4(),
-  //     name: 'Warrior',
-  //     initiative: 15
-  //   },
-  //   {
-  //     id: uuidv4(),
-  //     name: 'Mage',
-  //     initiative: 12
-  //   },
-  //   {
-  //     id: uuidv4(),
-  //     name: 'Warrior',
-  //     initiative: 15
-  //   },
-  //   {
-  //     id: uuidv4(),
-  //     name: 'Mage',
-  //     initiative: 12
-  //   },
-  //   {
-  //     id: uuidv4(),
-  //     name: 'Warrior',
-  //     initiative: 15
-  //   },
-  //   {
-  //     id: uuidv4(),
-  //     name: 'Mage',
-  //     initiative: 12
-  //   },
-  //   {
-  //     id: uuidv4(),
-  //     name: 'Warrior',
-  //     initiative: 15
-  //   },
-  //   {
-  //     id: uuidv4(),
-  //     name: 'Mage',
-  //     initiative: 12
-  //   },
-  // ];
 
   private _statusService = inject(CharacterStatusService);
 
@@ -103,6 +41,17 @@ export class CombatService {
   add(character: CombatCharacter): void {
     character.id = uuidv4();
     this._characters.push(character);
+    this._characters.sort((a, b) => (b.initiative ?? 0) - (a.initiative ?? 0));
+
+    if (this._characters.length === 1) {
+      this._activeCharacter = 0;
+    }
+
+  }
+
+  addCharacters(characters: Character[]): void {
+
+    this._characters.push(...characters);
     this._characters.sort((a, b) => (b.initiative ?? 0) - (a.initiative ?? 0));
 
     if (this._characters.length === 1) {
