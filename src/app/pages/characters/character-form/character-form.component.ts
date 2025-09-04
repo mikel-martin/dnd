@@ -80,7 +80,14 @@ export class CharacterFormComponent {
       });
     }
 
+  }
 
+  remove() {
+    if (this.character?.id && confirm('Are you sure you want to delete this character?')) {
+      this.characters.delete(this.character.id).subscribe({
+        next: () => this.router.navigate([appRoutes.CHARACTERS])
+      });
+    }
   }
 
   private _fetch() {

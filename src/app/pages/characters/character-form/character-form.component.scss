@@ -6,6 +6,24 @@
 
   padding: 2rem;
 
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .form-row {
+
+    gap: 1rem;
+    width: 100%;
+    display: flex;
+
+    & > * {
+      flex: 1;
+    }
+
+  }
+
   .actions {
     gap: 1rem;
     display: flex;

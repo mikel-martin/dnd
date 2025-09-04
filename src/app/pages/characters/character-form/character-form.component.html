@@ -1,44 +1,64 @@
 <form [formGroup]="form" class="character-form container">
 
-  @if(character?.id) {
-    <h3>Editing "{{ character?.name }}"</h3>
-  } @else {
-    <h3>Creating new character</h3>
-  }
+  <div class="header">
 
-  <mat-form-field>
-    <mat-label>Name</mat-label>
-    <input matInput placeholder="Name" formControlName="name">
-  </mat-form-field>
+    @if(character?.id) {
+      <h3>Editing "{{ character?.name }}"</h3>
+    } @else {
+      <h3>Creating new character</h3>
+    }
 
-  <mat-form-field>
-    <mat-label>Type</mat-label>
-    <mat-select formControlName="type">
-      @for (type of characterTypes; track type) {
-        <mat-option [value]="type.value">{{ type.label }}</mat-option>
+    <div>
+      @if(character?.id) {
+        <button mat-icon-button (click)="remove()">
+          <mat-icon>delete</mat-icon>
+        </button>
       }
-    </mat-select>
-  </mat-form-field>
+    </div>
 
-  <mat-form-field>
-    <mat-label>Max. Hit points</mat-label>
-    <input matInput type="number" placeholder="Max. hit points" formControlName="maxhitPoints">
-  </mat-form-field>
+  </div>
 
-  <mat-form-field>
-    <mat-label>(PP) Passive perception</mat-label>
-    <input matInput type="number" placeholder="Passive perception" formControlName="passivePerception">
-  </mat-form-field>
+  <div class="form-row">
+    <mat-form-field>
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Name" formControlName="name">
+    </mat-form-field>
 
-  <mat-form-field>
-    <mat-label>(CA) Class armour</mat-label>
-    <input matInput type="number" placeholder="Class armour" formControlName="classArmour">
-  </mat-form-field>
+    <mat-form-field>
+      <mat-label>Type</mat-label>
+      <mat-select formControlName="type">
+        @for (type of characterTypes; track type) {
+          <mat-option [value]="type.value">{{ type.label }}</mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+  </div>
 
-  <mat-form-field>
-    <mat-label>(TS) Saving Throw</mat-label>
-    <input matInput type="number" placeholder="Saving Throw" formControlName="savingThrow">
-  </mat-form-field>
+  <div class="form-row">
+    <mat-form-field>
+      <mat-label>Max. Hit points</mat-label>
+      <input matInput type="number" placeholder="Max. hit points" formControlName="maxhitPoints">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>(PP) Passive perception</mat-label>
+      <input matInput type="number" placeholder="Passive perception" formControlName="passivePerception">
+    </mat-form-field>
+  </div>
+
+  <div class="form-row">
+    <mat-form-field>
+      <mat-label>(CA) Class armour</mat-label>
+      <input matInput type="number" placeholder="Class armour" formControlName="classArmour">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>(TS) Saving Throw</mat-label>
+      <input matInput type="number" placeholder="Saving Throw" formControlName="savingThrow">
+    </mat-form-field>
+  </div>
+
+
 
   <section class="actions">
 
