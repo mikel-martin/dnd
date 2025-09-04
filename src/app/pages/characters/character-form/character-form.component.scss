@@ -1,0 +1,15 @@
+.character-form {
+
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+
+  padding: 2rem;
+
+  .actions {
+    gap: 1rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
+}

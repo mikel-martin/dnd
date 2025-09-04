@@ -49,7 +49,6 @@ export class ProyectionService {
 
   private _handleImageEvent(data: any): void {
     this.backgroundImage.set(data);
-    console.log("image", this.backgroundImage());
   }
 
   private _handleCombatMenuVisibility(data: any): void {

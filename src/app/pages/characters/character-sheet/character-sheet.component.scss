@@ -1,11 +1,14 @@
+:host {
+  width: 100%;
+}
+
 .character-sheet {
 
-  padding: 0.25rem 2rem;
+  padding: 0.25rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-radius: var(--mat-sys-corner-medium);
-  border: 1px solid #ccc;
   cursor: pointer;
   transition: background-color 0.15s ease, transform 0.15s ease;
 
@@ -16,30 +19,28 @@
 
   .header {
 
-    gap: 1rem;
+    gap: 0.125rem;
     display: flex;
-    align-items: center;
+    flex-direction: column;
 
-    .avatar {
+    .name {
+      white-space: nowrap;
+      font-weight: normal;
+      margin: 0;
+    }
 
-      .mat-icon {
-        transform: scale(1.25);
-      }
+    .type {
 
       &.player {
-        color: rgb(0, 102, 255);
+        color: var(--mat-sys-primary);
       }
 
       &.ally {
-        color: rgb(21, 161, 21);
+        color: rgb(48, 133, 36);
       }
 
       &.enemy {
-        color: rgb(223, 20, 20);
-      }
-
-      &.neutral {
-        color: rgb(158, 158, 158);
+        color: var(--mat-sys-error);
       }
 
     }
@@ -62,7 +63,7 @@
 
       .label {
         font-size: 0.75rem;
-        font-weight: bold;
+        opacity: 0.5;
       }
 
       .value {

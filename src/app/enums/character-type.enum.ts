@@ -5,4 +5,21 @@ export enum CharacterType {
   NEUTRAL = 'neutral'
 }
 
-export const CharacterTypes: CharacterType[] = Object.values(CharacterType);
+export const CharacterTypes = [
+  {
+    label: 'Player',
+    value: CharacterType.PLAYER
+  },
+  {
+    label: 'Ally',
+    value: CharacterType.ALLY
+  },
+  {
+    label: 'Enemy',
+    value: CharacterType.ENEMY
+  },
+  {
+    label: 'Neutral',
+    value: CharacterType.NEUTRAL
+  },
+];

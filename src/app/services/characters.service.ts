@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import type { Character } from '../interfaces/characters.interface';
-import { map } from 'rxjs';
+import { map, type Observable } from 'rxjs';
 import { FirebaseUtils } from '../shared/utils/firebase.utils';
 
 @Injectable({
@@ -27,8 +27,12 @@ export class CharactersService {
     );
   }
 
-  find(id: string) {
-    return this.http.get(`${this.baseURL}/${id}.json`);
+  find(id: string): Observable<Character> {
+    return this.http.get<Character>(`${this.baseURL}/${id}.json`);
+  }
+
+  update(character: Character) {
+    return this.http.put(`${this.baseURL}/${character.id}.json`, character);
   }
 
   create(event: Character) {

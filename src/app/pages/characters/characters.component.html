@@ -1,7 +1,17 @@
-<section class="characters">
+<section class="characters container">
 
-  @for (character of characters; track character.id; let index = $index) {
-    <app-character-sheet #character [character]="character"></app-character-sheet>
-  }
+  <div class="actions">
+    <h3 class="title">Character list</h3>
+    <button mat-flat-button (click)="create()">
+      Create new character
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <div class="characters-list">
+    @for (character of characters; track character.id; let index = $index) {
+      <app-character-sheet #character [character]="character"></app-character-sheet>
+    }
+  </div>
 
 </section>

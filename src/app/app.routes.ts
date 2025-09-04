@@ -24,7 +24,7 @@ export const routes: Routes = [
       },
       {
         path: appRoutes.CHARACTERS,
-        loadComponent: () => import('./pages/characters/characters.component').then(m => m.CharactersComponent)
+        loadChildren: () => import('./pages/characters/character.routes').then(m => m.routes)
       },
       {
         path: '**',

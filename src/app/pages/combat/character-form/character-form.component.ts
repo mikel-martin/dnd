@@ -6,7 +6,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
-import { C } from '@angular/cdk/keycodes';
 import { CombatService } from '../../../services/combat.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
