@@ -10,9 +10,9 @@
 
   @if (combat.characters().length > 0) {
 
-    <section>
+    <!-- <section>
       <span class="combat-list__round-counter">Round {{ combat.roundCounter }}</span>
-    </section>
+    </section> -->
 
     <section class="combat-list">
       @for (character of combat.characters(); track character.id; let index = $index) {

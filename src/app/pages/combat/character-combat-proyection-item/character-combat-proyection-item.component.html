@@ -2,13 +2,14 @@
 
   <section class="heading">
 
+    <app-d20 [value]="character?.initiative" [clickable]="true" (initiative)="initiative($event)"></app-d20>
+
     <div class="header">
       <h3 class="name">{{ character?.name }}</h3>
       <small [ngClass]="[character?.type ?? '']" class="type">{{ typeLabel(character?.type) }}</small>
     </div>
 
   </section>
-
 
   <section class="stats">
     @if(character?.type === "player") {

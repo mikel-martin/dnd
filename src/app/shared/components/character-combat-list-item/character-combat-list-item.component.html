@@ -2,7 +2,7 @@
 
   <section class="heading">
 
-    <app-d20 [clickable]="true" (initiative)="initiative($event)"></app-d20>
+    <app-d20 [value]="character?.initiative" [clickable]="true" (initiative)="initiative($event)"></app-d20>
 
     <div class="header">
       <h3 class="name">{{ character?.name }}</h3>

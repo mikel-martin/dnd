@@ -44,7 +44,12 @@ export class CombatService {
 
     const existingIds = new Set(this.characters().map(c => c.id));
 
-    const newCharacters = characters.filter(c => !existingIds.has(c.id));
+    const newCharacters = characters
+      .filter(c => !existingIds.has(c.id))
+      .map(i => {
+        i.initiative = undefined;
+        return i;
+      });
 
     if (newCharacters.length === 0) {
       return;
@@ -58,6 +63,25 @@ export class CombatService {
     }
 
     this.characters.set(result);
+
+    this._proyection.emit({
+      type: ProyectionEventType.COMBAT_UPDATE,
+      data: result
+    });
+
+  }
+
+  updateCharacterInfo(characters: Character[]) {
+
+    let currentCharacters = this.characters();
+
+    const result = currentCharacters.map(character => {
+      const char = characters.find(c => c.id === character.id);
+      if (char) {
+        return char;
+      }
+      return character;
+    });
 
     this._proyection.emit({
       type: ProyectionEventType.COMBAT_UPDATE,

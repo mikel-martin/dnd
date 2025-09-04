@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, input, Output } from '@angular/core';
+import { Component, EventEmitter, inject, input, Output } from '@angular/core';
+import { PromptService } from '../../../services/prompt.service';
 
 @Component({
   selector: 'app-d20',
@@ -8,6 +9,8 @@ import { Component, EventEmitter, input, Output } from '@angular/core';
   styleUrl: './d20.component.scss'
 })
 export class D20Component {
+
+  private prompt = inject(PromptService);
 
   value = input<number>();
 
@@ -24,11 +27,21 @@ export class D20Component {
       event.preventDefault();
       event.stopPropagation();
 
-      const initiative = parseInt(prompt("Enter initiative") || "");
+      this.prompt.open({
+        title: "Hello there",
+        label: "Initiative",
+        type: "number"
+      }).subscribe(result => {
+        if (result !== null) {
 
-      if (initiative && !isNaN(initiative)) {
-        this.initiativeEvent.emit(initiative);
-      }
+          const initiative = parseInt(result);
+
+          if (initiative && !isNaN(initiative)) {
+            this.initiativeEvent.emit(initiative);
+          }
+
+        }
+      });;
 
     }
 

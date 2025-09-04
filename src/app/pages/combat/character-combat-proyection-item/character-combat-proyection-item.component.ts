@@ -4,10 +4,11 @@ import { CharacterType, CharacterTypes } from '../../../enums/character-type.enu
 import type { CharacterStatus } from '../../../interfaces/character-status.interface';
 import { CharactersService } from '../../../services/characters.service';
 import { CommonModule } from '@angular/common';
+import { D20Component } from '../../../shared/components/d20/d20.component';
 
 @Component({
   selector: 'app-character-combat-proyection-item',
-  imports: [CommonModule],
+  imports: [CommonModule, D20Component],
   templateUrl: './character-combat-proyection-item.component.html',
   styleUrl: './character-combat-proyection-item.component.scss'
 })
@@ -30,10 +31,6 @@ export class CharacterCombatProyectionItemComponent {
         }
       });
     }
-  }
-
-  status(states: CharacterStatus[]) {
-    console.log(states);
   }
 
   characterHealthStatus(hp: number, max: number) {

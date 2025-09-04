@@ -57,10 +57,8 @@ export class ProyectionService {
   }
 
   private _handleCombatEvent(data: any): void {
-    console.log("Combat event!");
     const combat = this.injector.get<CombatService>(CombatService);
     combat.characters.set(data);
-    console.log(data);
   }
 
   private _handleCombatMenuVisibility(data: any): void {

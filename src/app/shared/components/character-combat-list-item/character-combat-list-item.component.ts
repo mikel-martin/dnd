@@ -45,7 +45,14 @@ export class CharacterCombatListItemComponent {
   }
 
   status(states: CharacterStatus[]) {
-    console.log(states);
+    if (this.character) {
+      this.character.states = states;
+      this.characters.update(this.character).subscribe({
+        next: res => {
+          this.character = res;
+        }
+      });
+    }
   }
 
 }
