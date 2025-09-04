@@ -1,10 +1,10 @@
 <section class="proyection">
-  @if(proyectionService.showingCombatMenu()) {
+  @if(proyection.showingCombatMenu()) {
     <div class="combat-menu">
       <app-combat></app-combat>
     </div>
   }
   <article
     class="background-image"
-    [ngStyle]="{'background-image': 'url(' + proyectionService.backgroundImage() + ')'}"></article>
+    [ngStyle]="{'background-image': 'url(' + proyection.backgroundImage() + ')'}"></article>
 </section>

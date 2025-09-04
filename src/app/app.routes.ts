@@ -10,6 +10,11 @@ export const appRoutes = {
 
 export const routes: Routes = [
   {
+    path: appRoutes.PROYECTION,
+    component: ProyectionComponent,
+    loadChildren: () => import('./pages/proyection/proyection.routes').then(m => m.routes)
+  },
+  {
     path: "",
     component: AppLayoutComponent,
     children: [
@@ -21,16 +26,11 @@ export const routes: Routes = [
         path: appRoutes.CHARACTERS,
         loadComponent: () => import('./pages/characters/characters.component').then(m => m.CharactersComponent)
       },
+      {
+        path: '**',
+        pathMatch: 'full',
+        redirectTo: appRoutes.HOME
+      }
     ]
   },
-  {
-    path: appRoutes.PROYECTION,
-    component: ProyectionComponent,
-    loadChildren: () => import('./pages/proyection/proyection.routes').then(m => m.routes)
-  },
-  {
-    path: '**',
-    pathMatch: 'full',
-    redirectTo: appRoutes.HOME
-  }
 ];

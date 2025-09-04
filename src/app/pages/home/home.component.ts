@@ -25,22 +25,22 @@ import { FormsModule } from '@angular/forms';
 })
 export class HomeComponent {
 
-  private proyectionService = inject(ProyectionService);
+  private proyection = inject(ProyectionService);
 
   showingCombatMenu = false;
 
   ngOnInit() {
-    this.showingCombatMenu = this.proyectionService.showingCombatMenu();
-    console.log(this.proyectionService.showingCombatMenu());
+    this.showingCombatMenu = this.proyection.showingCombatMenu();
+    console.log(this.proyection.showingCombatMenu());
   }
 
   clearBackgroundImage() {
-    this.proyectionService.emit({ type: ProyectionEventType.IMAGE, data: null });
+    this.proyection.emit({ type: ProyectionEventType.IMAGE, data: null });
   }
 
   combatToggleChange(event: any) {
     this.showingCombatMenu = event.checked;
-    this.proyectionService.emit({ type: ProyectionEventType.COMBAT_VISIBILITY, data: event.checked });
+    this.proyection.emit({ type: ProyectionEventType.COMBAT_VISIBILITY, data: event.checked });
   }
 
   async emit(event: Event) {
@@ -51,7 +51,7 @@ export class HomeComponent {
     const file = input.files[0];
     const base64 = await this.toBase64(file);
 
-    this.proyectionService.emit({ type: ProyectionEventType.IMAGE, data: base64 });
+    this.proyection.emit({ type: ProyectionEventType.IMAGE, data: base64 });
 
   }
 

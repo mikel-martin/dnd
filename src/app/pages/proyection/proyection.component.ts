@@ -11,6 +11,6 @@ import { CombatComponent } from '../combat/combat.component';
 })
 export class ProyectionComponent {
 
-  proyectionService = inject(ProyectionService);
+  proyection = inject(ProyectionService);
 
 }
