@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FileInputComponent } from '../../shared/components/file-input/file-input.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormsModule } from '@angular/forms';
+import { EncodingUtils } from '../../shared/utils/encoding.utils';
 
 @Component({
   selector: 'app-home',
@@ -48,19 +49,10 @@ export class HomeComponent {
     if (!input.files || input.files.length === 0) return;
 
     const file = input.files[0];
-    const base64 = await this.toBase64(file);
+    const base64 = await EncodingUtils.toBase64(file);
 
     this.proyection.emit({ type: ProyectionEventType.IMAGE, data: base64 });
 
-  }
-
-  private toBase64(file: File): Promise<string> {
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader();
-      reader.onload = () => resolve(reader.result as string);
-      reader.onerror = (err) => reject(err);
-      reader.readAsDataURL(file);
-    });
   }
 
 }
