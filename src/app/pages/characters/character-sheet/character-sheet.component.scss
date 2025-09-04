@@ -1,0 +1,76 @@
+.character-sheet {
+
+  padding: 0.25rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: var(--mat-sys-corner-medium);
+  border: 1px solid #ccc;
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+
+  &:hover {
+    background-color: var(--mat-sys-primary-container);
+    transform: translateX(10px);
+  }
+
+  .header {
+
+    gap: 1rem;
+    display: flex;
+    align-items: center;
+
+    .avatar {
+
+      .mat-icon {
+        transform: scale(1.25);
+      }
+
+      &.player {
+        color: rgb(0, 102, 255);
+      }
+
+      &.ally {
+        color: rgb(21, 161, 21);
+      }
+
+      &.enemy {
+        color: rgb(223, 20, 20);
+      }
+
+      &.neutral {
+        color: rgb(158, 158, 158);
+      }
+
+    }
+
+  }
+
+  .stats {
+
+    display: flex;
+    gap: 1rem;
+
+    .stat {
+      $size: 48px;
+      width: $size;
+      height: $size;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .label {
+        font-size: 0.75rem;
+        font-weight: bold;
+      }
+
+      .value {
+        font-size: 1rem;
+
+      }
+    }
+
+  }
+
+}

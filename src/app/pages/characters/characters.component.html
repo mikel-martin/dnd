@@ -1,1 +1,7 @@
-<p>characters works!</p>
+<section class="characters">
+
+  @for (character of characters; track character.id; let index = $index) {
+    <app-character-sheet #character [character]="character"></app-character-sheet>
+  }
+
+</section>

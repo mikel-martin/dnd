@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import type { Character } from '../interfaces/characters.interface';
 import { map } from 'rxjs';
 import { FirebaseUtils } from '../shared/utils/firebase.utils';
@@ -13,11 +13,17 @@ export class CharactersService {
 
   private http = inject(HttpClient);
 
+  characters = signal<Character[]>([]);
+
   constructor() { }
 
   all() {
     return this.http.get(`${this.baseURL}.json`).pipe(
-      map(res => FirebaseUtils.parseFirebaseRes(res))
+      map(res => {
+        const response = FirebaseUtils.parseFirebaseRes(res);
+        this.characters.set(response);
+        return response;
+      })
     );
   }
 
