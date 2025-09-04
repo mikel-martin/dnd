@@ -7,30 +7,22 @@
 
 
   <div class="stats">
-    @if(character()?.classArmour) {
-      <div class="stat">
-        <span class="label">CA</span>
-        <span class="value">{{ character()?.classArmour || "-" }}</span>
-      </div>
-    }
-    @if(character()?.passivePerception) {
-      <div class="stat">
-        <span class="label">PP</span>
-        <span class="value">{{ character()?.passivePerception }}</span>
-      </div>
-    }
-    @if(character()?.savingThrow) {
-      <div class="stat">
-        <span class="label">TS</span>
-        <span class="value">{{ character()?.savingThrow }}</span>
-      </div>
-    }
-    @if(character()?.maxHitPoints) {
-      <div class="stat">
-        <span class="label">Max. HP</span>
-        <span class="value">{{ character()?.maxHitPoints }}</span>
-      </div>
-    }
+    <div class="stat">
+      <span class="label">CA</span>
+      <span class="value">{{ character()?.classArmour || "-" }}</span>
+    </div>
+    <div class="stat">
+      <span class="label">PP</span>
+      <span class="value">{{ character()?.passivePerception || "-" }}</span>
+    </div>
+    <div class="stat">
+      <span class="label">TS</span>
+      <span class="value">{{ character()?.savingThrow || "-" }}</span>
+    </div>
+    <div class="stat">
+      <span class="label">Max. HP</span>
+      <span class="value">{{ character()?.maxHitPoints || "-" }}</span>
+    </div>
   </div>
 
 </article>
