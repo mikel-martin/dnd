@@ -12,9 +12,10 @@
   cursor: pointer;
   transition: background-color 0.15s ease, transform 0.15s ease;
 
-  &:hover {
-    background-color: var(--mat-sys-primary-container);
-    transform: translateX(5px);
+  .heading {
+    gap: 1rem;
+    display: flex;
+    align-items: center;
   }
 
   .header {
@@ -60,16 +61,40 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
+      border-radius: var(--mat-sys-corner-medium);
+      transition: background-color 0.15s ease;
 
       .label {
-        font-size: 0.75rem;
         opacity: 0.5;
+        font-size: 0.75rem;
+        white-space: nowrap;
       }
 
       .value {
         font-size: 1rem;
-
+        white-space: nowrap;
       }
+
+      &:hover {
+        background-color: var(--mat-sys-primary-container);
+      }
+
+    }
+
+  }
+
+}
+
+@media (max-width: 992px) {
+
+  .character-sheet {
+
+    gap: 0.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .stats {
+      margin-left: 2.75rem;
     }
 
   }

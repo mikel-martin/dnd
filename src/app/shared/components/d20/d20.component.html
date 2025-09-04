@@ -1,1 +1,1 @@
-<div class="d20" [ngClass]="{active: active()}">{{ value() }}</div>
+<div class="d20" [ngClass]="{active: active(), clickable}" (click)="setInitiative($event)">{{ value() || "?"}}</div>

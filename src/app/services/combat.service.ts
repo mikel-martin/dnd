@@ -1,9 +1,11 @@
-import { inject, Injectable } from '@angular/core';
+import { effect, inject, Injectable, signal } from '@angular/core';
 import { v4 as uuidv4 } from 'uuid';
 
 import type { CombatCharacter } from '../interfaces/combat-character.interface';
 import { CharacterStatusService } from './character-status.service';
 import type { Character } from '../interfaces/characters.interface';
+import { ProyectionService } from './proyection.service';
+import { ProyectionEventType } from '../enums/proyection-event-type.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -14,13 +16,11 @@ export class CombatService {
 
   private _activeCharacter?: number;
 
-  private _characters: CombatCharacter[] = [];
+  characters = signal<Character[]>([]);
 
   private _statusService = inject(CharacterStatusService);
 
-  get characters(): CombatCharacter[] {
-    return this._characters;
-  }
+  private _proyection = inject(ProyectionService);
 
   get activeCharacter(): number {
     return this._activeCharacter ?? -1;
@@ -38,50 +38,67 @@ export class CombatService {
     this._activeCharacter = 0;
   }
 
-  add(character: CombatCharacter): void {
-    character.id = uuidv4();
-    this._characters.push(character);
-    this._characters.sort((a, b) => (b.initiative ?? 0) - (a.initiative ?? 0));
+  addCharacters(characters: Character[]): void {
 
-    if (this._characters.length === 1) {
+    const result = this.characters();
+
+    const existingIds = new Set(this.characters().map(c => c.id));
+
+    const newCharacters = characters.filter(c => !existingIds.has(c.id));
+
+    if (newCharacters.length === 0) {
+      return;
+    }
+
+    result.push(...newCharacters);
+    result.sort((a, b) => (b.initiative ?? 0) - (a.initiative ?? 0));
+
+    if (result.length === 1) {
       this._activeCharacter = 0;
     }
+
+    this.characters.set(result);
+
+    this._proyection.emit({
+      type: ProyectionEventType.COMBAT_UPDATE,
+      data: result
+    });
 
   }
 
-  addCharacters(characters: Character[]): void {
-
-    this._characters.push(...characters);
-    this._characters.sort((a, b) => (b.initiative ?? 0) - (a.initiative ?? 0));
-
-    if (this._characters.length === 1) {
-      this._activeCharacter = 0;
-    }
-
+  characterInCombat(character: Character): boolean {
+    return this.characters().find(i => i.id === character.id) === undefined;
   }
 
   remove(character: CombatCharacter): void {
-    this._characters = [...this._characters.filter(c => c.id !== character.id)];
+
+    this.characters.set([...this.characters().filter(c => c.id !== character.id)]);
+
+    this._proyection.emit({
+      type: ProyectionEventType.COMBAT_UPDATE,
+      data: this.characters()
+    });
+
   }
 
   setStatus(statusId: string, characterid: string): void {
     const status = this._statusService.find(statusId);
-    const character = this._characters.find(c => c.id === characterid);
+    const character = this.characters().find(c => c.id === characterid);
     if (status && character) {
-      character.status = status;
+      character.states = [status];
     }
   }
 
   removeStatus(characterid: string): void {
-    const character = this._characters.find(c => c.id === characterid);
+    const character = this.characters().find(c => c.id === characterid);
     if (character) {
-      character.status = undefined;
+      character.states = [];
     }
   }
 
   next(): void {
 
-    if (this._characters.length === 0) {
+    if (this.characters.length === 0) {
       return;
     }
 
@@ -91,7 +108,7 @@ export class CombatService {
       this._activeCharacter += 1;
     }
 
-    if (this._activeCharacter >= this._characters.length) {
+    if (this._activeCharacter >= this.characters.length) {
       this._activeCharacter = 0;
       this._roundCounter += 1;
     }
@@ -100,7 +117,7 @@ export class CombatService {
 
   previous(): void {
 
-    if (this._characters.length === 0) {
+    if (this.characters.length === 0) {
       return;
     }
 
@@ -111,7 +128,7 @@ export class CombatService {
     }
 
     if (this._activeCharacter < 0) {
-      this._activeCharacter = this._characters.length - 1;
+      this._activeCharacter = this.characters.length - 1;
       this._roundCounter -= 1;
 
       if (this.roundCounter < 1) {

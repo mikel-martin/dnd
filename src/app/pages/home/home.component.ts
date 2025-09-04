@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, effect, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ProyectionService } from '../../services/proyection.service';
@@ -10,16 +10,16 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EncodingUtils } from '../../shared/utils/encoding.utils';
 import { MatExpansionModule } from '@angular/material/expansion';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { CharactersService } from '../../services/characters.service';
 import type { Character } from '../../interfaces/characters.interface';
-import { map, startWith } from 'rxjs';
 import { MatSelectModule } from '@angular/material/select';
 import { CombatService } from '../../services/combat.service';
+import { CharacterCombatListItemComponent } from '../../shared/components/character-combat-list-item/character-combat-list-item.component';
 
 @Component({
   selector: 'app-home',
   imports: [
+    CharacterCombatListItemComponent,
     FileInputComponent,
     MatButtonModule,
     MatIconModule,

@@ -10,7 +10,7 @@
 
   <div class="characters-list">
     @for (character of characters; track character.id; let index = $index) {
-      <app-character-sheet #character [character]="character"></app-character-sheet>
+      <app-character-list-item #character [character]="character"></app-character-list-item>
     }
   </div>
 

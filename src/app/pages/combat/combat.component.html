@@ -1,34 +1,28 @@
 <article class="combat">
 
-  @if (combatService.characters.length === 0) {
+  @if (combat.characters().length === 0) {
     <section class="empty">
       <section class="empty__content">
         <p class="empty__title">No characters in combat</p>
-        <button mat-flat-button (click)="add()">
-          Add character
-          <mat-icon>add</mat-icon>
-        </button>
       </section>
     </section>
   }
 
-  @if (combatService.characters.length > 0) {
+  @if (combat.characters().length > 0) {
 
     <section>
-      <app-combat-timer></app-combat-timer>
-      <span class="combat-list__round-counter">Round {{ combatService.roundCounter }}</span>
+      <span class="combat-list__round-counter">Round {{ combat.roundCounter }}</span>
     </section>
 
-
     <section class="combat-list">
-      @for (character of combatService.characters; track character.id; let index = $index) {
-        <app-character #character [character]="character" [index]="index"></app-character>
+      @for (character of combat.characters(); track character.id; let index = $index) {
+        <app-character-combat-proyection-item #character [character]="character"></app-character-combat-proyection-item>
       }
     </section>
 
   }
 
-  @if (combatService.characters.length > 1) {
+  <!-- @if (combat.characters().length > 1) {
 
     <section class="controls">
       <button mat-icon-button (click)="previous()">
@@ -39,10 +33,6 @@
       </button>
     </section>
 
-  }
-
-  <button mat-fab (click)="add()" class="fab-button fab-button--add">
-    <mat-icon>add</mat-icon>
-  </button>
+  } -->
 
 </article>

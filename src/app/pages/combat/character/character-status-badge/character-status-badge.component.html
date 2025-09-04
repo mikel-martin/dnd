@@ -1,6 +1,0 @@
-@if(status()) {
-  <article [style.background-color]="status()?.color" class="status-badge">
-    <span class="name">{{ status()?.icon }} {{ status()?.name }} {{ status()?.roundsLeft ? "(" + status()?.roundsLeft + ")" : "" }}</span>
-    <button class="remove-button" (click)="remove()">x</button>
-  </article>
-}

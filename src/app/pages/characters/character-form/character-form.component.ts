@@ -61,6 +61,7 @@ export class CharacterFormComponent {
       name: this.form.value.name ?? '',
       type: this.form.value.type ?? CharacterType.NEUTRAL,
       maxHitPoints: this.form.value.maxhitPoints ?? 0,
+      currentHitPoints: this.form.value.maxhitPoints ?? 0,
       passivePerception: this.form.value.passivePerception ?? 0,
       classArmour: this.form.value.classArmour ?? 0,
       savingThrow: this.form.value.savingThrow ?? 0

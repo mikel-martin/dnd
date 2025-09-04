@@ -1,6 +1,7 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, Injector, signal } from '@angular/core';
 import { Subject, type Observable } from 'rxjs';
 import { ProyectionEventType } from '../enums/proyection-event-type.interface';
+import { CombatService } from './combat.service';
 
 const SHOWING_COMVAT_MENU_KEY = "combat.showing";
 
@@ -13,9 +14,11 @@ export class ProyectionService {
 
   public showingCombatMenu = signal(false);
 
+  private event$ = new Subject<any>();
+
   private channel = new BroadcastChannel('proyection');
 
-  private event$ = new Subject<any>();
+  private injector = inject(Injector);
 
   constructor() {
 
@@ -28,7 +31,9 @@ export class ProyectionService {
     this._on().subscribe((event: any) => {
       if (event.type === ProyectionEventType.IMAGE) {
         this._handleImageEvent(event.data);
-      } else if (event.type === ProyectionEventType.COMBAT_VISIBILITY) {
+      } else if (event.type === ProyectionEventType.COMBAT_UPDATE) {
+        this._handleCombatEvent(event.data);
+      }  else if (event.type === ProyectionEventType.COMBAT_VISIBILITY) {
         this._handleCombatMenuVisibility(event.data);
       }
     });
@@ -49,6 +54,13 @@ export class ProyectionService {
 
   private _handleImageEvent(data: any): void {
     this.backgroundImage.set(data);
+  }
+
+  private _handleCombatEvent(data: any): void {
+    console.log("Combat event!");
+    const combat = this.injector.get<CombatService>(CombatService);
+    combat.characters.set(data);
+    console.log(data);
   }
 
   private _handleCombatMenuVisibility(data: any): void {

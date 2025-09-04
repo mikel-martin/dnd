@@ -1,5 +1,6 @@
 $d20-size: 42px;
 $d20-font-size: 1.125rem;
+$d20-hover-font-size: 1.5rem;
 
 .d20 {
   width: $d20-size;
@@ -24,4 +25,16 @@ $d20-font-size: 1.125rem;
     inset: 0;
     clip-path: inherit;
   }
+
+  &.clickable {
+
+    transition: background-color 0.15s ease, font-size 0.15s ease;
+
+    &:hover {
+      font-size: $d20-hover-font-size;
+      background-color: var(--mat-sys-on-primary-container);
+    }
+
+  }
+
 }

@@ -1,18 +1,15 @@
+import { ProyectionService } from './../../services/proyection.service';
 import { Component, ElementRef, inject, ViewChildren, type QueryList } from '@angular/core';
-import { CharacterComponent } from './character/character.component';
-import { CharacterFormComponent } from './character-form/character-form.component';
-import { CombatCharacter } from '../../interfaces/combat-character.interface';
 import { MatButtonModule } from '@angular/material/button';
-import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { CombatService } from '../../services/combat.service';
 import { CombatTimerComponent } from '../../shared/components/combat-timer/combat-timer.component';
+import { CharacterCombatProyectionItemComponent } from './character-combat-proyection-item/character-combat-proyection-item.component';
 
 @Component({
   selector: 'app-combat',
   imports: [
-    CharacterComponent,
-    CombatTimerComponent,
+    CharacterCombatProyectionItemComponent,
     MatButtonModule,
     MatIconModule
   ],
@@ -21,29 +18,23 @@ import { CombatTimerComponent } from '../../shared/components/combat-timer/comba
 })
 export class CombatComponent {
 
-  private dialog = inject(MatDialog);
+  combat = inject(CombatService);
 
-  combatService = inject(CombatService);
+  proyection = inject(ProyectionService);
 
   @ViewChildren("character", { read: ElementRef }) characterEls!: QueryList<ElementRef>;
 
-  add() {
-    this.dialog.open(CharacterFormComponent, {
-      width: "500px"
-    });
-  }
-
   next() {
-    this.combatService.next();
+    this.combat.next();
     this._scrollToSelected();
   }
 
   previous() {
-    this.combatService.previous();
+    this.combat.previous();
   }
 
   private _scrollToSelected() {
-    const index = this.combatService.activeCharacter;
+    const index = this.combat.activeCharacter;
     const el = this.characterEls.get(index)?.nativeElement as HTMLElement;
 
     if (!el) return;

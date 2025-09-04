@@ -2,6 +2,7 @@ import { Component, inject } from '@angular/core';
 import { ProyectionService } from '../../services/proyection.service';
 import { CommonModule } from '@angular/common';
 import { CombatComponent } from '../combat/combat.component';
+import { CombatService } from '../../services/combat.service';
 
 @Component({
   selector: 'app-proyection',
@@ -12,5 +13,7 @@ import { CombatComponent } from '../combat/combat.component';
 export class ProyectionComponent {
 
   proyection = inject(ProyectionService);
+
+  combat = inject(CombatService);
 
 }

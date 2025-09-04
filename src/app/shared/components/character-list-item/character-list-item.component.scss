@@ -1,0 +1,84 @@
+:host {
+  width: 100%;
+}
+
+.character-sheet {
+
+  padding: 0.25rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: var(--mat-sys-corner-medium);
+  cursor: pointer;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+
+  &:hover {
+    background-color: var(--mat-sys-primary-container);
+    transform: translateX(5px);
+  }
+
+  .heading {
+    gap: 1rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .header {
+
+    gap: 0.125rem;
+    display: flex;
+    flex-direction: column;
+
+    .name {
+      white-space: nowrap;
+      font-weight: normal;
+      margin: 0;
+    }
+
+    .type {
+
+      &.player {
+        color: var(--mat-sys-primary);
+      }
+
+      &.ally {
+        color: rgb(48, 133, 36);
+      }
+
+      &.enemy {
+        color: var(--mat-sys-error);
+      }
+
+    }
+
+  }
+
+  .stats {
+
+    display: flex;
+    gap: 1rem;
+
+    .stat {
+      $size: 48px;
+      width: $size;
+      height: $size;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      .label {
+        opacity: 0.5;
+        font-size: 0.75rem;
+        white-space: nowrap;
+      }
+
+      .value {
+        font-size: 1rem;
+        white-space: nowrap;
+      }
+    }
+
+  }
+
+}

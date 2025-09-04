@@ -1,0 +1,37 @@
+<article class="character-sheet">
+
+  <section class="heading">
+
+    <app-d20 [clickable]="true" (initiative)="initiative($event)"></app-d20>
+
+    <div class="header">
+      <h3 class="name">{{ character?.name }}</h3>
+      <small [ngClass]="[character?.type ?? '']" class="type">{{ typeLabel(character?.type) }}</small>
+      <app-character-status-badge [states]="character?.states || []" (change)="status($event)"></app-character-status-badge>
+    </div>
+
+  </section>
+
+
+  <section class="stats">
+    <div class="stat">
+      <span class="label">CA</span>
+      <span class="value">{{ character?.classArmour || "-" }}</span>
+    </div>
+    <div class="stat">
+      <span class="label">PP</span>
+      <span class="value">{{ character?.passivePerception || "-" }}</span>
+    </div>
+    <div class="stat">
+      <span class="label">TS</span>
+      <span class="value">{{ character?.savingThrow || "-" }}</span>
+    </div>
+    <div class="stat">
+      <span class="label">HP</span>
+      <span class="value">
+        {{ character?.currentHitPoints || "-" }}/{{ character?.maxHitPoints || "-" }}
+      </span>
+    </div>
+  </section>
+
+</article>

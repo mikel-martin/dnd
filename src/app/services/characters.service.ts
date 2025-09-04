@@ -31,8 +31,8 @@ export class CharactersService {
     return this.http.get<Character>(`${this.baseURL}/${id}.json`);
   }
 
-  update(character: Character) {
-    return this.http.put(`${this.baseURL}/${character.id}.json`, character);
+  update(character: Character): Observable<Character> {
+    return this.http.put<Character>(`${this.baseURL}/${character.id}.json`, character);
   }
 
   create(event: Character) {

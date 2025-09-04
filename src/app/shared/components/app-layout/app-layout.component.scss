@@ -66,6 +66,6 @@ $navbar-height: 60px;
 }
 
 .app {
+  overflow: auto;
     height: calc(100% - #{$navbar-height});
-    overflow: hidden;
 }

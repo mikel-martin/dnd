@@ -34,7 +34,9 @@
             <mat-label>Character</mat-label>
             <mat-select multiple [formControl]="selectedCharactersControl">
               @for (character of characters; track character) {
-                <mat-option [value]="character">{{ character.name }}</mat-option>
+                @if(combat.characterInCombat(character)) {
+                  <mat-option [value]="character">{{ character.name }}</mat-option>
+                }
               }
             </mat-select>
           </mat-form-field>
@@ -46,11 +48,11 @@
 
         </div>
 
-        <ul>
-          @for (character of combat.characters; track character) {
-            <li>{{ character.name }}</li>
+        <div class="character-list">
+          @for (character of combat.characters(); track character.id) {
+            <app-character-combat-list-item [character]="character"></app-character-combat-list-item>
           }
-        </ul>
+        </div>
 
       </section>
 
