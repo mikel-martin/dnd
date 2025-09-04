@@ -9,6 +9,8 @@ import type { Character } from '../../../interfaces/characters.interface';
 import { CharactersService } from '../../../services/characters.service';
 import { CharacterStatusBadgeComponent } from '../character-status-badge/character-status-badge.component';
 import type { CharacterStatus } from '../../../interfaces/character-status.interface';
+import { MatMenuModule } from '@angular/material/menu';
+import { CharacterStatusService } from '../../../services/character-status.service';
 
 @Component({
   selector: 'app-character-combat-list-item',
@@ -18,6 +20,7 @@ import type { CharacterStatus } from '../../../interfaces/character-status.inter
     D20Component,
     MatCardModule,
     MatButtonModule,
+    MatMenuModule,
     MatIconModule
   ],
   templateUrl: './character-combat-list-item.component.html',
@@ -26,6 +29,8 @@ import type { CharacterStatus } from '../../../interfaces/character-status.inter
 export class CharacterCombatListItemComponent {
 
   private characters = inject(CharactersService);
+
+  statusService = inject(CharacterStatusService);
 
   @Input() character?: Character;
 
@@ -54,5 +59,25 @@ export class CharacterCombatListItemComponent {
       });
     }
   }
+
+
+  setStatus(status: CharacterStatus) {
+    if (this.character) {
+      if (!this.character.states) {
+        this.character.states = [];
+      }
+      this.character.states.push(status);
+      this.characters.update(this.character).subscribe({
+        next: res => {
+          this.character = res;
+        }
+      });
+    }
+  }
+
+  remove() {
+
+  }
+
 
 }

@@ -32,6 +32,29 @@
         {{ character?.currentHitPoints || "-" }}/{{ character?.maxHitPoints || "-" }}
       </span>
     </div>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
   </section>
 
 </article>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="statesMenu">
+    <mat-icon>person</mat-icon>
+    <span>Set status</span>
+  </button>
+  <button mat-menu-item (click)="remove()">
+    <mat-icon>delete</mat-icon>
+    <span>Remove</span>
+  </button>
+</mat-menu>
+
+<mat-menu #statesMenu="matMenu" class="status-menu">
+  @for (status of statusService.states; track status.id) {
+      <button mat-menu-item (click)="setStatus(status)">
+        <span>{{ status.icon }} {{ status.name }}</span>
+      </button>
+  }
+</mat-menu>
+

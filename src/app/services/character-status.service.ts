@@ -190,7 +190,7 @@ export class CharacterStatusService {
     },
   ];
 
-  get statuses(): CharacterStatus[] {
+  get states(): CharacterStatus[] {
     return this._statuses;
   }
 
@@ -199,7 +199,7 @@ export class CharacterStatusService {
   }
 
   constructor() {
-    this.statuses.sort((a, b) => a.name.localeCompare(b.name));
+    this.states.sort((a, b) => a.name.localeCompare(b.name));
   }
 
 }
