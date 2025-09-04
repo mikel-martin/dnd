@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { CharactersService } from '../../services/characters.service';
-import { CharacterSheetComponent } from './character-sheet/character-sheet.component';
 import type { Character } from '../../interfaces/characters.interface';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { appRoutes } from '../../app.routes';
 import { characterRoutes } from './character.routes';
+import { CharacterSheetComponent } from '../../shared/components/character-sheet/character-sheet.component';
 
 @Component({
   selector: 'app-characters',
