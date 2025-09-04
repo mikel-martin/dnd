@@ -11,6 +11,7 @@ import { CharacterStatusBadgeComponent } from '../character-status-badge/charact
 import type { CharacterStatus } from '../../../interfaces/character-status.interface';
 import { MatMenuModule } from '@angular/material/menu';
 import { CharacterStatusService } from '../../../services/character-status.service';
+import { CombatService } from '../../../services/combat.service';
 
 @Component({
   selector: 'app-character-combat-list-item',
@@ -29,6 +30,8 @@ import { CharacterStatusService } from '../../../services/character-status.servi
 export class CharacterCombatListItemComponent {
 
   private characters = inject(CharactersService);
+
+  private combat = inject(CombatService);
 
   statusService = inject(CharacterStatusService);
 
@@ -76,7 +79,9 @@ export class CharacterCombatListItemComponent {
   }
 
   remove() {
-
+    if (this.character?.id) {
+      this.combat.remove(this.character);
+    }
   }
 
 
