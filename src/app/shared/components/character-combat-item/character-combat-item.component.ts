@@ -75,7 +75,7 @@ export class CharacterCombatItemComponent {
   }
 
   updateHitPoints(amount: number) {
-        if (this.character) {
+    if (this.character) {
       if (!this.character.currentHitPoints) {
         this.character.currentHitPoints = this.character.maxHitPoints || 0;
       }
@@ -83,6 +83,15 @@ export class CharacterCombatItemComponent {
       if (this.character.currentHitPoints < 0) {
         this.character.currentHitPoints = 0;
       }
+      this.characters.update(this.character).subscribe({
+        next: (res) => this.character = res
+      });
+    }
+  }
+
+  resetHitPoints() {
+    if (this.character) {
+      this.character.currentHitPoints = this.character.maxHitPoints || 0;
       this.characters.update(this.character).subscribe({
         next: (res) => this.character = res
       });
