@@ -1,7 +1,7 @@
 <article (click)="edit()" class="character-sheet">
   <section class="heading">
     <div class="header">
-      <h3 class="name">{{ character?.name }}</h3>
+      <h5 class="name">{{ character?.name }}</h5>
       <small [ngClass]="[character?.type ?? '']" class="type">{{
         typeLabel(character?.type)
       }}</small>
