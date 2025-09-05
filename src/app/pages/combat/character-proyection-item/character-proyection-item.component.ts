@@ -13,7 +13,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { CharacterStatusBadgeComponent } from '../../../shared/components/character-status-badge/character-status-badge.component';
 
 @Component({
-  selector: 'app-character-combat-proyection-item',
+  selector: 'app-character-proyection-item',
   imports: [
     CommonModule,
     D20Component,
