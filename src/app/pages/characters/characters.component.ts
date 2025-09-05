@@ -6,11 +6,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { Router } from '@angular/router';
 import { appRoutes } from '../../app.routes';
 import { characterRoutes } from './character.routes';
-import { CharacterListItemComponent } from '../../shared/components/character-list-item/character-list-item.component';
+import { CharacterItemComponent } from '../../shared/components/character-item/character-item.component';
 
 @Component({
   selector: 'app-characters',
-  imports: [CharacterListItemComponent, MatButtonModule, MatIconModule],
+  imports: [CharacterItemComponent, MatButtonModule, MatIconModule],
   templateUrl: './characters.component.html',
   styleUrl: './characters.component.scss',
 })

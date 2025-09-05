@@ -17,7 +17,7 @@ import { appRoutes } from '../../../app.routes';
 import { CharactersService } from '../../../services/characters.service';
 
 @Component({
-  selector: 'app-character-list-item',
+  selector: 'app-character-item',
   imports: [
     CommonModule,
     RouterModule,
@@ -25,10 +25,10 @@ import { CharactersService } from '../../../services/characters.service';
     MatButtonModule,
     MatIconModule,
   ],
-  templateUrl: './character-list-item.component.html',
-  styleUrl: './character-list-item.component.scss',
+  templateUrl: './character-item.component.html',
+  styleUrl: './character-item.component.scss',
 })
-export class CharacterListItemComponent {
+export class CharacterItemComponent {
   private characters = inject(CharactersService);
 
   private router = inject(Router);
