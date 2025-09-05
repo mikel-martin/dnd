@@ -33,7 +33,7 @@
         </div>
 
         <div class="add-characters">
-          <mat-form-field class="select">
+          <mat-form-field appearance="outline" class="select">
             <mat-label>Character</mat-label>
             <mat-select multiple [formControl]="selectedCharactersControl">
               @for (character of characters; track character) {
@@ -46,7 +46,11 @@
             </mat-select>
           </mat-form-field>
 
-          <button mat-flat-button color="primary" (click)="addCharacters()">
+          <button
+            mat-flat-button
+            color="primary"
+            [disabled]="selectedCharactersControl.value?.length === 0"
+            (click)="addCharacters()">
             Add
             <mat-icon>add</mat-icon>
           </button>
@@ -54,8 +58,9 @@
 
         <div class="character-list">
           @for (character of combat.characters(); track character.id) {
-            <app-character-combat-item
-              [character]="character"></app-character-combat-item>
+            <app-character-item
+              [character]="character"
+              mode="encounter"></app-character-item>
           }
         </div>
       </section>

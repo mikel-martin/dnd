@@ -14,12 +14,12 @@ import { CharactersService } from '../../services/characters.service';
 import type { Character } from '../../interfaces/characters.interface';
 import { MatSelectModule } from '@angular/material/select';
 import { CombatService } from '../../services/combat.service';
-import { CharacterCombatItemComponent } from '../../shared/components/character-combat-item/character-combat-item.component';
+import { CharacterItemComponent } from '../../shared/components/character-item/character-item.component';
 
 @Component({
   selector: 'app-home',
   imports: [
-    CharacterCombatItemComponent,
+    CharacterItemComponent,
     FileInputComponent,
     MatButtonModule,
     MatIconModule,
@@ -79,6 +79,6 @@ export class HomeComponent implements OnInit {
 
   addCharacters() {
     this.combat.addCharacters(this.selectedCharactersControl.value || []);
-    this.selectedCharactersControl.reset();
+    this.selectedCharactersControl.reset([]);
   }
 }

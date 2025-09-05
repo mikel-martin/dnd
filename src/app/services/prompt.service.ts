@@ -19,6 +19,7 @@ export class PromptService {
 
     const dialogRef = this.dialog.open(PromptModalComponent, {
       data: options,
+      width: "400px"
     });
 
     return dialogRef

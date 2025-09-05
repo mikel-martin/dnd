@@ -18,9 +18,10 @@
         track character.id;
         let index = $index
       ) {
-        <app-character-proyection-item
+        <app-character-item
           #character
-          [character]="character"></app-character-proyection-item>
+          mode="proyection"
+          [character]="character"></app-character-item>
       }
     </section>
   }

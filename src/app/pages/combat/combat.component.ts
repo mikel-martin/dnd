@@ -9,12 +9,12 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CombatService } from '../../services/combat.service';
-import { CharacterCombatProyectionItemComponent } from './character-proyection-item/character-proyection-item.component';
+import { CharacterItemComponent } from '../../shared/components/character-item/character-item.component';
 
 @Component({
   selector: 'app-combat',
   imports: [
-    CharacterCombatProyectionItemComponent,
+    CharacterItemComponent,
     MatButtonModule,
     MatIconModule,
   ],

@@ -1,10 +1,10 @@
 .states {
   display: flex;
   flex-wrap: wrap;
-  // flex-direction: column;
   gap: 0.125rem;
 
   .status-badge {
+    min-width: 120px;
     font-size: 0.75rem;
     color: white;
     padding: 0.125rem 0.25rem;

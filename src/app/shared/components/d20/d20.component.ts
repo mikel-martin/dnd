@@ -27,7 +27,7 @@ export class D20Component {
       this.prompt
         .open({
           title: 'Initiative',
-          description: 'Set this characters initiative',
+          description: 'Type this characters rolled initiative',
           label: 'Initiative',
           type: 'number',
         })

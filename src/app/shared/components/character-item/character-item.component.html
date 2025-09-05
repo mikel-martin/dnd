@@ -1,33 +1,82 @@
-<article (click)="edit()" class="character-sheet">
+<article (click)="edit($event)" [ngClass]="[mode]" class="character-sheet">
   <section class="heading">
+    @if (mode === 'encounter') {
+      <app-d20
+        [value]="character?.initiative"
+        [clickable]="true"
+        (initiative)="initiative($event)"></app-d20>
+    }
+
     <div class="header">
       <h5 class="name">{{ character?.name }}</h5>
       <small [ngClass]="[character?.type ?? '']" class="type">{{
         typeLabel(character?.type)
       }}</small>
+      <app-character-status-badge
+        [states]="character?.states || []"
+        (change)="statesChanged($event)"></app-character-status-badge>
     </div>
   </section>
 
-  <section class="stats">
-    <div class="stat">
-      <span class="label">CA</span>
-      <span class="value">{{ character?.classArmour || '-' }}</span>
-    </div>
-    <div class="stat">
-      <span class="label">PP</span>
-      <span class="value">{{ character?.passivePerception || '-' }}</span>
-    </div>
-    <div class="stat">
-      <span class="label">TS</span>
-      <span class="value">{{ character?.savingThrow || '-' }}</span>
-    </div>
-    <div class="stat">
-      <span class="label">Max. HP</span>
-      <span class="value">{{ character?.maxHitPoints || '-' }}</span>
-    </div>
-  </section>
+  @if (mode === 'encounter') {
+    <section class="stats">
+      <div class="stat">
+        <span class="label">CA</span>
+        <span class="value">{{ character?.classArmour || '-' }}</span>
+      </div>
+      <div class="stat">
+        <span class="label">PP</span>
+        <span class="value">{{ character?.passivePerception || '-' }}</span>
+      </div>
+      <div class="stat">
+        <span class="label">TS</span>
+        <span class="value">{{ character?.savingThrow || '-' }}</span>
+      </div>
+      <div (click)="promptHitPoints()" class="stat hp prompted">
+        <span class="label">HP</span>
+        <span class="value">
+          {{ character?.currentHitPoints ?? '-' }}/{{
+            character?.maxHitPoints ?? '-'
+          }}
+        </span>
+      </div>
+      <button mat-icon-button [matMenuTriggerFor]="menu">
+        <mat-icon>more_vert</mat-icon>
+      </button>
+    </section>
+  }
 
-  <div class="mobile-actions">
+  @if (mode === 'proyection') {
+    @let healthStatus = getCharacterHealthStatus();
+    <section [ngClass]="[healthStatus.value]" class="stats">
+      {{ healthStatus.label }}
+    </section>
+  }
+
+  @if (mode === 'edition') {
     <mat-icon>chevron_right</mat-icon>
-  </div>
+  }
 </article>
+
+<mat-menu #menu="matMenu">
+  <button mat-menu-item [matMenuTriggerFor]="statesMenu">
+    <mat-icon>person</mat-icon>
+    <span>Set status</span>
+  </button>
+  <button mat-menu-item (click)="resetHitPoints()">
+    <mat-icon>refresh</mat-icon>
+    <span>Reset hit points</span>
+  </button>
+  <button mat-menu-item (click)="removeFromEncounter()">
+    <mat-icon>delete</mat-icon>
+    <span>Remove from combat</span>
+  </button>
+</mat-menu>
+
+<mat-menu #statesMenu="matMenu" class="status-menu">
+  @for (status of statusService.states; track status.id) {
+    <button mat-menu-item (click)="addState(status)">
+      <span>{{ status.icon }} {{ status.name }}</span>
+    </button>
+  }
+</mat-menu>

@@ -63,3 +63,13 @@ body {
 .text-medieval {
   font-family: Deutsch;
 }
+
+.mat-mdc-dialog-actions {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}

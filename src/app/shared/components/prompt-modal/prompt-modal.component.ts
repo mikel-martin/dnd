@@ -25,14 +25,14 @@ import { MatInputModule } from '@angular/material/input';
       @if(data.description) {
         <p>{{ data.description }}</p>
       }
-      <mat-form-field class="w-full">
+      <mat-form-field appearance="outline" class="w-full">
         <mat-label>{{ data.label }}</mat-label>
-        <input matInput [type]="type" [(ngModel)]="value" />
+        <input matInput [type]="type" [(ngModel)]="value" (keydown.enter)="confirm()" />
       </mat-form-field>
     </mat-dialog-content>
-    <mat-dialog-actions align="end">
+    <mat-dialog-actions>
       <button mat-button (click)="cancel()">Cancelar</button>
-      <button mat-button color="primary" (click)="confirm()">Aceptar</button>
+      <button mat-flat-button color="primary" [disabled]="!value.trim()" (click)="confirm()">Aceptar</button>
     </mat-dialog-actions>
   `,
 })
@@ -50,6 +50,9 @@ export class PromptModalComponent {
   }
 
   confirm() {
-    this.dialogRef.close(this.value);
+    const value = this.value.trim();
+    if (value) {
+      this.dialogRef.close(value);
+    }
   }
 }

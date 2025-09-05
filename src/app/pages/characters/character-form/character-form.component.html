@@ -16,12 +16,12 @@
   </div>
 
   <div class="form-row">
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>Name</mat-label>
       <input matInput placeholder="Name" formControlName="name" />
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>Type</mat-label>
       <mat-select formControlName="type">
         @for (type of characterTypes; track type) {
@@ -32,46 +32,42 @@
   </div>
 
   <div class="form-row">
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>Max. Hit points</mat-label>
       <input
         matInput
         type="number"
         placeholder="Max. hit points"
-        formControlName="maxhitPoints"
-      />
+        formControlName="maxhitPoints" />
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>(PP) Passive perception</mat-label>
       <input
         matInput
         type="number"
         placeholder="Passive perception"
-        formControlName="passivePerception"
-      />
+        formControlName="passivePerception" />
     </mat-form-field>
   </div>
 
   <div class="form-row">
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>(CA) Class armour</mat-label>
       <input
         matInput
         type="number"
         placeholder="Class armour"
-        formControlName="classArmour"
-      />
+        formControlName="classArmour" />
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field appearance="outline">
       <mat-label>(TS) Saving Throw</mat-label>
       <input
         matInput
         type="number"
         placeholder="Saving Throw"
-        formControlName="savingThrow"
-      />
+        formControlName="savingThrow" />
     </mat-form-field>
   </div>
 
@@ -82,7 +78,7 @@
 
     <div>
       <button mat-flat-button [disabled]="form.invalid" (click)="save()">
-        {{ character?.id ? "Save" : "Create" }}
+        {{ character?.id ? 'Save' : 'Create' }}
       </button>
     </div>
   </section>

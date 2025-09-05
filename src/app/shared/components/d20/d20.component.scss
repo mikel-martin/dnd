@@ -27,6 +27,7 @@ $d20-hover-font-size: 1.25rem;
   }
 
   &.clickable {
+    cursor: pointer;
     transition:
       background-color 0.15s ease,
       font-size 0.15s ease;
