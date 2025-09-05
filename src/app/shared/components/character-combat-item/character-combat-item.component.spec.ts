@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CharacterCombatListItemComponent } from './character-combat-list-item.component';
+import { CharacterCombatItemComponent } from './character-combat-item.component';
 
 describe('CharacterCombatListItemComponent', () => {
-  let component: CharacterCombatListItemComponent;
-  let fixture: ComponentFixture<CharacterCombatListItemComponent>;
+  let component: CharacterCombatItemComponent;
+  let fixture: ComponentFixture<CharacterCombatItemComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CharacterCombatListItemComponent],
+      imports: [CharacterCombatItemComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CharacterCombatListItemComponent);
+    fixture = TestBed.createComponent(CharacterCombatItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

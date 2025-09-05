@@ -27,10 +27,10 @@ import { CombatService } from '../../../services/combat.service';
     MatMenuModule,
     MatIconModule,
   ],
-  templateUrl: './character-combat-list-item.component.html',
-  styleUrl: './character-combat-list-item.component.scss',
+  templateUrl: './character-combat-item.component.html',
+  styleUrl: './character-combat-item.component.scss',
 })
-export class CharacterCombatListItemComponent {
+export class CharacterCombatItemComponent {
   private characters = inject(CharactersService);
 
   private combat = inject(CombatService);

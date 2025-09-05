@@ -14,12 +14,12 @@ import { CharactersService } from '../../services/characters.service';
 import type { Character } from '../../interfaces/characters.interface';
 import { MatSelectModule } from '@angular/material/select';
 import { CombatService } from '../../services/combat.service';
-import { CharacterCombatListItemComponent } from '../../shared/components/character-combat-list-item/character-combat-list-item.component';
+import { CharacterCombatItemComponent } from '../../shared/components/character-combat-item/character-combat-item.component';
 
 @Component({
   selector: 'app-home',
   imports: [
-    CharacterCombatListItemComponent,
+    CharacterCombatItemComponent,
     FileInputComponent,
     MatButtonModule,
     MatIconModule,
