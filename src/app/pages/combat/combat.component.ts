@@ -9,7 +9,7 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CombatService } from '../../services/combat.service';
-import { CharacterCombatProyectionItemComponent } from './character-combat-proyection-item/character-combat-proyection-item.component';
+import { CharacterCombatProyectionItemComponent } from './character-proyection-item/character-proyection-item.component';
 
 @Component({
   selector: 'app-combat',

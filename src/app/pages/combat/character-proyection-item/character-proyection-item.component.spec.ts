@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CharacterCombatProyectionItemComponent } from './character-combat-proyection-item.component';
+import { CharacterCombatProyectionItemComponent } from './character-proyection-item.component';
 
 describe('CharacterCombatProyectionItemComponent', () => {
   let component: CharacterCombatProyectionItemComponent;

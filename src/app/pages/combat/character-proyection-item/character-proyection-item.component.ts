@@ -22,8 +22,8 @@ import { CharacterStatusBadgeComponent } from '../../../shared/components/charac
     MatIconModule,
     CharacterStatusBadgeComponent
   ],
-  templateUrl: './character-combat-proyection-item.component.html',
-  styleUrl: './character-combat-proyection-item.component.scss',
+  templateUrl: './character-proyection-item.component.html',
+  styleUrl: './character-proyection-item.component.scss',
 })
 export class CharacterCombatProyectionItemComponent {
   private characters = inject(CharactersService);
