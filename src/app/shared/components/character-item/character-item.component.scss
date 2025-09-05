@@ -49,6 +49,10 @@
       }
     }
   }
+  
+  .mobile-actions {
+    display: none;
+  }
 
   .stats {
     display: flex;
@@ -74,5 +78,22 @@
         white-space: nowrap;
       }
     }
+  }
+}
+
+@media (max-width: 768px) {
+  .character-sheet {
+
+    border-radius: 0;
+    border-left: 2px solid var(--mat-sys-primary-container);
+
+    .stats {
+      display: none;
+    }
+
+    .mobile-actions {
+      display: block;
+    }
+
   }
 }
