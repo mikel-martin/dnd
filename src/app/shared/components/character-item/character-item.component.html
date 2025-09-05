@@ -48,9 +48,17 @@
 
   @if (mode === 'proyection') {
     @let healthStatus = getCharacterHealthStatus();
-    <section [ngClass]="[healthStatus.value]" class="stats">
-      {{ healthStatus.label }}
-    </section>
+    @if (character?.type === 'player') {
+      <span [ngClass]="[healthStatus.value]" class="hp-value">
+        {{ character?.currentHitPoints ?? '-' }}/{{
+          character?.maxHitPoints ?? '-'
+        }}
+      </span>
+    } @else {
+      <section [ngClass]="[healthStatus.value]" class="hp-value">
+        {{ healthStatus.label }}
+      </section>
+    }
   }
 
   @if (mode === 'edition') {

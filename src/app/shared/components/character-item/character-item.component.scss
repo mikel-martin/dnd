@@ -79,11 +79,6 @@
 
       &.hp {
         min-width: 80px;
-
-        &.healthy {
-          color: green;
-        }
-
       }
 
       &.prompted:hover {
@@ -91,6 +86,26 @@
         background-color: var(--mat-sys-primary-container);
       }
     }
+  }
+
+  .hp-value {
+    
+    &.healthy {
+      color: green;
+    }
+    
+    &.injured {
+      color: orange;
+    }
+    
+    &.bloodied {
+      color: red;
+    }
+    
+    &.defeated {
+      color: gray;
+    }
+
   }
 }
 
