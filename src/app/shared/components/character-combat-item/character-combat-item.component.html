@@ -29,11 +29,11 @@
       <span class="label">TS</span>
       <span class="value">{{ character?.savingThrow || '-' }}</span>
     </div>
-    <div class="stat">
+    <div (click)="promptHitPoints()" class="stat prompted">
       <span class="label">HP</span>
       <span class="value">
-        {{ character?.currentHitPoints || '-' }}/{{
-          character?.maxHitPoints || '-'
+        {{ character?.currentHitPoints ?? '-' }}/{{
+          character?.maxHitPoints ?? '-'
         }}
       </span>
     </div>

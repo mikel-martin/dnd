@@ -15,6 +15,7 @@ import type { CharacterStatus } from '../../../interfaces/character-status.inter
 import { MatMenuModule } from '@angular/material/menu';
 import { CharacterStatusService } from '../../../services/character-status.service';
 import { CombatService } from '../../../services/combat.service';
+import { PromptService } from '../../../services/prompt.service';
 
 @Component({
   selector: 'app-character-combat-item',
@@ -35,6 +36,8 @@ export class CharacterCombatItemComponent {
 
   private combat = inject(CombatService);
 
+  private prompt = inject(PromptService);
+
   statusService = inject(CharacterStatusService);
 
   @Input() character?: Character;
@@ -46,6 +49,40 @@ export class CharacterCombatItemComponent {
   initiative(initiative: number) {
     if (this.character) {
       this.character.initiative = initiative;
+      this.characters.update(this.character).subscribe({
+        next: (res) => this.character = res
+      });
+    }
+  }
+  
+  promptHitPoints() {
+
+    this.prompt
+      .open({
+        title: 'Hit points',
+        description: 'Type the amount of hit points to be subtracted (-) or added (+) to the characters current hit points',
+        label: 'Amount',
+        type: 'number',
+      })
+      .subscribe((result) => {
+        if (result !== null) {
+          const amount = parseInt(result);
+          if (amount && !isNaN(amount)) {
+            this.updateHitPoints(amount);
+          }
+        }
+      });
+  }
+
+  updateHitPoints(amount: number) {
+        if (this.character) {
+      if (!this.character.currentHitPoints) {
+        this.character.currentHitPoints = this.character.maxHitPoints || 0;
+      }
+      this.character.currentHitPoints += amount;
+      if (this.character.currentHitPoints < 0) {
+        this.character.currentHitPoints = 0;
+      }
       this.characters.update(this.character).subscribe({
         next: (res) => this.character = res
       });

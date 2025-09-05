@@ -22,6 +22,9 @@ import { MatInputModule } from '@angular/material/input';
   template: `
     <h2 mat-dialog-title>{{ data.title }}</h2>
     <mat-dialog-content>
+      @if(data.description) {
+        <p>{{ data.description }}</p>
+      }
       <mat-form-field class="w-full">
         <mat-label>{{ data.label }}</mat-label>
         <input matInput [type]="type" [(ngModel)]="value" />

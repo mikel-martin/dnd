@@ -8,7 +8,6 @@
   align-items: center;
   justify-content: space-between;
   border-radius: var(--mat-sys-corner-medium);
-  cursor: pointer;
   transition:
     background-color 0.15s ease,
     transform 0.15s ease;
@@ -52,27 +51,31 @@
 
     .stat {
       $size: 48px;
-      width: $size;
-      height: $size;
+      // width: $size;
+      // height: $size;
+      min-width: $size;
+      min-height: $size;
+      padding: 0.125rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       border-radius: var(--mat-sys-corner-medium);
       transition: background-color 0.15s ease;
-
+      
       .label {
         opacity: 0.5;
         font-size: 0.75rem;
         white-space: nowrap;
       }
-
+      
       .value {
         font-size: 1rem;
         white-space: nowrap;
       }
-
-      &:hover {
+      
+      &.prompted:hover {
+        cursor: pointer;
         background-color: var(--mat-sys-primary-container);
       }
     }

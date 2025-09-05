@@ -12,15 +12,20 @@ export class PromptService {
 
   open(options: {
     title: string;
+    description: string;
     label: string;
     type?: 'text' | 'number';
   }): Observable<string | null> {
+
     const dialogRef = this.dialog.open(PromptModalComponent, {
       data: options,
     });
 
     return dialogRef
       .afterClosed()
-      .pipe(map((result) => (result !== undefined ? result : null)));
+      .pipe(
+        map((result) => (result !== undefined ? result : null))
+      );
+
   }
 }
