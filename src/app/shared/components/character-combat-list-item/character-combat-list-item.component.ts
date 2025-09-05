@@ -47,9 +47,7 @@ export class CharacterCombatListItemComponent {
     if (this.character) {
       this.character.initiative = initiative;
       this.characters.update(this.character).subscribe({
-        next: (res) => {
-          this.character = res;
-        },
+        next: (res) => this.character = res
       });
     }
   }

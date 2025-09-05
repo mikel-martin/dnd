@@ -10,6 +10,7 @@ import { D20Component } from '../../../shared/components/d20/d20.component';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { CharacterStatusBadgeComponent } from '../../../shared/components/character-status-badge/character-status-badge.component';
 
 @Component({
   selector: 'app-character-combat-proyection-item',
@@ -19,6 +20,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatMenuModule,
     MatButtonModule,
     MatIconModule,
+    CharacterStatusBadgeComponent
   ],
   templateUrl: './character-combat-proyection-item.component.html',
   styleUrl: './character-combat-proyection-item.component.scss',

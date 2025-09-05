@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import type { Character } from '../interfaces/characters.interface';
-import { map, type Observable } from 'rxjs';
+import { map, Subject, type Observable } from 'rxjs';
 import { FirebaseUtils } from '../shared/utils/firebase.utils';
-import { CombatService } from './combat.service';
 
 @Injectable({
   providedIn: 'root',
@@ -14,9 +13,9 @@ export class CharactersService {
 
   private http = inject(HttpClient);
 
-  private combat = inject(CombatService);
-
   characters = signal<Character[]>([]);
+
+  charactersChanged$ = new Subject<Character[]>();
 
   all() {
     return this.http.get(`${this.baseURL}.json`).pipe(
@@ -34,12 +33,13 @@ export class CharactersService {
 
   update(character: Character): Observable<Character> {
     return this.http
-      .put<Character>(`${this.baseURL}/${character.id}.json`, character)
-      .pipe(
-        map((res) => {
-          this.combat.updateCharacterInfo([res]);
+      .put<Character>(`${this.baseURL}/${character.id}.json`, character).pipe(
+        map(res => {
+          const characters = this.characters().map(c => c.id === character.id ? { ...character } : c);
+          this.characters.set(characters);
+          this.charactersChanged$.next(characters);
           return res;
-        }),
+        })
       );
   }
 
