@@ -1,27 +1,24 @@
 <form [formGroup]="form" class="character-form container">
-
   <div class="header">
-
-    @if(character?.id) {
+    @if (character?.id) {
       <h3>Editing "{{ character?.name }}"</h3>
     } @else {
       <h3>Creating new character</h3>
     }
 
     <div>
-      @if(character?.id) {
+      @if (character?.id) {
         <button mat-icon-button (click)="remove()">
           <mat-icon>delete</mat-icon>
         </button>
       }
     </div>
-
   </div>
 
   <div class="form-row">
     <mat-form-field>
       <mat-label>Name</mat-label>
-      <input matInput placeholder="Name" formControlName="name">
+      <input matInput placeholder="Name" formControlName="name" />
     </mat-form-field>
 
     <mat-form-field>
@@ -37,43 +34,56 @@
   <div class="form-row">
     <mat-form-field>
       <mat-label>Max. Hit points</mat-label>
-      <input matInput type="number" placeholder="Max. hit points" formControlName="maxhitPoints">
+      <input
+        matInput
+        type="number"
+        placeholder="Max. hit points"
+        formControlName="maxhitPoints"
+      />
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>(PP) Passive perception</mat-label>
-      <input matInput type="number" placeholder="Passive perception" formControlName="passivePerception">
+      <input
+        matInput
+        type="number"
+        placeholder="Passive perception"
+        formControlName="passivePerception"
+      />
     </mat-form-field>
   </div>
 
   <div class="form-row">
     <mat-form-field>
       <mat-label>(CA) Class armour</mat-label>
-      <input matInput type="number" placeholder="Class armour" formControlName="classArmour">
+      <input
+        matInput
+        type="number"
+        placeholder="Class armour"
+        formControlName="classArmour"
+      />
     </mat-form-field>
 
     <mat-form-field>
       <mat-label>(TS) Saving Throw</mat-label>
-      <input matInput type="number" placeholder="Saving Throw" formControlName="savingThrow">
+      <input
+        matInput
+        type="number"
+        placeholder="Saving Throw"
+        formControlName="savingThrow"
+      />
     </mat-form-field>
   </div>
 
-
-
   <section class="actions">
-
     <div>
-      <button mat-button (click)="cancel()">
-        Cancel
-      </button>
+      <button mat-button (click)="cancel()">Cancel</button>
     </div>
 
     <div>
       <button mat-flat-button [disabled]="form.invalid" (click)="save()">
-        {{ character?.id ? 'Save' : 'Create' }}
+        {{ character?.id ? "Save" : "Create" }}
       </button>
     </div>
-
   </section>
-
 </form>

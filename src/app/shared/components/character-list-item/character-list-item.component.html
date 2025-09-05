@@ -1,14 +1,12 @@
 <article (click)="edit()" class="character-sheet">
-
   <section class="heading">
-
     <div class="header">
       <h3 class="name">{{ character?.name }}</h3>
-      <small [ngClass]="[character?.type ?? '']" class="type">{{ typeLabel(character?.type) }}</small>
+      <small [ngClass]="[character?.type ?? '']" class="type">{{
+        typeLabel(character?.type)
+      }}</small>
     </div>
-
   </section>
-
 
   <section class="stats">
     <div class="stat">
@@ -28,5 +26,4 @@
       <span class="value">{{ character?.maxHitPoints || "-" }}</span>
     </div>
   </section>
-
 </article>

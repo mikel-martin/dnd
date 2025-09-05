@@ -1,5 +1,4 @@
 <section class="characters container">
-
   <div class="actions">
     <h3 class="title">Character list</h3>
     <button mat-flat-button (click)="create()">
@@ -10,8 +9,10 @@
 
   <div class="characters-list">
     @for (character of characters; track character.id; let index = $index) {
-      <app-character-list-item #character [character]="character"></app-character-list-item>
+      <app-character-list-item
+        #character
+        [character]="character"
+      ></app-character-list-item>
     }
   </div>
-
 </section>

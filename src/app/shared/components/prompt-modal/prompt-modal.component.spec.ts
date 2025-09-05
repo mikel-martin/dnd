@@ -8,9 +8,8 @@ describe('PromptModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PromptModalComponent]
-    })
-    .compileComponents();
+      imports: [PromptModalComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PromptModalComponent);
     component = fixture.componentInstance;

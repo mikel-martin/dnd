@@ -5,13 +5,12 @@ import type { CharacterStatus } from '../../../interfaces/character-status.inter
   selector: 'app-character-status-badge',
   imports: [],
   templateUrl: './character-status-badge.component.html',
-  styleUrl: './character-status-badge.component.scss'
+  styleUrl: './character-status-badge.component.scss',
 })
 export class CharacterStatusBadgeComponent {
-
   states = input<CharacterStatus[]>([]);
 
-  @Output("change") changeEvent = new EventEmitter<CharacterStatus[]>();
+  @Output('change') changeEvent = new EventEmitter<CharacterStatus[]>();
 
   remove(index: number) {
     if (this.states) {
@@ -19,5 +18,4 @@ export class CharacterStatusBadgeComponent {
       this.changeEvent.emit(this.states());
     }
   }
-
 }

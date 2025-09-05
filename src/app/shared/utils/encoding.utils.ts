@@ -1,5 +1,4 @@
 export class EncodingUtils {
-
   public static toBase64(file: File): Promise<string> {
     return new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -8,5 +7,4 @@ export class EncodingUtils {
       reader.readAsDataURL(file);
     });
   }
-
 }

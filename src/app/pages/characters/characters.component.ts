@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { CharactersService } from '../../services/characters.service';
 import type { Character } from '../../interfaces/characters.interface';
 import { MatButtonModule } from '@angular/material/button';
@@ -10,16 +10,11 @@ import { CharacterListItemComponent } from '../../shared/components/character-li
 
 @Component({
   selector: 'app-characters',
-  imports: [
-    CharacterListItemComponent,
-    MatButtonModule,
-    MatIconModule
-  ],
+  imports: [CharacterListItemComponent, MatButtonModule, MatIconModule],
   templateUrl: './characters.component.html',
-  styleUrl: './characters.component.scss'
+  styleUrl: './characters.component.scss',
 })
-export class CharactersComponent {
-
+export class CharactersComponent implements OnInit {
   private charactersService = inject(CharactersService);
 
   private router = inject(Router);
@@ -28,12 +23,14 @@ export class CharactersComponent {
 
   ngOnInit() {
     this.charactersService.all().subscribe({
-      next: (res) => this.characters = res
+      next: (res) => (this.characters = res),
     });
   }
 
   create() {
-    this.router.navigate([appRoutes.CHARACTERS, characterRoutes.CHARACTER_CREATE]);
+    this.router.navigate([
+      appRoutes.CHARACTERS,
+      characterRoutes.CHARACTER_CREATE,
+    ]);
   }
-
 }

@@ -11,9 +11,7 @@ import { CombatService } from '../../services/combat.service';
   styleUrl: './proyection.component.scss',
 })
 export class ProyectionComponent {
-
   proyection = inject(ProyectionService);
 
   combat = inject(CombatService);
-
 }

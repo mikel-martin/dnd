@@ -6,11 +6,11 @@ import { FirebaseUtils } from '../shared/utils/firebase.utils';
 import { CombatService } from './combat.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CharactersService {
-
-  private baseURL: string = "https://no-dungeons-no-dragons-c8f58-default-rtdb.europe-west1.firebasedatabase.app/characters"
+  private baseURL =
+    'https://no-dungeons-no-dragons-c8f58-default-rtdb.europe-west1.firebasedatabase.app/characters';
 
   private http = inject(HttpClient);
 
@@ -18,15 +18,15 @@ export class CharactersService {
 
   characters = signal<Character[]>([]);
 
-  constructor() { }
+  constructor() {}
 
   all() {
     return this.http.get(`${this.baseURL}.json`).pipe(
-      map(res => {
+      map((res) => {
         const response = FirebaseUtils.parseFirebaseRes(res);
         this.characters.set(response);
         return response;
-      })
+      }),
     );
   }
 
@@ -35,12 +35,14 @@ export class CharactersService {
   }
 
   update(character: Character): Observable<Character> {
-    return this.http.put<Character>(`${this.baseURL}/${character.id}.json`, character).pipe(
-      map(res => {
-        this.combat.updateCharacterInfo([res]);
-        return res;
-      })
-    );
+    return this.http
+      .put<Character>(`${this.baseURL}/${character.id}.json`, character)
+      .pipe(
+        map((res) => {
+          this.combat.updateCharacterInfo([res]);
+          return res;
+        }),
+      );
   }
 
   create(character: Character) {
@@ -51,5 +53,4 @@ export class CharactersService {
     const url = `${this.baseURL}/${id}.json`;
     return this.http.delete(url);
   }
-
 }

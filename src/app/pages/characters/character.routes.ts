@@ -3,10 +3,10 @@ import { CharactersComponent } from './characters.component';
 import { CharacterFormComponent } from './character-form/character-form.component';
 
 export const characterRoutes = {
-    CHARACTERS: '',
-    CHARACTER_CREATE: 'create',
-    CHARACTER_DETAIL: ':id'
-}
+  CHARACTERS: '',
+  CHARACTER_CREATE: 'create',
+  CHARACTER_DETAIL: ':id',
+};
 
 export const routes: Routes = [
   {
@@ -20,5 +20,5 @@ export const routes: Routes = [
   {
     path: characterRoutes.CHARACTER_DETAIL,
     component: CharacterFormComponent,
-  }
+  },
 ];

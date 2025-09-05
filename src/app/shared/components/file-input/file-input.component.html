@@ -1,9 +1,16 @@
 <div class="file-input">
-  <input #input type="file" id="file" [accept]="accept()" (change)="change($event)" class="file">
+  <input
+    #input
+    type="file"
+    id="file"
+    [accept]="accept()"
+    (change)="change($event)"
+    class="file"
+  />
   <button mat-flat-button (click)="input.click()">
     {{ label() }}
   </button>
-  @if(selectedFile) {
+  @if (selectedFile) {
     <div class="file-info">
       <p class="file-name">{{ selectedFile.name }}</p>
       <button mat-icon-button (click)="clear()">

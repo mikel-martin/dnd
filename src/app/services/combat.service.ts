@@ -8,10 +8,9 @@ import { ProyectionService } from './proyection.service';
 import { ProyectionEventType } from '../enums/proyection-event-type.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CombatService {
-
   private _roundCounter = 1;
 
   private _activeCharacter?: number;
@@ -39,14 +38,13 @@ export class CombatService {
   }
 
   addCharacters(characters: Character[]): void {
-
     const result = this.characters();
 
-    const existingIds = new Set(this.characters().map(c => c.id));
+    const existingIds = new Set(this.characters().map((c) => c.id));
 
     const newCharacters = characters
-      .filter(c => !existingIds.has(c.id))
-      .map(i => {
+      .filter((c) => !existingIds.has(c.id))
+      .map((i) => {
         i.initiative = undefined;
         return i;
       });
@@ -66,17 +64,15 @@ export class CombatService {
 
     this._proyection.emit({
       type: ProyectionEventType.COMBAT_UPDATE,
-      data: result
+      data: result,
     });
-
   }
 
   updateCharacterInfo(characters: Character[]) {
+    const currentCharacters = this.characters();
 
-    let currentCharacters = this.characters();
-
-    const result = currentCharacters.map(character => {
-      const char = characters.find(c => c.id === character.id);
+    const result = currentCharacters.map((character) => {
+      const char = characters.find((c) => c.id === character.id);
       if (char) {
         return char;
       }
@@ -85,43 +81,41 @@ export class CombatService {
 
     this._proyection.emit({
       type: ProyectionEventType.COMBAT_UPDATE,
-      data: result
+      data: result,
     });
-
   }
 
   characterInCombat(character: Character): boolean {
-    return this.characters().find(i => i.id === character.id) === undefined;
+    return this.characters().find((i) => i.id === character.id) === undefined;
   }
 
   remove(character: CombatCharacter): void {
-
-    this.characters.set([...this.characters().filter(c => c.id !== character.id)]);
+    this.characters.set([
+      ...this.characters().filter((c) => c.id !== character.id),
+    ]);
 
     this._proyection.emit({
       type: ProyectionEventType.COMBAT_UPDATE,
-      data: this.characters()
+      data: this.characters(),
     });
-
   }
 
   setStatus(statusId: string, characterid: string): void {
     const status = this._statusService.find(statusId);
-    const character = this.characters().find(c => c.id === characterid);
+    const character = this.characters().find((c) => c.id === characterid);
     if (status && character) {
       character.states = [status];
     }
   }
 
   removeStatus(characterid: string): void {
-    const character = this.characters().find(c => c.id === characterid);
+    const character = this.characters().find((c) => c.id === characterid);
     if (character) {
       character.states = [];
     }
   }
 
   next(): void {
-
     if (this.characters.length === 0) {
       return;
     }
@@ -136,11 +130,9 @@ export class CombatService {
       this._activeCharacter = 0;
       this._roundCounter += 1;
     }
-
   }
 
   previous(): void {
-
     if (this.characters.length === 0) {
       return;
     }
@@ -159,9 +151,6 @@ export class CombatService {
         this._roundCounter = 1;
         this._activeCharacter = 0;
       }
-
     }
-
   }
-
 }

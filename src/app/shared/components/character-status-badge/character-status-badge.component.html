@@ -1,10 +1,13 @@
 <article class="states">
-    @for (status of states(); track status.id; let index = $index) {
-      <article [style.background-color]="status?.color" class="status-badge">
-        <span class="name">{{ status?.icon }} {{ status?.name }} {{ status?.roundsLeft ? "(" + status?.roundsLeft + ")" : "" }}</span>
-        <button class="remove-button" (click)="remove(index)">x</button>
-      </article>
-    }
+  @for (status of states(); track status.id; let index = $index) {
+    <article [style.background-color]="status?.color" class="status-badge">
+      <span class="name"
+        >{{ status?.icon }} {{ status?.name }}
+        {{ status?.roundsLeft ? "(" + status?.roundsLeft + ")" : "" }}</span
+      >
+      <button class="remove-button" (click)="remove(index)">x</button>
+    </article>
+  }
 </article>
 <!-- @if(status()) {
   <article [style.background-color]="status()?.color" class="status-badge">

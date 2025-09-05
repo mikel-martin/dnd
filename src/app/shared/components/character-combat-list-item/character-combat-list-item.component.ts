@@ -4,7 +4,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { D20Component } from '../d20/d20.component';
-import { CharacterType, CharacterTypes } from '../../../enums/character-type.enum';
+import {
+  CharacterType,
+  CharacterTypes,
+} from '../../../enums/character-type.enum';
 import type { Character } from '../../../interfaces/characters.interface';
 import { CharactersService } from '../../../services/characters.service';
 import { CharacterStatusBadgeComponent } from '../character-status-badge/character-status-badge.component';
@@ -22,13 +25,12 @@ import { CombatService } from '../../../services/combat.service';
     MatCardModule,
     MatButtonModule,
     MatMenuModule,
-    MatIconModule
+    MatIconModule,
   ],
   templateUrl: './character-combat-list-item.component.html',
-  styleUrl: './character-combat-list-item.component.scss'
+  styleUrl: './character-combat-list-item.component.scss',
 })
 export class CharacterCombatListItemComponent {
-
   private characters = inject(CharactersService);
 
   private combat = inject(CombatService);
@@ -38,16 +40,16 @@ export class CharacterCombatListItemComponent {
   @Input() character?: Character;
 
   typeLabel(type: CharacterType = CharacterType.NEUTRAL) {
-    return CharacterTypes.find(t => t.value === type)?.label;
+    return CharacterTypes.find((t) => t.value === type)?.label;
   }
 
   initiative(initiative: number) {
     if (this.character) {
       this.character.initiative = initiative;
       this.characters.update(this.character).subscribe({
-        next: res => {
+        next: (res) => {
           this.character = res;
-        }
+        },
       });
     }
   }
@@ -56,13 +58,12 @@ export class CharacterCombatListItemComponent {
     if (this.character) {
       this.character.states = states;
       this.characters.update(this.character).subscribe({
-        next: res => {
+        next: (res) => {
           this.character = res;
-        }
+        },
       });
     }
   }
-
 
   setStatus(status: CharacterStatus) {
     if (this.character) {
@@ -71,9 +72,9 @@ export class CharacterCombatListItemComponent {
       }
       this.character.states.push(status);
       this.characters.update(this.character).subscribe({
-        next: res => {
+        next: (res) => {
           this.character = res;
-        }
+        },
       });
     }
   }
@@ -83,6 +84,4 @@ export class CharacterCombatListItemComponent {
       this.combat.remove(this.character);
     }
   }
-
-
 }

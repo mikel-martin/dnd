@@ -1,4 +1,4 @@
-import { Component, effect, inject } from '@angular/core';
+import { Component, effect, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { ProyectionService } from '../../services/proyection.service';
@@ -29,13 +29,12 @@ import { CharacterCombatListItemComponent } from '../../shared/components/charac
     MatExpansionModule,
     ReactiveFormsModule,
     MatSelectModule,
-    FormsModule
+    FormsModule,
   ],
   templateUrl: './home.component.html',
-  styleUrl: './home.component.scss'
+  styleUrl: './home.component.scss',
 })
-export class HomeComponent {
-
+export class HomeComponent implements OnInit {
   private proyection = inject(ProyectionService);
 
   private charactersService = inject(CharactersService);
@@ -49,13 +48,11 @@ export class HomeComponent {
   showingCombatMenu = false;
 
   ngOnInit() {
-
     this.showingCombatMenu = this.proyection.showingCombatMenu();
 
     this.charactersService.all().subscribe({
-      next: res => this.characters = res
+      next: (res) => (this.characters = res),
     });
-
   }
 
   clearBackgroundImage() {
@@ -64,11 +61,13 @@ export class HomeComponent {
 
   combatToggleChange(event: any) {
     this.showingCombatMenu = event.checked;
-    this.proyection.emit({ type: ProyectionEventType.COMBAT_VISIBILITY, data: event.checked });
+    this.proyection.emit({
+      type: ProyectionEventType.COMBAT_VISIBILITY,
+      data: event.checked,
+    });
   }
 
   async emit(event: Event) {
-
     const input = event.target as HTMLInputElement;
     if (!input.files || input.files.length === 0) return;
 
@@ -76,13 +75,10 @@ export class HomeComponent {
     const base64 = await EncodingUtils.toBase64(file);
 
     this.proyection.emit({ type: ProyectionEventType.IMAGE, data: base64 });
-
   }
 
   addCharacters() {
     this.combat.addCharacters(this.selectedCharactersControl.value || []);
     this.selectedCharactersControl.reset();
   }
-
 }
-

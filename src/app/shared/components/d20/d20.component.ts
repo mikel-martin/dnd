@@ -6,10 +6,9 @@ import { PromptService } from '../../../services/prompt.service';
   selector: 'app-d20',
   imports: [CommonModule],
   templateUrl: './d20.component.html',
-  styleUrl: './d20.component.scss'
+  styleUrl: './d20.component.scss',
 })
 export class D20Component {
-
   private prompt = inject(PromptService);
 
   value = input<number>();
@@ -18,33 +17,28 @@ export class D20Component {
 
   clickable = input<boolean>(false);
 
-  @Output("initiative") initiativeEvent = new EventEmitter<number>();
+  @Output('initiative') initiativeEvent = new EventEmitter<number>();
 
   setInitiative(event: Event) {
-
     if (this.clickable()) {
-
       event.preventDefault();
       event.stopPropagation();
 
-      this.prompt.open({
-        title: "Hello there",
-        label: "Initiative",
-        type: "number"
-      }).subscribe(result => {
-        if (result !== null) {
+      this.prompt
+        .open({
+          title: 'Hello there',
+          label: 'Initiative',
+          type: 'number',
+        })
+        .subscribe((result) => {
+          if (result !== null) {
+            const initiative = parseInt(result);
 
-          const initiative = parseInt(result);
-
-          if (initiative && !isNaN(initiative)) {
-            this.initiativeEvent.emit(initiative);
+            if (initiative && !isNaN(initiative)) {
+              this.initiativeEvent.emit(initiative);
+            }
           }
-
-        }
-      });;
-
+        });
     }
-
   }
-
 }

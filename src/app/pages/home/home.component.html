@@ -1,41 +1,47 @@
 <section class="home container">
-
   <div>
     <h1 class="text-medieval">no Dungeons & no Dragons</h1>
   </div>
 
   <mat-accordion multi>
-
     <mat-expansion-panel expanded>
-
       <mat-expansion-panel-header>
         <mat-panel-title>General</mat-panel-title>
       </mat-expansion-panel-header>
 
-      <app-file-input label="Select background image" emptyLabel="No image selected" accept="image/*" (clear)="clearBackgroundImage()" (change)="emit($event)"></app-file-input>
-
+      <app-file-input
+        label="Select background image"
+        emptyLabel="No image selected"
+        accept="image/*"
+        (clear)="clearBackgroundImage()"
+        (change)="emit($event)"
+      ></app-file-input>
     </mat-expansion-panel>
 
     <mat-expansion-panel expanded>
-
       <mat-expansion-panel-header>
         <mat-panel-title>Combat</mat-panel-title>
       </mat-expansion-panel-header>
 
       <section class="combat-section">
-
         <div class="combat-toggle-wrapper">
-          <mat-slide-toggle [(ngModel)]="showingCombatMenu" (change)="combatToggleChange($event)" labelPosition="before">Show combat menu</mat-slide-toggle>
+          <mat-slide-toggle
+            [(ngModel)]="showingCombatMenu"
+            (change)="combatToggleChange($event)"
+            labelPosition="before"
+            >Show combat menu</mat-slide-toggle
+          >
         </div>
 
         <div class="add-characters">
-
           <mat-form-field class="select">
             <mat-label>Character</mat-label>
             <mat-select multiple [formControl]="selectedCharactersControl">
               @for (character of characters; track character) {
-                @if(combat.characterInCombat(character)) {
-                  <mat-option [value]="character">{{ character.name }}</mat-option>
+                @if (combat.characterInCombat(character)) {
+                  <mat-option [value]="character">{{
+                    character.name
+                  }}</mat-option>
                 }
               }
             </mat-select>
@@ -45,19 +51,16 @@
             Add
             <mat-icon>add</mat-icon>
           </button>
-
         </div>
 
         <div class="character-list">
           @for (character of combat.characters(); track character.id) {
-            <app-character-combat-list-item [character]="character"></app-character-combat-list-item>
+            <app-character-combat-list-item
+              [character]="character"
+            ></app-character-combat-list-item>
           }
         </div>
-
       </section>
-
     </mat-expansion-panel>
-
   </mat-accordion>
-
 </section>

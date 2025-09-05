@@ -27,14 +27,13 @@ $d20-hover-font-size: 1.25rem;
   }
 
   &.clickable {
-
-    transition: background-color 0.15s ease, font-size 0.15s ease;
+    transition:
+      background-color 0.15s ease,
+      font-size 0.15s ease;
 
     &:hover {
       font-size: $d20-hover-font-size;
       background-color: var(--mat-sys-on-primary-container);
     }
-
   }
-
 }

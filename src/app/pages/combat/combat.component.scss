@@ -8,7 +8,6 @@
 }
 
 .combat {
-
   height: 100%;
   width: 100%;
   display: flex;
@@ -16,7 +15,6 @@
   gap: 1rem;
 
   .empty {
-
     height: 100%;
 
     gap: 2rem;
@@ -37,11 +35,9 @@
       opacity: 0.5;
       margin: 0;
     }
-
   }
 
   .combat-list {
-
     height: fit-content;
     gap: 0.25rem;
     display: flex;
@@ -51,7 +47,6 @@
     &__round-counter {
       opacity: 0.5;
     }
-
   }
 
   .controls {
@@ -78,7 +73,5 @@
       bottom: 2rem;
       right: 11rem;
     }
-
   }
-
 }

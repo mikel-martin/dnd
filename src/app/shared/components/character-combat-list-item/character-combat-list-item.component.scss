@@ -3,14 +3,15 @@
 }
 
 .character-sheet {
-
   padding: 0.25rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-radius: var(--mat-sys-corner-medium);
   cursor: pointer;
-  transition: background-color 0.15s ease, transform 0.15s ease;
+  transition:
+    background-color 0.15s ease,
+    transform 0.15s ease;
 
   .heading {
     gap: 1rem;
@@ -19,7 +20,6 @@
   }
 
   .header {
-
     gap: 0.125rem;
     display: flex;
     flex-direction: column;
@@ -31,7 +31,6 @@
     }
 
     .type {
-
       &.player {
         color: var(--mat-sys-primary);
       }
@@ -43,13 +42,10 @@
       &.enemy {
         color: var(--mat-sys-error);
       }
-
     }
-
   }
 
   .stats {
-
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -79,17 +75,12 @@
       &:hover {
         background-color: var(--mat-sys-primary-container);
       }
-
     }
-
   }
-
 }
 
 @media (max-width: 992px) {
-
   .character-sheet {
-
     gap: 0.5rem;
     flex-direction: column;
     align-items: flex-start;
@@ -97,7 +88,5 @@
     .stats {
       margin-left: 2.75rem;
     }
-
   }
-
 }

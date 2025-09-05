@@ -1,7 +1,6 @@
 $navbar-height: 60px;
 
 .navbar {
-
   height: $navbar-height;
   padding: 0rem 1.5rem;
   display: flex;
@@ -23,7 +22,6 @@ $navbar-height: 60px;
         color: var(--mat-sys-primary);
       }
     }
-
   }
 
   &__route {
@@ -40,13 +38,12 @@ $navbar-height: 60px;
       color: var(--mat-sys-primary);
     }
   }
-
 }
 
 .app {
-    height: calc(100% - #{$navbar-height});
-    display: flex;
-    overflow: hidden;
-    align-items: center;
-    justify-content: center;
+  height: calc(100% - #{$navbar-height});
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  justify-content: center;
 }

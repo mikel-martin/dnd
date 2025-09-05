@@ -1,5 +1,5 @@
 import { DecimalPipe } from '@angular/common';
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, signal, OnDestroy } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
@@ -7,10 +7,9 @@ import { MatIconModule } from '@angular/material/icon';
   selector: 'app-combat-timer',
   imports: [MatButtonModule, MatIconModule, DecimalPipe],
   templateUrl: './combat-timer.component.html',
-  styleUrl: './combat-timer.component.scss'
+  styleUrl: './combat-timer.component.scss',
 })
-export class CombatTimerComponent {
-
+export class CombatTimerComponent implements OnDestroy {
   running = signal(false);
 
   private _intervalId: any;
@@ -19,7 +18,7 @@ export class CombatTimerComponent {
 
   private _accumulated = 0;
 
-  private _duration: number = 60_000;
+  private _duration = 60_000;
 
   elapsed = signal(0);
   remaining = computed(() => Math.max(this._duration - this.elapsed(), 0));
@@ -53,6 +52,4 @@ export class CombatTimerComponent {
     this.elapsed.set(0);
     this.running.set(false);
   }
-
-
 }

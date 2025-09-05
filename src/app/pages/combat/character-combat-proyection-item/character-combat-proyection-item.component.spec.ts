@@ -8,9 +8,8 @@ describe('CharacterCombatProyectionItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CharacterCombatProyectionItemComponent]
-    })
-    .compileComponents();
+      imports: [CharacterCombatProyectionItemComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(CharacterCombatProyectionItemComponent);
     component = fixture.componentInstance;

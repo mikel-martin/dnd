@@ -6,12 +6,10 @@ import { appRoutes } from '../../../app.routes';
   selector: 'app-app-layout',
   imports: [RouterModule],
   templateUrl: './app-layout.component.html',
-  styleUrl: './app-layout.component.scss'
+  styleUrl: './app-layout.component.scss',
 })
 export class AppLayoutComponent {
-
   homeRoute = appRoutes.HOME;
   charactersRoute = appRoutes.CHARACTERS;
   proyectionRoute = appRoutes.PROYECTION;
-
 }

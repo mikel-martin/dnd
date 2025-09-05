@@ -1,15 +1,13 @@
 export class FirebaseUtils {
-
-   public static parseFirebaseRes = (obj: any) => {
-      let result = [];
-      for (let key in obj) {
-        let item = obj[key];
-        if (item) {
-          item.id = key;
-          result.push(item);
-        }
+  public static parseFirebaseRes = (obj: any) => {
+    const result = [];
+    for (const key in obj) {
+      const item = obj[key];
+      if (item) {
+        item.id = key;
+        result.push(item);
       }
-      return result;
     }
-
+    return result;
+  };
 }

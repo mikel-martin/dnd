@@ -1,5 +1,4 @@
 .character-form {
-
   gap: 0.5rem;
   display: flex;
   flex-direction: column;
@@ -13,7 +12,6 @@
   }
 
   .form-row {
-
     gap: 1rem;
     width: 100%;
     display: flex;
@@ -21,7 +19,6 @@
     & > * {
       flex: 1;
     }
-
   }
 
   .actions {
@@ -29,5 +26,4 @@
     display: flex;
     justify-content: space-between;
   }
-
 }

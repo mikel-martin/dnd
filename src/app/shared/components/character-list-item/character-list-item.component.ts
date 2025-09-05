@@ -1,5 +1,14 @@
-import { CharacterType, CharacterTypes } from '../../../enums/character-type.enum';
-import { Component, inject, Input, input, ViewEncapsulation } from '@angular/core';
+import {
+  CharacterType,
+  CharacterTypes,
+} from '../../../enums/character-type.enum';
+import {
+  Component,
+  inject,
+  Input,
+  input,
+  ViewEncapsulation,
+} from '@angular/core';
 import type { Character } from '../../../interfaces/characters.interface';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -16,13 +25,12 @@ import { CharactersService } from '../../../services/characters.service';
     RouterModule,
     MatCardModule,
     MatButtonModule,
-    MatIconModule
+    MatIconModule,
   ],
   templateUrl: './character-list-item.component.html',
-  styleUrl: './character-list-item.component.scss'
+  styleUrl: './character-list-item.component.scss',
 })
 export class CharacterListItemComponent {
-
   private characters = inject(CharactersService);
 
   private router = inject(Router);
@@ -30,16 +38,16 @@ export class CharacterListItemComponent {
   @Input() character?: Character;
 
   typeLabel(type: CharacterType = CharacterType.NEUTRAL) {
-    return CharacterTypes.find(t => t.value === type)?.label;
+    return CharacterTypes.find((t) => t.value === type)?.label;
   }
 
   initiative(initiative: number) {
     if (this.character) {
       this.character.initiative = initiative;
       this.characters.update(this.character).subscribe({
-        next: res => {
+        next: (res) => {
           this.character = res;
-        }
+        },
       });
     }
   }
@@ -47,5 +55,4 @@ export class CharacterListItemComponent {
   edit() {
     this.router.navigate([appRoutes.CHARACTERS, this.character?.id]);
   }
-
 }

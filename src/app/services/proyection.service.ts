@@ -1,15 +1,14 @@
-import { inject, Injectable, Injector, signal } from '@angular/core';
+import { inject, Injectable, Injector, signal, OnDestroy } from '@angular/core';
 import { Subject, type Observable } from 'rxjs';
 import { ProyectionEventType } from '../enums/proyection-event-type.interface';
 import { CombatService } from './combat.service';
 
-const SHOWING_COMVAT_MENU_KEY = "combat.showing";
+const SHOWING_COMVAT_MENU_KEY = 'combat.showing';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
-export class ProyectionService {
-
+export class ProyectionService implements OnDestroy {
   public backgroundImage = signal('');
 
   public showingCombatMenu = signal(false);
@@ -21,8 +20,9 @@ export class ProyectionService {
   private injector = inject(Injector);
 
   constructor() {
-
-    this.showingCombatMenu.set(localStorage.getItem(SHOWING_COMVAT_MENU_KEY) ? true : false);
+    this.showingCombatMenu.set(
+      localStorage.getItem(SHOWING_COMVAT_MENU_KEY) ? true : false,
+    );
 
     this.channel.onmessage = (message) => {
       this.event$.next(message.data);
@@ -33,11 +33,10 @@ export class ProyectionService {
         this._handleImageEvent(event.data);
       } else if (event.type === ProyectionEventType.COMBAT_UPDATE) {
         this._handleCombatEvent(event.data);
-      }  else if (event.type === ProyectionEventType.COMBAT_VISIBILITY) {
+      } else if (event.type === ProyectionEventType.COMBAT_VISIBILITY) {
         this._handleCombatMenuVisibility(event.data);
       }
     });
-
   }
 
   ngOnDestroy(): void {
@@ -64,10 +63,9 @@ export class ProyectionService {
   private _handleCombatMenuVisibility(data: any): void {
     this.showingCombatMenu.set(data);
     if (data) {
-      localStorage.setItem(SHOWING_COMVAT_MENU_KEY, "true");
+      localStorage.setItem(SHOWING_COMVAT_MENU_KEY, 'true');
     } else {
       localStorage.removeItem(SHOWING_COMVAT_MENU_KEY);
     }
   }
-
 }

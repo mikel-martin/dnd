@@ -3,13 +3,14 @@
 }
 
 .character-sheet {
-
   padding: 0.25rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-radius: var(--mat-sys-corner-medium);
-  transition: background-color 0.15s ease, transform 0.15s ease;
+  transition:
+    background-color 0.15s ease,
+    transform 0.15s ease;
 
   .heading {
     gap: 1rem;
@@ -18,7 +19,6 @@
   }
 
   .header {
-
     gap: 0.125rem;
     display: flex;
     flex-direction: column;
@@ -30,7 +30,6 @@
     }
 
     .type {
-
       &.player {
         color: var(--mat-sys-primary);
       }
@@ -42,13 +41,10 @@
       &.enemy {
         color: var(--mat-sys-error);
       }
-
     }
-
   }
 
   .stats {
-
     display: flex;
     gap: 1rem;
 
@@ -73,9 +69,6 @@
         font-size: 1rem;
         white-space: nowrap;
       }
-
     }
-
   }
-
 }

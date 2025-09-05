@@ -1,5 +1,4 @@
 <article class="combat">
-
   @if (combat.characters().length === 0) {
     <section class="empty">
       <section class="empty__content">
@@ -9,17 +8,22 @@
   }
 
   @if (combat.characters().length > 0) {
-
     <!-- <section>
       <span class="combat-list__round-counter">Round {{ combat.roundCounter }}</span>
     </section> -->
 
     <section class="combat-list">
-      @for (character of combat.characters(); track character.id; let index = $index) {
-        <app-character-combat-proyection-item #character [character]="character"></app-character-combat-proyection-item>
+      @for (
+        character of combat.characters();
+        track character.id;
+        let index = $index
+      ) {
+        <app-character-combat-proyection-item
+          #character
+          [character]="character"
+        ></app-character-combat-proyection-item>
       }
     </section>
-
   }
 
   <!-- @if (combat.characters().length > 1) {
@@ -34,5 +38,4 @@
     </section>
 
   } -->
-
 </article>

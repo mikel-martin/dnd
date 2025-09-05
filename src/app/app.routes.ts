@@ -3,34 +3,37 @@ import { ProyectionComponent } from './pages/proyection/proyection.component';
 import { AppLayoutComponent } from './shared/components/app-layout/app-layout.component';
 
 export const appRoutes = {
-    HOME: 'home',
-    CHARACTERS: 'characters',
-    PROYECTION: 'proyection',
-}
+  HOME: 'home',
+  CHARACTERS: 'characters',
+  PROYECTION: 'proyection',
+};
 
 export const routes: Routes = [
   {
     path: appRoutes.PROYECTION,
     component: ProyectionComponent,
-    loadChildren: () => import('./pages/proyection/proyection.routes').then(m => m.routes)
+    loadChildren: () =>
+      import('./pages/proyection/proyection.routes').then((m) => m.routes),
   },
   {
-    path: "",
+    path: '',
     component: AppLayoutComponent,
     children: [
       {
         path: appRoutes.HOME,
-        loadComponent: () => import('./pages/home/home.component').then(m => m.HomeComponent)
+        loadComponent: () =>
+          import('./pages/home/home.component').then((m) => m.HomeComponent),
       },
       {
         path: appRoutes.CHARACTERS,
-        loadChildren: () => import('./pages/characters/character.routes').then(m => m.routes)
+        loadChildren: () =>
+          import('./pages/characters/character.routes').then((m) => m.routes),
       },
       {
         path: '**',
         pathMatch: 'full',
-        redirectTo: appRoutes.HOME
-      }
-    ]
+        redirectTo: appRoutes.HOME,
+      },
+    ],
   },
 ];

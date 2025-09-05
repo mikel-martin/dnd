@@ -2,24 +2,24 @@ export enum CharacterType {
   PLAYER = 'player',
   ALLY = 'ally',
   ENEMY = 'enemy',
-  NEUTRAL = 'neutral'
+  NEUTRAL = 'neutral',
 }
 
 export const CharacterTypes = [
   {
     label: 'Player',
-    value: CharacterType.PLAYER
+    value: CharacterType.PLAYER,
   },
   {
     label: 'Ally',
-    value: CharacterType.ALLY
+    value: CharacterType.ALLY,
   },
   {
     label: 'Enemy',
-    value: CharacterType.ENEMY
+    value: CharacterType.ENEMY,
   },
   {
     label: 'Neutral',
-    value: CharacterType.NEUTRAL
+    value: CharacterType.NEUTRAL,
   },
 ];
