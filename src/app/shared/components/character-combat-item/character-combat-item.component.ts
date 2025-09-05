@@ -17,7 +17,7 @@ import { CharacterStatusService } from '../../../services/character-status.servi
 import { CombatService } from '../../../services/combat.service';
 
 @Component({
-  selector: 'app-character-combat-list-item',
+  selector: 'app-character-combat-item',
   imports: [
     CommonModule,
     CharacterStatusBadgeComponent,

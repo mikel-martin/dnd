@@ -14,8 +14,7 @@
         emptyLabel="No image selected"
         accept="image/*"
         (clear)="clearBackgroundImage()"
-        (change)="emit($event)"
-      ></app-file-input>
+        (change)="emit($event)"></app-file-input>
     </mat-expansion-panel>
 
     <mat-expansion-panel expanded>
@@ -55,9 +54,8 @@
 
         <div class="character-list">
           @for (character of combat.characters(); track character.id) {
-            <app-character-combat-list-item
-              [character]="character"
-            ></app-character-combat-list-item>
+            <app-character-combat-item
+              [character]="character"></app-character-combat-item>
           }
         </div>
       </section>
