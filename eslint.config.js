@@ -38,6 +38,21 @@ module.exports = tseslint.config(
       ...angular.configs.templateRecommended,
       ...angular.configs.templateAccessibility,
     ],
-    rules: {},
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off",
+      "@angular-eslint/template/click-events-have-key-events": "off",
+      "@angular-eslint/template/interactive-supports-focus": "off"
+    },
+  },
+  {
+    files: ["**/*.ts"],
+    extends: [
+      ...angular.configs.tsRecommended,
+    ],
+    rules: {
+      "@typescript-eslint/no-explicit-any": "off",
+      "@angular-eslint/no-output-rename": "off",
+      "@angular-eslint/no-output-native": "off"
+    },
   },
 );

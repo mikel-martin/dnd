@@ -9,7 +9,6 @@ import {
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { CombatService } from '../../services/combat.service';
-import { CombatTimerComponent } from '../../shared/components/combat-timer/combat-timer.component';
 import { CharacterCombatProyectionItemComponent } from './character-combat-proyection-item/character-combat-proyection-item.component';
 
 @Component({

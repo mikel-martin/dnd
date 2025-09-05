@@ -6,8 +6,6 @@ import {
   Component,
   inject,
   Input,
-  input,
-  ViewEncapsulation,
 } from '@angular/core';
 import type { Character } from '../../../interfaces/characters.interface';
 import { MatCardModule } from '@angular/material/card';

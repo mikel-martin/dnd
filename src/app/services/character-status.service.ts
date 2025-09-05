@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import type { CombatCharacterStatus } from '../interfaces/combat-character-status-interface';
 import type { CharacterStatus } from '../interfaces/character-status.interface';
 
 @Injectable({

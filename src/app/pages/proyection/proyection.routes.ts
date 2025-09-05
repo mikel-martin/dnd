@@ -1,4 +1,3 @@
-import { P } from '@angular/cdk/keycodes';
 import { Routes } from '@angular/router';
 import { ProyectionComponent } from './proyection.component';
 

@@ -1,6 +1,4 @@
-import { effect, inject, Injectable, signal } from '@angular/core';
-import { v4 as uuidv4 } from 'uuid';
-
+import { inject, Injectable, signal } from '@angular/core';
 import type { CombatCharacter } from '../interfaces/combat-character.interface';
 import { CharacterStatusService } from './character-status.service';
 import type { Character } from '../interfaces/characters.interface';

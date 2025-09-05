@@ -7,7 +7,6 @@ import { PromptModalComponent } from '../shared/components/prompt-modal/prompt-m
   providedIn: 'root',
 })
 export class PromptService {
-  constructor() {}
 
   private dialog = inject(MatDialog);
 

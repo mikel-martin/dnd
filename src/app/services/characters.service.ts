@@ -18,8 +18,6 @@ export class CharactersService {
 
   characters = signal<Character[]>([]);
 
-  constructor() {}
-
   all() {
     return this.http.get(`${this.baseURL}.json`).pipe(
       map((res) => {

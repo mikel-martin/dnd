@@ -1,3 +1,3 @@
 export interface ImageSelectionEvent {
-  image: any;
+  image: string;
 }
