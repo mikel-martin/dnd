@@ -9,12 +9,12 @@
   justify-content: space-between;
   border-radius: var(--mat-sys-corner-medium);
   transition:
-  background-color 0.15s ease,
-  transform 0.15s ease;
-  
+    background-color 0.15s ease,
+    transform 0.15s ease;
+
   &.edition:hover {
     cursor: pointer;
-    background-color: var(--mat-sys-primary-container);
+    background-color: var(--mat-sys-surface);
     transform: translateX(5px);
   }
 
@@ -29,6 +29,7 @@
     flex-direction: column;
 
     .name {
+      font-size: 1rem;
       white-space: nowrap;
       font-weight: normal;
       margin: 0;
@@ -36,19 +37,19 @@
 
     .type {
       &.player {
-        color: var(--mat-sys-primary);
+        color: var(--info);
       }
 
       &.ally {
-        color: rgb(48, 133, 36);
+        color: var(--success);
       }
 
       &.enemy {
-        color: var(--mat-sys-error);
+        color: var(--danger);
       }
     }
   }
-  
+
   .stats {
     gap: 0.5rem;
     display: flex;
@@ -89,23 +90,21 @@
   }
 
   .hp-value {
-    
     &.healthy {
-      color: green;
-    }
-    
-    &.injured {
-      color: orange;
-    }
-    
-    &.bloodied {
-      color: red;
-    }
-    
-    &.defeated {
-      color: gray;
+      color: var(--success);
     }
 
+    &.injured {
+      color: var(--warning);
+    }
+
+    &.bloodied {
+      color: var(--danger);
+    }
+
+    &.defeated {
+      color: var(--neutral);
+    }
   }
 }
 

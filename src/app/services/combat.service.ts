@@ -1,24 +1,23 @@
-import { inject, Injectable, signal } from '@angular/core';
-import type { CombatCharacter } from '../interfaces/combat-character.interface';
-import type { Character } from '../interfaces/characters.interface';
-import { ProyectionService } from './proyection.service';
-import { ProyectionEventType } from '../enums/proyection-event-type.interface';
-import { CharactersService } from './characters.service';
+import {inject, Injectable, signal} from '@angular/core';
+import type {CombatCharacter} from '../interfaces/combat-character.interface';
+import type {Character} from '../interfaces/characters.interface';
+import {ProyectionService} from './proyection.service';
+import {ProyectionEventType} from '../enums/proyection-event-type.interface';
+import {CharactersService} from './characters.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CombatService {
-
   private _roundCounter = 1;
 
   private _activeCharacter?: number;
 
   characters = signal<Character[]>([]);
 
-  private _characterService = inject(CharactersService); 
+  private _characterService = inject(CharactersService);
 
-  private _proyection = inject(ProyectionService); 
+  private _proyection = inject(ProyectionService);
 
   get activeCharacter(): number {
     return this._activeCharacter ?? -1;
@@ -33,19 +32,18 @@ export class CombatService {
   }
 
   private _initialize(): void {
-    
     this._activeCharacter = 0;
 
-    this._characterService.charactersChanged$.subscribe(characters => this.refresh(characters));
-
+    this._characterService.charactersChanged$.subscribe(characters =>
+      this.refresh(characters)
+    );
   }
 
   refresh(characters: Character[]) {
-
     const combat = this.characters();
 
-    const result = combat.map((character) => {
-      const char = characters.find((c) => c.id === character.id);
+    const result = combat.map(character => {
+      const char = characters.find(c => c.id === character.id);
       if (char) {
         return char;
       }
@@ -53,24 +51,20 @@ export class CombatService {
     });
 
     result.sort((a, b) => (b.initiative ?? 0) - (a.initiative ?? 0));
-    
-    this.characters.set(result);
-    
-    this._proyection.emit({
-      type: ProyectionEventType.COMBAT_UPDATE,
-      data: result,
-    });
 
+    this.characters.set(result);
+
+    this.refreshProyection();
   }
 
   addCharacters(characters: Character[]): void {
     const result = this.characters();
 
-    const existingIds = new Set(this.characters().map((c) => c.id));
+    const existingIds = new Set(this.characters().map(c => c.id));
 
     const newCharacters = characters
-      .filter((c) => !existingIds.has(c.id))
-      .map((i) => {
+      .filter(c => !existingIds.has(c.id))
+      .map(i => {
         i.initiative = undefined;
         i.states = [];
         return i;
@@ -89,20 +83,16 @@ export class CombatService {
 
     this.characters.set(result);
 
-    this._proyection.emit({
-      type: ProyectionEventType.COMBAT_UPDATE,
-      data: result,
-    });
+    this.refreshProyection();
   }
 
   updateCharacterInfo(characters: Character[]) {
-
     characters = this._characterService.characters();
 
     const currentCharacters = this.characters();
 
-    const result = currentCharacters.map((character) => {
-      const char = characters.find((c) => c.id === character.id);
+    const result = currentCharacters.map(character => {
+      const char = characters.find(c => c.id === character.id);
       if (char) {
         return char;
       }
@@ -111,25 +101,19 @@ export class CombatService {
 
     result.sort((a, b) => (b.initiative ?? 0) - (a.initiative ?? 0));
 
-    this._proyection.emit({
-      type: ProyectionEventType.COMBAT_UPDATE,
-      data: result,
-    });
+    this.refreshProyection();
   }
 
   characterInCombat(character: Character): boolean {
-    return this.characters().find((i) => i.id === character.id) === undefined;
+    return this.characters().find(i => i.id === character.id) === undefined;
   }
 
   remove(character: CombatCharacter): void {
     this.characters.set([
-      ...this.characters().filter((c) => c.id !== character.id),
+      ...this.characters().filter(c => c.id !== character.id),
     ]);
 
-    this._proyection.emit({
-      type: ProyectionEventType.COMBAT_UPDATE,
-      data: this.characters(),
-    });
+    this.refreshProyection();
   }
 
   next(): void {
@@ -169,5 +153,12 @@ export class CombatService {
         this._activeCharacter = 0;
       }
     }
+  }
+
+  refreshProyection() {
+    this._proyection.emit({
+      type: ProyectionEventType.COMBAT_UPDATE,
+      data: this.characters(),
+    });
   }
 }

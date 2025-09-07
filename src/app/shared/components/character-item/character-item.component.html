@@ -48,7 +48,9 @@
 
   @if (mode === 'proyection') {
     @let healthStatus = getCharacterHealthStatus();
-    @if (character?.type === 'player') {
+    @if (
+      character?.type === 'player' && (character?.currentHitPoints ?? 0 > 0)
+    ) {
       <span [ngClass]="[healthStatus.value]" class="hp-value">
         {{ character?.currentHitPoints ?? '-' }}/{{
           character?.maxHitPoints ?? '-'

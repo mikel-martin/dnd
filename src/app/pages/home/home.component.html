@@ -1,7 +1,7 @@
 <section class="home container">
-  <div>
+  <!-- <div>
     <h1 class="text-medieval">no Dungeons & no Dragons</h1>
-  </div>
+  </div> -->
 
   <mat-accordion multi>
     <mat-expansion-panel expanded>
@@ -23,11 +23,15 @@
       </mat-expansion-panel-header>
 
       <section class="combat-section">
-        <div class="combat-toggle-wrapper">
+        <div class="actions">
+          <button mat-button color="primary" (click)="addCharacters()">
+            Refresh
+            <mat-icon>refresh</mat-icon>
+          </button>
           <mat-slide-toggle
+            labelPosition="before"
             [(ngModel)]="showingCombatMenu"
             (change)="combatToggleChange($event)"
-            labelPosition="before"
             >Show combat menu</mat-slide-toggle
           >
         </div>

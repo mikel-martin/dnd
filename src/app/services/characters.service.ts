@@ -1,8 +1,8 @@
-import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
-import type { Character } from '../interfaces/characters.interface';
-import { map, Subject, type Observable } from 'rxjs';
-import { FirebaseUtils } from '../shared/utils/firebase.utils';
+import {HttpClient} from '@angular/common/http';
+import {inject, Injectable, signal} from '@angular/core';
+import type {Character} from '../interfaces/characters.interface';
+import {map, Subject, type Observable} from 'rxjs';
+import {FirebaseUtils} from '../shared/utils/firebase.utils';
 
 @Injectable({
   providedIn: 'root',
@@ -19,11 +19,11 @@ export class CharactersService {
 
   all() {
     return this.http.get(`${this.baseURL}.json`).pipe(
-      map((res) => {
+      map(res => {
         const response = FirebaseUtils.parseFirebaseRes(res);
         this.characters.set(response);
         return response;
-      }),
+      })
     );
   }
 
@@ -33,9 +33,12 @@ export class CharactersService {
 
   update(character: Character): Observable<Character> {
     return this.http
-      .put<Character>(`${this.baseURL}/${character.id}.json`, character).pipe(
+      .put<Character>(`${this.baseURL}/${character.id}.json`, character)
+      .pipe(
         map(res => {
-          const characters = this.characters().map(c => c.id === character.id ? { ...character } : c);
+          const characters = this.characters().map(c =>
+            c.id === character.id ? {...character} : c
+          );
           this.characters.set(characters);
           this.charactersChanged$.next(characters);
           return res;
@@ -50,5 +53,9 @@ export class CharactersService {
   delete(id: string) {
     const url = `${this.baseURL}/${id}.json`;
     return this.http.delete(url);
+  }
+
+  refreshProyection() {
+    this.charactersChanged$.next(this.characters());
   }
 }
