@@ -20,9 +20,11 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 1rem;
-      padding-bottom: 0.5rem;
-      border-bottom: 1px solid var(--mat-sys-surface-bright);
+    }
+
+    .timer {
+      padding-left: 1rem;
+      max-width: 200px;
     }
 
     .add-characters {
@@ -44,4 +46,10 @@
       justify-content: center;
     }
   }
+}
+
+.separator {
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--mat-sys-surface-bright);
 }
