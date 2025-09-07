@@ -13,7 +13,8 @@ export class PromptService {
     title: string;
     description: string;
     label: string;
-    type?: 'text' | 'number';
+    type?: 'text' | 'number' | 'select';
+    options?: any[];
   }): Observable<string | null> {
     const dialogRef = this.dialog.open(PromptModalComponent, {
       data: options,

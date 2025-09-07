@@ -8,6 +8,7 @@ import {
   MatDialogModule,
 } from '@angular/material/dialog';
 import {MatInputModule} from '@angular/material/input';
+import {MatSelectModule} from '@angular/material/select';
 
 @Component({
   selector: 'app-prompt-modal',
@@ -16,6 +17,7 @@ import {MatInputModule} from '@angular/material/input';
     MatButtonModule,
     MatInputModule,
     MatDialogModule,
+    MatSelectModule,
     FormsModule,
   ],
   styleUrl: './prompt-modal.component.scss',
@@ -27,22 +29,39 @@ import {MatInputModule} from '@angular/material/input';
       }
       <mat-form-field appearance="outline" class="w-full">
         <mat-label>{{ data.label }}</mat-label>
-        <input
-          matInput
-          [type]="type"
-          [(ngModel)]="value"
-          (keydown.enter)="confirm()" />
+        @if (type !== 'select') {
+          <input
+            matInput
+            [type]="type"
+            [(ngModel)]="value"
+            (keydown.enter)="confirm()" />
+        } @else {
+          <mat-select [(ngModel)]="value">
+            @for (option of options; track option.value) {
+              <mat-option [value]="option.value">{{ option.label }}</mat-option>
+            }
+          </mat-select>
+        }
       </mat-form-field>
     </mat-dialog-content>
     <mat-dialog-actions>
       <button mat-button (click)="cancel()">Cancelar</button>
-      <button
-        mat-flat-button
-        color="primary"
-        [disabled]="!value.trim()"
-        (click)="confirm()">
-        Aceptar
-      </button>
+      @if (type === 'select') {
+        <button
+          mat-flat-button
+          [disabled]="value?.length === 0"
+          (click)="confirm()">
+          Aceptar
+        </button>
+      } @else {
+        <button
+          mat-flat-button
+          color="primary"
+          [disabled]="!value?.trim()"
+          (click)="confirm()">
+          Aceptar
+        </button>
+      }
     </mat-dialog-actions>
   `,
 })
@@ -51,18 +70,24 @@ export class PromptModalComponent {
 
   data = inject(MAT_DIALOG_DATA);
 
-  value = '';
+  value?: any;
 
-  type: string = this.data.type ?? 'text';
+  type: 'number' | 'text' | 'select' = this.data.type ?? 'text';
+
+  options: any[] = this.data.options ?? [];
 
   cancel() {
     this.dialogRef.close(null);
   }
 
   confirm() {
-    const value = this.value.trim();
-    if (value) {
-      this.dialogRef.close(value);
+    if (this.type === 'select') {
+      this.dialogRef.close(this.value ?? []);
+    } else {
+      const value = this.value?.trim();
+      if (value) {
+        this.dialogRef.close(value);
+      }
     }
   }
 }

@@ -12,6 +12,9 @@ import {CharactersService} from '../../../services/characters.service';
 import {ProyectionService} from '../../../services/proyection.service';
 import {ProyectionEventType} from '../../../enums/proyection-event-type.interface';
 import {MatButtonModule} from '@angular/material/button';
+import {PromptService} from '../../../services/prompt.service';
+import {PartyService} from '../../../services/party.service';
+import type {Party} from '../../../interfaces/party.interface';
 
 @Component({
   selector: 'app-encounter-manager',
@@ -32,9 +35,15 @@ import {MatButtonModule} from '@angular/material/button';
 export class EncounterManagerComponent implements OnInit {
   private charactersService = inject(CharactersService);
 
+  private partyService = inject(PartyService);
+
   private proyection = inject(ProyectionService);
 
+  private prompt = inject(PromptService);
+
   encounter = inject(EncounterService);
+
+  parties: Party[] = [];
 
   characters: Character[] = [];
 
@@ -48,6 +57,31 @@ export class EncounterManagerComponent implements OnInit {
     this.charactersService.all().subscribe({
       next: res => (this.characters = res),
     });
+
+    this.partyService.all().subscribe({
+      next: res => (this.parties = res),
+    });
+  }
+
+  addParty() {
+    this.prompt
+      .open({
+        title: 'Select party',
+        description: 'Select the party you want to add to the encounter',
+        label: 'Party',
+        type: 'select',
+        options: this.parties.map(i => ({
+          value: i.id,
+          label: i.name,
+        })),
+      })
+      .subscribe(partyId => {
+        const party = this.parties.find(i => i.id === partyId);
+        const partyCharacters = this.characters.filter(i =>
+          party?.characters?.includes(i.id || '')
+        );
+        this.addCharacters(partyCharacters);
+      });
   }
 
   encounterToggleChange(event: any) {
@@ -58,8 +92,8 @@ export class EncounterManagerComponent implements OnInit {
     });
   }
 
-  addCharacters() {
-    this.encounter.addCharacters(this.selectedCharactersControl.value || []);
+  addCharacters(characters: Character[]) {
+    this.encounter.addCharacters(characters);
     this.selectedCharactersControl.reset([]);
   }
 }
