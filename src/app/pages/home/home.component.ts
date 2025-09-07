@@ -13,8 +13,6 @@ import {CharactersService} from '../../services/characters.service';
 import type {Character} from '../../interfaces/characters.interface';
 import {MatSelectModule} from '@angular/material/select';
 import {EncounterService} from '../../services/encounter.service';
-import {CharacterItemComponent} from '../../shared/components/character-item/character-item.component';
-import {EncounterTimerComponent} from '../../shared/components/encounter-timer/encounter-timer.component';
 import {GeneralManagerComponent} from './general-manager/general-manager.component';
 import {EncounterManagerComponent} from './encounter-manager/encounter-manager.component';
 
@@ -23,8 +21,6 @@ const REFRESH_TIMEOUT = 500;
 @Component({
   selector: 'app-home',
   imports: [
-    CharacterItemComponent,
-    EncounterTimerComponent,
     GeneralManagerComponent,
     EncounterManagerComponent,
     MatButtonModule,

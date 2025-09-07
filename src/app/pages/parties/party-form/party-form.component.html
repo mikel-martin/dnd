@@ -1,0 +1,43 @@
+<form [formGroup]="form" class="party-form container">
+  <div class="header">
+    @if (party?.id) {
+      <h3>Editing "{{ party?.name }}"</h3>
+    } @else {
+      <h3>Creating new party</h3>
+    }
+
+    <div>
+      @if (party?.id) {
+        <button mat-icon-button (click)="remove()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      }
+    </div>
+  </div>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="Name" formControlName="name" />
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Type</mat-label>
+    <mat-select multiple formControlName="characters">
+      @for (character of characters; track character.id) {
+        <mat-option [value]="character.id">{{ character.name }}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <section class="actions">
+    <div>
+      <button mat-button (click)="cancel()">Cancel</button>
+    </div>
+
+    <div>
+      <button mat-flat-button [disabled]="form.invalid" (click)="save()">
+        {{ party?.id ? 'Save' : 'Create' }}
+      </button>
+    </div>
+  </section>
+</form>

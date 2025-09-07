@@ -1,6 +1,8 @@
 import {MatIconModule} from '@angular/material/icon';
 import {Party} from './../../../interfaces/party.interface';
-import {Component, Input} from '@angular/core';
+import {Component, inject, Input} from '@angular/core';
+import {Router} from '@angular/router';
+import {appRoutes} from '../../../app.routes';
 
 @Component({
   selector: 'app-party-item',
@@ -11,8 +13,12 @@ import {Component, Input} from '@angular/core';
 export class PartyItemComponent {
   @Input() party?: Party;
 
+  private router = inject(Router);
+
   edit(event: Event) {
     event.preventDefault();
     event.stopPropagation();
+
+    this.router.navigate([appRoutes.PARTIES, this.party?.id]);
   }
 }
