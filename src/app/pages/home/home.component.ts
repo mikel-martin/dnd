@@ -5,7 +5,6 @@ import {ProyectionService} from '../../services/proyection.service';
 import {ProyectionEventType} from '../../enums/proyection-event-type.interface';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import {FileInputComponent} from '../../shared/components/file-input/file-input.component';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {EncodingUtils} from '../../shared/utils/encoding.utils';
@@ -17,6 +16,7 @@ import {EncounterService} from '../../services/encounter.service';
 import {CharacterItemComponent} from '../../shared/components/character-item/character-item.component';
 import {EncounterTimerComponent} from '../../shared/components/encounter-timer/encounter-timer.component';
 import {GeneralManagerComponent} from './general-manager/general-manager.component';
+import {EncounterManagerComponent} from './encounter-manager/encounter-manager.component';
 
 const REFRESH_TIMEOUT = 500;
 
@@ -25,8 +25,8 @@ const REFRESH_TIMEOUT = 500;
   imports: [
     CharacterItemComponent,
     EncounterTimerComponent,
-    FileInputComponent,
     GeneralManagerComponent,
+    EncounterManagerComponent,
     MatButtonModule,
     MatIconModule,
     MatFormFieldModule,
