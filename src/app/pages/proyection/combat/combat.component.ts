@@ -25,15 +25,6 @@ export class CombatComponent {
   @ViewChildren('character', {read: ElementRef})
   characterEls!: QueryList<ElementRef>;
 
-  next() {
-    this.combat.next();
-    this._scrollToSelected();
-  }
-
-  previous() {
-    this.combat.previous();
-  }
-
   private _scrollToSelected() {
     const index = this.combat.activeCharacterIndex;
     const el = this.characterEls.get(index)?.nativeElement as HTMLElement;

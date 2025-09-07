@@ -8,10 +8,6 @@
   }
 
   @if (combat.characters().length > 0) {
-    <!-- <section>
-      <span class="combat-list__round-counter">Round {{ combat.roundCounter }}</span>
-    </section> -->
-
     <section class="combat-list">
       @for (
         character of combat.characters();
@@ -26,17 +22,4 @@
       }
     </section>
   }
-
-  <!-- @if (combat.characters().length > 1) {
-
-    <section class="controls">
-      <button mat-icon-button (click)="previous()">
-        <mat-icon>arrow_back</mat-icon>
-      </button>
-      <button mat-icon-button (click)="next()">
-        <mat-icon mat-suffix>arrow_forward</mat-icon>
-      </button>
-    </section>
-
-  } -->
 </article>
