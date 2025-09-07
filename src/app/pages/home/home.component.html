@@ -66,6 +66,20 @@
           </button>
         </div>
 
+        @if (combat.characters().length > 1) {
+          <div class="controls">
+            <button mat-icon-button (click)="combat.previous()">
+              <mat-icon>arrow_back</mat-icon>
+            </button>
+
+            <div>{{ combat.activeCharacter?.name ?? '-' }}'s turn</div>
+
+            <button mat-icon-button (click)="combat.next()">
+              <mat-icon>arrow_forward</mat-icon>
+            </button>
+          </div>
+        }
+
         <div class="character-list">
           @for (
             character of combat.characters();

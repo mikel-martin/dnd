@@ -23,6 +23,10 @@ export class CombatService {
     return this._activeCharacterIndex;
   }
 
+  get activeCharacter(): Character | undefined {
+    return this.characters()[this._activeCharacterIndex];
+  }
+
   get roundCounter(): number {
     return this._roundCounter ?? 0;
   }
@@ -117,7 +121,7 @@ export class CombatService {
   }
 
   next(): void {
-    if (this.characters.length === 0) {
+    if (this.characters().length === 0) {
       return;
     }
 
@@ -127,14 +131,14 @@ export class CombatService {
       this._activeCharacterIndex += 1;
     }
 
-    if (this._activeCharacterIndex >= this.characters.length) {
+    if (this._activeCharacterIndex >= this.characters().length) {
       this._activeCharacterIndex = 0;
       this._roundCounter += 1;
     }
   }
 
   previous(): void {
-    if (this.characters.length === 0) {
+    if (this.characters().length === 0) {
       return;
     }
 
@@ -145,7 +149,7 @@ export class CombatService {
     }
 
     if (this._activeCharacterIndex < 0) {
-      this._activeCharacterIndex = this.characters.length - 1;
+      this._activeCharacterIndex = this.characters().length - 1;
       this._roundCounter -= 1;
 
       if (this.roundCounter < 1) {

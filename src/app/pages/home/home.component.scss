@@ -27,6 +27,11 @@
       max-width: 200px;
     }
 
+    .controls {
+      display: flex;
+      justify-content: space-between;
+    }
+
     .add-characters {
       display: flex;
       gap: 1rem;
