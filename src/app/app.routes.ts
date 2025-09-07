@@ -1,6 +1,6 @@
-import { Routes } from '@angular/router';
-import { ProyectionComponent } from './pages/proyection/proyection.component';
-import { AppLayoutComponent } from './shared/components/app-layout/app-layout.component';
+import {Routes} from '@angular/router';
+import {ProyectionComponent} from './pages/proyection/proyection.component';
+import {AppLayoutComponent} from './shared/components/app-layout/app-layout.component';
 
 export const appRoutes = {
   HOME: 'home',
@@ -13,7 +13,7 @@ export const routes: Routes = [
     path: appRoutes.PROYECTION,
     component: ProyectionComponent,
     loadChildren: () =>
-      import('./pages/proyection/proyection.routes').then((m) => m.routes),
+      import('./pages/proyection/proyection.routes').then(m => m.routes),
   },
   {
     path: '',
@@ -22,12 +22,12 @@ export const routes: Routes = [
       {
         path: appRoutes.HOME,
         loadComponent: () =>
-          import('./pages/home/home.component').then((m) => m.HomeComponent),
+          import('./pages/home/home.component').then(m => m.HomeComponent),
       },
       {
         path: appRoutes.CHARACTERS,
         loadChildren: () =>
-          import('./pages/characters/character.routes').then((m) => m.routes),
+          import('./pages/characters/character.routes').then(m => m.routes),
       },
       {
         path: '**',

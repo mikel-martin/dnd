@@ -1,5 +1,5 @@
-import { Component, EventEmitter, input, Output } from '@angular/core';
-import type { CharacterStatus } from '../../../interfaces/character-status.interface';
+import {Component, EventEmitter, input, Output} from '@angular/core';
+import type {CharacterStatus} from '../../../interfaces/character-status.interface';
 
 @Component({
   selector: 'app-character-status-badge',

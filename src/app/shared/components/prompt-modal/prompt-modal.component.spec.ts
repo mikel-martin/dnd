@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PromptModalComponent } from './prompt-modal.component';
+import {PromptModalComponent} from './prompt-modal.component';
 
 describe('PromptModalComponent', () => {
   let component: PromptModalComponent;

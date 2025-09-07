@@ -1,8 +1,8 @@
-import { Component, inject } from '@angular/core';
-import { ProyectionService } from '../../services/proyection.service';
-import { CommonModule } from '@angular/common';
-import { CombatComponent } from '../combat/combat.component';
-import { CombatService } from '../../services/combat.service';
+import {Component, inject} from '@angular/core';
+import {ProyectionService} from '../../services/proyection.service';
+import {CommonModule} from '@angular/common';
+import {CombatComponent} from '../combat/combat.component';
+import {CombatService} from '../../services/combat.service';
 
 @Component({
   selector: 'app-proyection',

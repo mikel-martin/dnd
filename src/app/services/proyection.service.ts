@@ -1,7 +1,7 @@
-import { inject, Injectable, Injector, signal, OnDestroy } from '@angular/core';
-import { Subject, type Observable } from 'rxjs';
-import { ProyectionEventType } from '../enums/proyection-event-type.interface';
-import { CombatService } from './combat.service';
+import {inject, Injectable, Injector, signal, OnDestroy} from '@angular/core';
+import {Subject, type Observable} from 'rxjs';
+import {ProyectionEventType} from '../enums/proyection-event-type.interface';
+import {CombatService} from './combat.service';
 
 const SHOWING_COMVAT_MENU_KEY = 'combat.showing';
 
@@ -21,10 +21,10 @@ export class ProyectionService implements OnDestroy {
 
   constructor() {
     this.showingCombatMenu.set(
-      localStorage.getItem(SHOWING_COMVAT_MENU_KEY) ? true : false,
+      localStorage.getItem(SHOWING_COMVAT_MENU_KEY) ? true : false
     );
 
-    this.channel.onmessage = (message) => {
+    this.channel.onmessage = message => {
       this.event$.next(message.data);
     };
 

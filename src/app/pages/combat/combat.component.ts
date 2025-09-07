@@ -1,4 +1,4 @@
-import { ProyectionService } from './../../services/proyection.service';
+import {ProyectionService} from './../../services/proyection.service';
 import {
   Component,
   ElementRef,
@@ -6,18 +6,14 @@ import {
   ViewChildren,
   type QueryList,
 } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { CombatService } from '../../services/combat.service';
-import { CharacterItemComponent } from '../../shared/components/character-item/character-item.component';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {CombatService} from '../../services/combat.service';
+import {CharacterItemComponent} from '../../shared/components/character-item/character-item.component';
 
 @Component({
   selector: 'app-combat',
-  imports: [
-    CharacterItemComponent,
-    MatButtonModule,
-    MatIconModule,
-  ],
+  imports: [CharacterItemComponent, MatButtonModule, MatIconModule],
   templateUrl: './combat.component.html',
   styleUrl: './combat.component.scss',
 })
@@ -26,7 +22,7 @@ export class CombatComponent {
 
   proyection = inject(ProyectionService);
 
-  @ViewChildren('character', { read: ElementRef })
+  @ViewChildren('character', {read: ElementRef})
   characterEls!: QueryList<ElementRef>;
 
   next() {

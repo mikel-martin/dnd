@@ -1,12 +1,12 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { CharactersService } from '../../services/characters.service';
-import type { Character } from '../../interfaces/characters.interface';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { Router } from '@angular/router';
-import { appRoutes } from '../../app.routes';
-import { characterRoutes } from './character.routes';
-import { CharacterItemComponent } from '../../shared/components/character-item/character-item.component';
+import {Component, inject, OnInit} from '@angular/core';
+import {CharactersService} from '../../services/characters.service';
+import type {Character} from '../../interfaces/characters.interface';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {Router} from '@angular/router';
+import {appRoutes} from '../../app.routes';
+import {characterRoutes} from './character.routes';
+import {CharacterItemComponent} from '../../shared/components/character-item/character-item.component';
 
 @Component({
   selector: 'app-characters',
@@ -23,7 +23,7 @@ export class CharactersComponent implements OnInit {
 
   ngOnInit() {
     this.charactersService.all().subscribe({
-      next: (res) => (this.characters = res),
+      next: res => (this.characters = res),
     });
   }
 

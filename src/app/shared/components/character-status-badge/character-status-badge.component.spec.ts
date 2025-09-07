@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CharacterStatusBadgeComponent } from './character-status-badge.component';
+import {CharacterStatusBadgeComponent} from './character-status-badge.component';
 
 describe('CharacterStatusBadgeComponent', () => {
   let component: CharacterStatusBadgeComponent;

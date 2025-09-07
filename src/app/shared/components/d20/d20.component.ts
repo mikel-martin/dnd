@@ -1,6 +1,6 @@
-import { CommonModule } from '@angular/common';
-import { Component, EventEmitter, inject, input, Output } from '@angular/core';
-import { PromptService } from '../../../services/prompt.service';
+import {CommonModule} from '@angular/common';
+import {Component, EventEmitter, inject, input, Output} from '@angular/core';
+import {PromptService} from '../../../services/prompt.service';
 
 @Component({
   selector: 'app-d20',
@@ -31,7 +31,7 @@ export class D20Component {
           label: 'Initiative',
           type: 'number',
         })
-        .subscribe((result) => {
+        .subscribe(result => {
           if (result !== null) {
             const initiative = parseInt(result);
 

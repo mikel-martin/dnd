@@ -1,23 +1,23 @@
-import { Component, inject, OnInit } from '@angular/core';
-import { CharactersService } from '../../../services/characters.service';
-import type { Character } from '../../../interfaces/characters.interface';
-import { ActivatedRoute, Router } from '@angular/router';
+import {Component, inject, OnInit} from '@angular/core';
+import {CharactersService} from '../../../services/characters.service';
+import type {Character} from '../../../interfaces/characters.interface';
+import {ActivatedRoute, Router} from '@angular/router';
 import {
   FormControl,
   FormGroup,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSelectModule } from '@angular/material/select';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSelectModule} from '@angular/material/select';
 import {
   CharacterType,
   CharacterTypes,
 } from '../../../enums/character-type.enum';
-import { appRoutes } from '../../../app.routes';
+import {appRoutes} from '../../../app.routes';
 
 @Component({
   selector: 'app-character-form',
@@ -103,7 +103,7 @@ export class CharacterFormComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     if (id) {
       this.characters.find(id).subscribe({
-        next: (res) => {
+        next: res => {
           this.character = res;
           this.character.id = id;
           this._updateForm(id);

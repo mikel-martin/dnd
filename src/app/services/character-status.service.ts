@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import type { CharacterStatus } from '../interfaces/character-status.interface';
+import {Injectable} from '@angular/core';
+import type {CharacterStatus} from '../interfaces/character-status.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -193,7 +193,7 @@ export class CharacterStatusService {
   }
 
   find(id: string): CharacterStatus | undefined {
-    return this._statuses.find((status) => status.id === id);
+    return this._statuses.find(status => status.id === id);
   }
 
   constructor() {

@@ -13,14 +13,14 @@ $d20-hover-font-size: 1.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Arial Black", sans-serif;
+  font-family: 'Arial Black', sans-serif;
   font-size: $d20-font-size;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
   position: relative;
   text-align: center;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     inset: 0;
     clip-path: inherit;

@@ -1,4 +1,4 @@
-import type { CombatCharacterStatus } from './combat-character-status-interface';
+import type {CombatCharacterStatus} from './combat-character-status-interface';
 
 export interface CombatCharacter {
   id?: string;

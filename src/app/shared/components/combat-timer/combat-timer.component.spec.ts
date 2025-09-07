@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { CombatTimerComponent } from './combat-timer.component';
+import {CombatTimerComponent} from './combat-timer.component';
 
 describe('CombatTimerComponent', () => {
   let component: CombatTimerComponent;

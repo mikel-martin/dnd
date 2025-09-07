@@ -1,6 +1,6 @@
-import { Routes } from '@angular/router';
-import { CharactersComponent } from './characters.component';
-import { CharacterFormComponent } from './character-form/character-form.component';
+import {Routes} from '@angular/router';
+import {CharactersComponent} from './characters.component';
+import {CharacterFormComponent} from './character-form/character-form.component';
 
 export const characterRoutes = {
   CHARACTERS: '',

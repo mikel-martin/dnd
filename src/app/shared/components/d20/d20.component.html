@@ -1,7 +1,6 @@
 <div
   class="d20"
-  [ngClass]="{ active: active(), clickable }"
-  (click)="setInitiative($event)"
->
-  {{ value() || "?" }}
+  [ngClass]="{active: active(), clickable}"
+  (click)="setInitiative($event)">
+  {{ value() || '?' }}
 </div>

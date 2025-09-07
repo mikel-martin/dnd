@@ -1,7 +1,7 @@
-import { DecimalPipe } from '@angular/common';
-import { Component, computed, signal, OnDestroy } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import {DecimalPipe} from '@angular/common';
+import {Component, computed, signal, OnDestroy} from '@angular/core';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-combat-timer',

@@ -5,8 +5,8 @@ import {
   Output,
   ViewEncapsulation,
 } from '@angular/core';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-file-input',
@@ -27,6 +27,7 @@ export class FileInputComponent {
   selectedFile: File | null = null;
 
   @Output('clear') clearEvent = new EventEmitter<void>();
+
   @Output('change') changeEvent = new EventEmitter<Event>();
 
   change(event: Event) {

@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 
 const proyectionRoutes = {
   PROYECTION: '',
@@ -7,6 +7,7 @@ const proyectionRoutes = {
 export const routes: Routes = [
   {
     path: proyectionRoutes.PROYECTION,
-    loadComponent: () => import("./proyection.component").then(m => m.ProyectionComponent)
+    loadComponent: () =>
+      import('./proyection.component').then(m => m.ProyectionComponent),
   },
 ];
