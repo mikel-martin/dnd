@@ -16,6 +16,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {EncounterService} from '../../services/encounter.service';
 import {CharacterItemComponent} from '../../shared/components/character-item/character-item.component';
 import {EncounterTimerComponent} from '../../shared/components/encounter-timer/encounter-timer.component';
+import {GeneralManagerComponent} from './general-manager/general-manager.component';
 
 const REFRESH_TIMEOUT = 500;
 
@@ -25,6 +26,7 @@ const REFRESH_TIMEOUT = 500;
     CharacterItemComponent,
     EncounterTimerComponent,
     FileInputComponent,
+    GeneralManagerComponent,
     MatButtonModule,
     MatIconModule,
     MatFormFieldModule,

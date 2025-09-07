@@ -1,0 +1,9 @@
+<div class="general-manager">
+  <app-file-input
+    label="Select background image"
+    emptyLabel="No image selected"
+    accept="image/*"
+    (clear)="clearBackgroundImage()"
+    (change)="setBackgroundImage($event)"></app-file-input>
+  <div></div>
+</div>
