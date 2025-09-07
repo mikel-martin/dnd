@@ -84,6 +84,12 @@ export class EncounterManagerComponent implements OnInit {
       });
   }
 
+  clearEncounter() {
+    if (confirm('Are you sure yo want to reset the encounter?')) {
+      this.encounter.reset();
+    }
+  }
+
   encounterToggleChange(event: any) {
     this.showingEncounterMenu = event.checked;
     this.proyection.emit({

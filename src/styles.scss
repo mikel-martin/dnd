@@ -60,11 +60,6 @@ html,
 body {
   height: 100%;
   overflow: hidden;
-  background:
-    linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5)),
-    url('../public/img/background.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .status-menu {

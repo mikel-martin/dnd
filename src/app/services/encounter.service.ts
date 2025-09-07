@@ -90,6 +90,11 @@ export class EncounterService {
     this.refreshProyection();
   }
 
+  reset(): void {
+    this.characters.set([]);
+    this.refreshProyection();
+  }
+
   updateCharacterInfo(characters: Character[]) {
     characters = this._characterService.characters();
 

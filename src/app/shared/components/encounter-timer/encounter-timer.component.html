@@ -1,31 +1,43 @@
 <article class="timer">
-  <section class="timer__time">
-    <span class="seconds">{{ seconds() | number: '2.0' }}</span
-    >:
-    <span class="milliseconds">{{ milliseconds() | number: '2.0' }}</span>
-  </section>
+  @if (mode() === 'normal') {
+    <section class="timer__time">
+      <span class="seconds">{{ seconds() | number: '2.0' }}</span
+      >:
+      <span class="milliseconds">{{ milliseconds() | number: '2.0' }}</span>
+    </section>
 
-  <section class="timer__actions">
-    <button
-      mat-icon-button
-      (click)="start()"
-      [disabled]="running()"
-      class="timer__action timer__action--start">
-      <mat-icon>play_arrow</mat-icon>
-    </button>
-    <button
-      mat-icon-button
-      (click)="pause()"
-      [disabled]="!running()"
-      class="timer__action timer__action--pause">
-      <mat-icon>pause</mat-icon>
-    </button>
-    <button
-      mat-icon-button
-      (click)="reset()"
-      [disabled]="running() || elapsed() === 0"
-      class="timer__action timer__action--reset">
-      <mat-icon>stop</mat-icon>
-    </button>
-  </section>
+    <section class="timer__actions">
+      <button
+        mat-icon-button
+        (click)="start()"
+        [disabled]="running()"
+        class="timer__action timer__action--start">
+        <mat-icon>play_arrow</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        (click)="pause()"
+        [disabled]="!running()"
+        class="timer__action timer__action--pause">
+        <mat-icon>pause</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        (click)="reset()"
+        [disabled]="running() || elapsed() === 0"
+        class="timer__action timer__action--reset">
+        <mat-icon>stop</mat-icon>
+      </button>
+    </section>
+  } @else {
+    <section class="timer__time">
+      <span class="seconds">{{
+        proyection.timer().seconds | number: '2.0'
+      }}</span
+      >:
+      <span class="milliseconds">{{
+        proyection.timer().milliseconds | number: '2.0'
+      }}</span>
+    </section>
+  }
 </article>

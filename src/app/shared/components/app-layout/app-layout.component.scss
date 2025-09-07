@@ -51,4 +51,9 @@ $navbar-height: 60px;
 .app {
   overflow: auto;
   height: calc(100% - #{$navbar-height});
+  background:
+    linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5)),
+    url('../../../../../public/img/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }

@@ -1,10 +1,4 @@
 <section class="encounter-section">
-  <section class="separator">
-    <div class="timer">
-      <app-encounter-timer></app-encounter-timer>
-    </div>
-  </section>
-
   <div class="actions">
     <mat-slide-toggle
       labelPosition="before"
@@ -13,15 +7,19 @@
       labelPosition="after"
       >Show encounter menu</mat-slide-toggle
     >
-    <button mat-button (click)="addParty()">
-      Add party to encounter
-      <mat-icon>add</mat-icon>
-    </button>
+    <div>
+      <button mat-icon-button (click)="clearEncounter()">
+        <mat-icon>refresh</mat-icon>
+      </button>
+      <button mat-icon-button (click)="addParty()">
+        <mat-icon>group</mat-icon>
+      </button>
+    </div>
   </div>
 
   <div class="add-characters">
     <mat-form-field appearance="outline" class="select">
-      <mat-label>Character</mat-label>
+      <mat-label>Characters</mat-label>
       <mat-select multiple [formControl]="selectedCharactersControl">
         @for (character of characters; track character) {
           @if (encounter.characterInEncounter(character)) {
@@ -36,7 +34,7 @@
       color="primary"
       [disabled]="selectedCharactersControl.value?.length === 0"
       (click)="addCharacters(this.selectedCharactersControl.value || [])">
-      Add
+      Add characters
       <mat-icon>add</mat-icon>
     </button>
   </div>
@@ -48,6 +46,8 @@
       </button>
 
       <div>Round {{ encounter.roundCounter }}</div>
+
+      <app-encounter-timer></app-encounter-timer>
 
       <button mat-icon-button (click)="encounter.next()">
         <mat-icon>arrow_forward</mat-icon>

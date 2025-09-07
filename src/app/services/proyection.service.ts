@@ -11,6 +11,14 @@ const SHOWING_COMVAT_MENU_KEY = 'encounter.showing';
 export class ProyectionService implements OnDestroy {
   public backgroundImage = signal<string | undefined | null>('');
 
+  public timer = signal<{
+    seconds: number;
+    milliseconds: number;
+  }>({
+    seconds: 60,
+    milliseconds: 0,
+  });
+
   public showingEncounterMenu = signal(false);
 
   private channel = new BroadcastChannel('proyection');
@@ -47,6 +55,8 @@ export class ProyectionService implements OnDestroy {
       this._handleEncounterEvent(event.data);
     } else if (event.type === ProyectionEventType.COMBAT_VISIBILITY) {
       this._handleEncounterMenuVisibility(event.data);
+    } else if (event.type === ProyectionEventType.TIMER) {
+      this._handleTimerEvent(event.data);
     }
   }
 
@@ -56,6 +66,10 @@ export class ProyectionService implements OnDestroy {
 
   private _handleImageEvent(data: any): void {
     this.backgroundImage.set(data);
+  }
+
+  private _handleTimerEvent(data: any): void {
+    this.timer.set(data);
   }
 
   private _handleEncounterEvent(data: any): void {

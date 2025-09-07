@@ -1,7 +1,16 @@
 import {DecimalPipe} from '@angular/common';
-import {Component, computed, signal, OnDestroy} from '@angular/core';
+import {
+  Component,
+  computed,
+  signal,
+  OnDestroy,
+  input,
+  inject,
+} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
+import {ProyectionService} from '../../../services/proyection.service';
+import {ProyectionEventType} from '../../../enums/proyection-event-type.interface';
 
 @Component({
   selector: 'app-encounter-timer',
@@ -10,7 +19,9 @@ import {MatIconModule} from '@angular/material/icon';
   styleUrl: './encounter-timer.component.scss',
 })
 export class EncounterTimerComponent implements OnDestroy {
-  running = signal(false);
+  mode = input<'normal' | 'proyection'>('normal');
+
+  proyection = inject(ProyectionService);
 
   private _intervalId: any;
 
@@ -19,6 +30,8 @@ export class EncounterTimerComponent implements OnDestroy {
   private _accumulated = 0;
 
   private _duration = 60_000;
+
+  running = signal(false);
 
   elapsed = signal(0);
   remaining = computed(() => Math.max(this._duration - this.elapsed(), 0));
@@ -35,6 +48,7 @@ export class EncounterTimerComponent implements OnDestroy {
     this._lastStart = Date.now();
     this._intervalId = setInterval(() => {
       this.elapsed.set(this._accumulated + (Date.now() - this._lastStart));
+      this._refreshProyection();
     }, 10);
     this.running.set(true);
   }
@@ -51,5 +65,16 @@ export class EncounterTimerComponent implements OnDestroy {
     this._accumulated = 0;
     this.elapsed.set(0);
     this.running.set(false);
+    this._refreshProyection();
+  }
+
+  private _refreshProyection() {
+    this.proyection.emit({
+      type: ProyectionEventType.TIMER,
+      data: {
+        seconds: this.seconds(),
+        milliseconds: this.milliseconds(),
+      },
+    });
   }
 }

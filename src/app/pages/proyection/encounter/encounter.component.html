@@ -8,6 +8,10 @@
   }
 
   @if (encounter.characters().length > 0) {
+    <section class="header">
+      <span>{{ encounter.activeCharacter?.name }}'s turn</span>
+      <app-encounter-timer mode="proyection"></app-encounter-timer>
+    </section>
     <section class="encounter-list">
       @for (
         character of encounter.characters();
