@@ -17,6 +17,8 @@ import {CombatService} from '../../services/combat.service';
 import {CharacterItemComponent} from '../../shared/components/character-item/character-item.component';
 import {CombatTimerComponent} from '../../shared/components/combat-timer/combat-timer.component';
 
+const REFRESH_TIMEOUT = 500;
+
 @Component({
   selector: 'app-home',
   imports: [
@@ -57,12 +59,10 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  refreshProyection() {
-    this.combat.refreshProyection();
-  }
-
-  clearBackgroundImage() {
-    this.proyection.emit({type: ProyectionEventType.IMAGE, data: null});
+  refreshCOmbatProyection() {
+    setTimeout(() => {
+      this.combat.refreshProyection();
+    }, REFRESH_TIMEOUT);
   }
 
   combatToggleChange(event: any) {
@@ -73,13 +73,18 @@ export class HomeComponent implements OnInit {
     });
   }
 
-  async emit(event: Event) {
+  clearBackgroundImage() {
+    this.proyection.emit({type: ProyectionEventType.IMAGE, data: null});
+  }
+
+  async setBackgroundImage(event: Event) {
     const input = event.target as HTMLInputElement;
     if (!input.files || input.files.length === 0) return;
 
     const file = input.files[0];
     const base64 = await EncodingUtils.toBase64(file);
 
+    // this.proyection.backgroundImage.set(base64);
     this.proyection.emit({type: ProyectionEventType.IMAGE, data: base64});
   }
 

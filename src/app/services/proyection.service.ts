@@ -9,15 +9,15 @@ const SHOWING_COMVAT_MENU_KEY = 'combat.showing';
   providedIn: 'root',
 })
 export class ProyectionService implements OnDestroy {
-  public backgroundImage = signal('');
+  public backgroundImage = signal<string | undefined | null>('');
 
   public showingCombatMenu = signal(false);
-
-  private event$ = new Subject<any>();
 
   private channel = new BroadcastChannel('proyection');
 
   private injector = inject(Injector);
+
+  event$ = new Subject<any>();
 
   constructor() {
     this.showingCombatMenu.set(
@@ -28,15 +28,7 @@ export class ProyectionService implements OnDestroy {
       this.event$.next(message.data);
     };
 
-    this._on().subscribe((event: any) => {
-      if (event.type === ProyectionEventType.IMAGE) {
-        this._handleImageEvent(event.data);
-      } else if (event.type === ProyectionEventType.COMBAT_UPDATE) {
-        this._handleCombatEvent(event.data);
-      } else if (event.type === ProyectionEventType.COMBAT_VISIBILITY) {
-        this._handleCombatMenuVisibility(event.data);
-      }
-    });
+    this._on().subscribe((event: any) => this._handleEvent(event));
   }
 
   ngOnDestroy(): void {
@@ -45,6 +37,17 @@ export class ProyectionService implements OnDestroy {
 
   emit(event: any): void {
     this.channel.postMessage(event);
+    this._handleEvent(event);
+  }
+
+  private _handleEvent(event: any) {
+    if (event.type === ProyectionEventType.IMAGE) {
+      this._handleImageEvent(event.data);
+    } else if (event.type === ProyectionEventType.COMBAT_UPDATE) {
+      this._handleCombatEvent(event.data);
+    } else if (event.type === ProyectionEventType.COMBAT_VISIBILITY) {
+      this._handleCombatMenuVisibility(event.data);
+    }
   }
 
   private _on(): Observable<any> {

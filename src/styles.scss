@@ -81,8 +81,8 @@ body {
 }
 
 .mat-mdc-slide-toggle {
-  .mdc-form-field--align-end > label {
-    padding-right: 8px;
+  .mat-internal-form-field > label {
+    padding-left: 8px;
   }
 }
 

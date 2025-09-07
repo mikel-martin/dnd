@@ -9,6 +9,12 @@
     max-width: 430px;
   }
 
+  .image-selection {
+    gap: 2rem;
+    display: flex;
+    justify-content: space-between;
+  }
+
   .combat-section {
     display: flex;
     flex-direction: column;
