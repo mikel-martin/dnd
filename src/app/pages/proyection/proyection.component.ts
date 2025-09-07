@@ -2,7 +2,7 @@ import {Component, inject, OnInit} from '@angular/core';
 import {ProyectionService} from '../../services/proyection.service';
 import {CommonModule} from '@angular/common';
 import {EcnounterComponent} from './encounter/encounter.component';
-import {CombatService} from '../../services/combat.service';
+import {EncounterService} from '../../services/encounter.service';
 import {ProyectionEventType} from '../../enums/proyection-event-type.interface';
 
 @Component({
@@ -14,7 +14,7 @@ import {ProyectionEventType} from '../../enums/proyection-event-type.interface';
 export class ProyectionComponent implements OnInit {
   proyection = inject(ProyectionService);
 
-  combat = inject(CombatService);
+  encounter = inject(EncounterService);
 
   ngOnInit() {
     this.proyection.event$.subscribe(event => {

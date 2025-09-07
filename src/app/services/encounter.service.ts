@@ -1,5 +1,5 @@
 import {inject, Injectable, signal} from '@angular/core';
-import type {CombatCharacter} from '../interfaces/combat-character.interface';
+import type {EncounterCharacter} from '../interfaces/encounter-character.interface';
 import type {Character} from '../interfaces/characters.interface';
 import {ProyectionService} from './proyection.service';
 import {ProyectionEventType} from '../enums/proyection-event-type.interface';
@@ -8,7 +8,7 @@ import {CharactersService} from './characters.service';
 @Injectable({
   providedIn: 'root',
 })
-export class CombatService {
+export class EncounterService {
   private _roundCounter = 1;
 
   private _activeCharacterIndex = 0;
@@ -44,9 +44,9 @@ export class CombatService {
   }
 
   refresh(characters: Character[]) {
-    const combat = this.characters();
+    const encounter = this.characters();
 
-    const result = combat.map(character => {
+    const result = encounter.map(character => {
       const char = characters.find(c => c.id === character.id);
       if (char) {
         return char;
@@ -108,11 +108,11 @@ export class CombatService {
     this.refreshProyection();
   }
 
-  characterInCombat(character: Character): boolean {
+  characterInEncounter(character: Character): boolean {
     return this.characters().find(i => i.id === character.id) === undefined;
   }
 
-  remove(character: CombatCharacter): void {
+  remove(character: EncounterCharacter): void {
     this.characters.set([
       ...this.characters().filter(c => c.id !== character.id),
     ]);

@@ -2,7 +2,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {EcnounterComponent} from './encounter.component';
 
-describe('CombatComponent', () => {
+describe('EncounterComponent', () => {
   let component: EcnounterComponent;
   let fixture: ComponentFixture<EcnounterComponent>;
 

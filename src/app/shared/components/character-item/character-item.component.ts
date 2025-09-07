@@ -13,12 +13,12 @@ import {appRoutes} from '../../../app.routes';
 import {CharactersService} from '../../../services/characters.service';
 import {CharacterStatusService} from '../../../services/character-status.service';
 import {MatMenuModule} from '@angular/material/menu';
-import {CombatService} from '../../../services/combat.service';
 import type {CharacterStatus} from '../../../interfaces/character-status.interface';
 import {D20Component} from '../d20/d20.component';
 import {PromptService} from '../../../services/prompt.service';
 import {CharacterUtils} from '../../utils/character.utils';
 import {CharacterStatusBadgeComponent} from '../character-status-badge/character-status-badge.component';
+import {EncounterService} from '../../../services/encounter.service';
 
 @Component({
   selector: 'app-character-item',
@@ -44,7 +44,7 @@ export class CharacterItemComponent {
 
   private characters = inject(CharactersService);
 
-  private encounter = inject(CombatService);
+  private encounter = inject(EncounterService);
 
   private router = inject(Router);
 

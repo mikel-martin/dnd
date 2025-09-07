@@ -2,7 +2,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {EncounterTimerComponent} from './encounter-timer.component';
 
-describe('CombatTimerComponent', () => {
+describe('EncounterTimerComponent', () => {
   let component: EncounterTimerComponent;
   let fixture: ComponentFixture<EncounterTimerComponent>;
 

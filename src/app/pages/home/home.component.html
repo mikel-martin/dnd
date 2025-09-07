@@ -26,17 +26,17 @@
 
     <mat-expansion-panel expanded>
       <mat-expansion-panel-header>
-        <mat-panel-title>Combat</mat-panel-title>
+        <mat-panel-title>Encounter</mat-panel-title>
       </mat-expansion-panel-header>
 
-      <section class="combat-section">
+      <section class="encounter-section">
         <div class="actions">
           <mat-slide-toggle
             labelPosition="before"
-            [(ngModel)]="showingCombatMenu"
-            (change)="combatToggleChange($event)"
+            [(ngModel)]="showingEncounterMenu"
+            (change)="encounterToggleChange($event)"
             labelPosition="after"
-            >Show combat menu</mat-slide-toggle
+            >Show encounter menu</mat-slide-toggle
           >
           <div></div>
           <!-- <button mat-button color="primary" (click)="refreshProyection()">
@@ -56,7 +56,7 @@
             <mat-label>Character</mat-label>
             <mat-select multiple [formControl]="selectedCharactersControl">
               @for (character of characters; track character) {
-                @if (combat.characterInCombat(character)) {
+                @if (encounter.characterInEncounter(character)) {
                   <mat-option [value]="character">{{
                     character.name
                   }}</mat-option>
@@ -75,15 +75,15 @@
           </button>
         </div>
 
-        @if (combat.characters().length > 1) {
+        @if (encounter.characters().length > 1) {
           <div class="controls">
-            <button mat-icon-button (click)="combat.previous()">
+            <button mat-icon-button (click)="encounter.previous()">
               <mat-icon>arrow_back</mat-icon>
             </button>
 
-            <div>{{ combat.activeCharacter?.name ?? '-' }}'s turn</div>
+            <div>{{ encounter.activeCharacter?.name ?? '-' }}'s turn</div>
 
-            <button mat-icon-button (click)="combat.next()">
+            <button mat-icon-button (click)="encounter.next()">
               <mat-icon>arrow_forward</mat-icon>
             </button>
           </div>
@@ -91,12 +91,12 @@
 
         <div class="character-list">
           @for (
-            character of combat.characters();
+            character of encounter.characters();
             track character.id;
             let index = $index
           ) {
             <app-character-item
-              [active]="combat.activeCharacterIndex === index"
+              [active]="encounter.activeCharacterIndex === index"
               [character]="character"
               mode="encounter"></app-character-item>
           }

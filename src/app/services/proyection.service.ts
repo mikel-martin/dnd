@@ -1,9 +1,9 @@
 import {inject, Injectable, Injector, signal, OnDestroy} from '@angular/core';
 import {Subject, type Observable} from 'rxjs';
 import {ProyectionEventType} from '../enums/proyection-event-type.interface';
-import {CombatService} from './combat.service';
+import {EncounterService} from './encounter.service';
 
-const SHOWING_COMVAT_MENU_KEY = 'combat.showing';
+const SHOWING_COMVAT_MENU_KEY = 'encounter.showing';
 
 @Injectable({
   providedIn: 'root',
@@ -11,7 +11,7 @@ const SHOWING_COMVAT_MENU_KEY = 'combat.showing';
 export class ProyectionService implements OnDestroy {
   public backgroundImage = signal<string | undefined | null>('');
 
-  public showingCombatMenu = signal(false);
+  public showingEncounterMenu = signal(false);
 
   private channel = new BroadcastChannel('proyection');
 
@@ -20,7 +20,7 @@ export class ProyectionService implements OnDestroy {
   event$ = new Subject<any>();
 
   constructor() {
-    this.showingCombatMenu.set(
+    this.showingEncounterMenu.set(
       localStorage.getItem(SHOWING_COMVAT_MENU_KEY) ? true : false
     );
 
@@ -44,9 +44,9 @@ export class ProyectionService implements OnDestroy {
     if (event.type === ProyectionEventType.IMAGE) {
       this._handleImageEvent(event.data);
     } else if (event.type === ProyectionEventType.COMBAT_UPDATE) {
-      this._handleCombatEvent(event.data);
+      this._handleEncounterEvent(event.data);
     } else if (event.type === ProyectionEventType.COMBAT_VISIBILITY) {
-      this._handleCombatMenuVisibility(event.data);
+      this._handleEncounterMenuVisibility(event.data);
     }
   }
 
@@ -58,13 +58,13 @@ export class ProyectionService implements OnDestroy {
     this.backgroundImage.set(data);
   }
 
-  private _handleCombatEvent(data: any): void {
-    const combat = this.injector.get<CombatService>(CombatService);
-    combat.characters.set(data);
+  private _handleEncounterEvent(data: any): void {
+    const encounter = this.injector.get<EncounterService>(EncounterService);
+    encounter.characters.set(data);
   }
 
-  private _handleCombatMenuVisibility(data: any): void {
-    this.showingCombatMenu.set(data);
+  private _handleEncounterMenuVisibility(data: any): void {
+    this.showingEncounterMenu.set(data);
     if (data) {
       localStorage.setItem(SHOWING_COMVAT_MENU_KEY, 'true');
     } else {

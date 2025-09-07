@@ -1,4 +1,4 @@
-export enum CombatCharacterStatus {
+export enum EncounterCharacterStatus {
   Blinded = '🙈 Cegado',
   Charmed = '💘 Hechizado',
   Deafened = '🙉 Ensordecido',

@@ -8,7 +8,7 @@ import {
 } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import {CombatService} from '../../../services/combat.service';
+import {EncounterService} from '../../../services/encounter.service';
 import {CharacterItemComponent} from '../../../shared/components/character-item/character-item.component';
 
 @Component({
@@ -18,7 +18,7 @@ import {CharacterItemComponent} from '../../../shared/components/character-item/
   styleUrl: './encounter.component.scss',
 })
 export class EcnounterComponent {
-  combat = inject(CombatService);
+  encounter = inject(EncounterService);
 
   proyection = inject(ProyectionService);
 
@@ -26,7 +26,7 @@ export class EcnounterComponent {
   characterEls!: QueryList<ElementRef>;
 
   private _scrollToSelected() {
-    const index = this.combat.activeCharacterIndex;
+    const index = this.encounter.activeCharacterIndex;
     const el = this.characterEls.get(index)?.nativeElement as HTMLElement;
 
     if (!el) return;

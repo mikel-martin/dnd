@@ -1,23 +1,23 @@
-<article class="combat">
-  @if (combat.characters().length === 0) {
+<article class="encounter">
+  @if (encounter.characters().length === 0) {
     <section class="empty">
       <section class="empty__content">
-        <p class="empty__title">No characters in combat</p>
+        <p class="empty__title">No characters in encounter</p>
       </section>
     </section>
   }
 
-  @if (combat.characters().length > 0) {
-    <section class="combat-list">
+  @if (encounter.characters().length > 0) {
+    <section class="encounter-list">
       @for (
-        character of combat.characters();
+        character of encounter.characters();
         track character.id;
         let index = $index
       ) {
         <app-character-item
           #character
           mode="proyection"
-          [active]="combat.activeCharacterIndex === index"
+          [active]="encounter.activeCharacterIndex === index"
           [character]="character"></app-character-item>
       }
     </section>

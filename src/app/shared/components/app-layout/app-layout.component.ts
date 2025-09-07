@@ -2,9 +2,9 @@ import {Component, inject} from '@angular/core';
 import {Router, RouterModule} from '@angular/router';
 import {appRoutes} from '../../../app.routes';
 import {MatButtonModule} from '@angular/material/button';
-import {CombatService} from '../../../services/combat.service';
 import {ProyectionService} from '../../../services/proyection.service';
 import {ProyectionEventType} from '../../../enums/proyection-event-type.interface';
+import {EncounterService} from '../../../services/encounter.service';
 
 const REFRESH_TIMEOUT = 500;
 
@@ -20,7 +20,7 @@ export class AppLayoutComponent {
 
   private router = inject(Router);
 
-  private combat = inject(CombatService);
+  private encounter = inject(EncounterService);
 
   private proyection = inject(ProyectionService);
 
@@ -31,8 +31,7 @@ export class AppLayoutComponent {
   openProyection() {
     window.open(`/${appRoutes.PROYECTION}`, '_blank');
     setTimeout(() => {
-      this.combat.refreshProyection();
-      console.log('Opening poryection', this.proyection.backgroundImage());
+      this.encounter.refreshProyection();
       this.proyection.emit({
         type: ProyectionEventType.IMAGE,
         data: this.proyection.backgroundImage(),

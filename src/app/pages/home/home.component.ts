@@ -13,7 +13,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {CharactersService} from '../../services/characters.service';
 import type {Character} from '../../interfaces/characters.interface';
 import {MatSelectModule} from '@angular/material/select';
-import {CombatService} from '../../services/combat.service';
+import {EncounterService} from '../../services/encounter.service';
 import {CharacterItemComponent} from '../../shared/components/character-item/character-item.component';
 import {EncounterTimerComponent} from '../../shared/components/encounter-timer/encounter-timer.component';
 
@@ -43,16 +43,16 @@ export class HomeComponent implements OnInit {
 
   private charactersService = inject(CharactersService);
 
-  combat = inject(CombatService);
+  encounter = inject(EncounterService);
 
   selectedCharactersControl = new FormControl<Character[]>([]);
 
   characters: Character[] = [];
 
-  showingCombatMenu = false;
+  showingEncounterMenu = false;
 
   ngOnInit() {
-    this.showingCombatMenu = this.proyection.showingCombatMenu();
+    this.showingEncounterMenu = this.proyection.showingEncounterMenu();
 
     this.charactersService.all().subscribe({
       next: res => (this.characters = res),
@@ -61,12 +61,12 @@ export class HomeComponent implements OnInit {
 
   refreshCOmbatProyection() {
     setTimeout(() => {
-      this.combat.refreshProyection();
+      this.encounter.refreshProyection();
     }, REFRESH_TIMEOUT);
   }
 
-  combatToggleChange(event: any) {
-    this.showingCombatMenu = event.checked;
+  encounterToggleChange(event: any) {
+    this.showingEncounterMenu = event.checked;
     this.proyection.emit({
       type: ProyectionEventType.COMBAT_VISIBILITY,
       data: event.checked,
@@ -89,7 +89,7 @@ export class HomeComponent implements OnInit {
   }
 
   addCharacters() {
-    this.combat.addCharacters(this.selectedCharactersControl.value || []);
+    this.encounter.addCharacters(this.selectedCharactersControl.value || []);
     this.selectedCharactersControl.reset([]);
   }
 }
