@@ -8,8 +8,21 @@
     </button>
   </div>
 
+  <mat-form-field appearance="outline">
+    <mat-label>Search</mat-label>
+    <input
+      matInput
+      placeholder="Search by name"
+      [formControl]="searchControl" />
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
   <div class="characters-list">
-    @for (character of characters; track character.id; let index = $index) {
+    @for (
+      character of filteredCharacters;
+      track character.id;
+      let index = $index
+    ) {
       <app-character-item
         #character
         [character]="character"></app-character-item>
