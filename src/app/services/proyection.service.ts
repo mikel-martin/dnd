@@ -55,6 +55,8 @@ export class ProyectionService implements OnDestroy {
       this._handleEncounterEvent(event.data);
     } else if (event.type === ProyectionEventType.COMBAT_VISIBILITY) {
       this._handleEncounterMenuVisibility(event.data);
+    } else if (event.type === ProyectionEventType.COMBAT_ACTIVE_CHARACTER) {
+      this._handleActiveCharacterEvent(event.data);
     } else if (event.type === ProyectionEventType.TIMER) {
       this._handleTimerEvent(event.data);
     }
@@ -75,6 +77,11 @@ export class ProyectionService implements OnDestroy {
   private _handleEncounterEvent(data: any): void {
     const encounter = this.injector.get<EncounterService>(EncounterService);
     encounter.characters.set(data);
+  }
+
+  private _handleActiveCharacterEvent(data: any): void {
+    const encounter = this.injector.get<EncounterService>(EncounterService);
+    encounter.activeCharacter = data;
   }
 
   private _handleEncounterMenuVisibility(data: any): void {

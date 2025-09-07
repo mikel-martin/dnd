@@ -1,3 +1,4 @@
+import {Router} from '@angular/router';
 import {Component, inject, OnInit} from '@angular/core';
 import {PartyItemComponent} from './party-item/party-item.component';
 import {PartyService} from '../../services/party.service';
@@ -5,6 +6,8 @@ import type {Party} from '../../interfaces/party.interface';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {PromptService} from '../../services/prompt.service';
+import {appRoutes} from '../../app.routes';
+import {partiesRoutes} from './parties.routes';
 
 @Component({
   selector: 'app-parties',
@@ -16,6 +19,8 @@ export class PartiesComponent implements OnInit {
   private partyService = inject(PartyService);
 
   private prompt = inject(PromptService);
+
+  private router = inject(Router);
 
   parties: Party[] = [];
 
@@ -36,7 +41,13 @@ export class PartiesComponent implements OnInit {
       .subscribe(name => {
         if (name) {
           this.partyService.create({name}).subscribe({
-            next: res => this.parties.push(res),
+            next: res => {
+              this.parties.push(res);
+              this.router.navigate([
+                appRoutes.PARTIES,
+                partiesRoutes.PARTY_DETAIL.replace(':id', res.id ?? ''),
+              ]);
+            },
           });
         }
       });

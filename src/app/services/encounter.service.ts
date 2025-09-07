@@ -27,6 +27,16 @@ export class EncounterService {
     return this.characters()[this._activeCharacterIndex];
   }
 
+  set activeCharacter(character: Character) {
+    let index = this.characters()
+      .map(i => i.id)
+      .indexOf(character.id);
+    if (index < 0) {
+      index = 0;
+    }
+    this._activeCharacterIndex = index;
+  }
+
   get roundCounter(): number {
     return this._roundCounter ?? 0;
   }
@@ -140,6 +150,8 @@ export class EncounterService {
       this._activeCharacterIndex = 0;
       this._roundCounter += 1;
     }
+
+    this.refreshProyection();
   }
 
   previous(): void {
@@ -162,12 +174,18 @@ export class EncounterService {
         this._activeCharacterIndex = 0;
       }
     }
+
+    this.refreshProyection();
   }
 
   refreshProyection() {
     this._proyection.emit({
       type: ProyectionEventType.COMBAT_UPDATE,
       data: this.characters(),
+    });
+    this._proyection.emit({
+      type: ProyectionEventType.COMBAT_ACTIVE_CHARACTER,
+      data: this.activeCharacter,
     });
   }
 }
