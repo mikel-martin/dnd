@@ -40,6 +40,8 @@ export class CharacterItemComponent {
 
   @Input() character?: Character;
 
+  @Input() active = false;
+
   private characters = inject(CharactersService);
 
   private encounter = inject(CombatService);

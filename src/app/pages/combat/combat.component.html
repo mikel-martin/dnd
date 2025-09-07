@@ -21,6 +21,7 @@
         <app-character-item
           #character
           mode="proyection"
+          [active]="combat.activeCharacterIndex === index"
           [character]="character"></app-character-item>
       }
     </section>

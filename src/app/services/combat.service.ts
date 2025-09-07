@@ -11,7 +11,7 @@ import {CharactersService} from './characters.service';
 export class CombatService {
   private _roundCounter = 1;
 
-  private _activeCharacter?: number;
+  private _activeCharacterIndex = 0;
 
   characters = signal<Character[]>([]);
 
@@ -19,8 +19,8 @@ export class CombatService {
 
   private _proyection = inject(ProyectionService);
 
-  get activeCharacter(): number {
-    return this._activeCharacter ?? -1;
+  get activeCharacterIndex(): number {
+    return this._activeCharacterIndex;
   }
 
   get roundCounter(): number {
@@ -32,7 +32,7 @@ export class CombatService {
   }
 
   private _initialize(): void {
-    this._activeCharacter = 0;
+    this._activeCharacterIndex = 0;
 
     this._characterService.charactersChanged$.subscribe(characters =>
       this.refresh(characters)
@@ -78,7 +78,7 @@ export class CombatService {
     result.sort((a, b) => (b.initiative ?? 0) - (a.initiative ?? 0));
 
     if (result.length === 1) {
-      this._activeCharacter = 0;
+      this._activeCharacterIndex = 0;
     }
 
     this.characters.set(result);
@@ -121,14 +121,14 @@ export class CombatService {
       return;
     }
 
-    if (this._activeCharacter == undefined) {
-      this._activeCharacter = 1;
+    if (this._activeCharacterIndex == undefined) {
+      this._activeCharacterIndex = 1;
     } else {
-      this._activeCharacter += 1;
+      this._activeCharacterIndex += 1;
     }
 
-    if (this._activeCharacter >= this.characters.length) {
-      this._activeCharacter = 0;
+    if (this._activeCharacterIndex >= this.characters.length) {
+      this._activeCharacterIndex = 0;
       this._roundCounter += 1;
     }
   }
@@ -138,19 +138,19 @@ export class CombatService {
       return;
     }
 
-    if (this._activeCharacter == undefined) {
-      this._activeCharacter = 1;
+    if (this._activeCharacterIndex == undefined) {
+      this._activeCharacterIndex = 1;
     } else {
-      this._activeCharacter -= 1;
+      this._activeCharacterIndex -= 1;
     }
 
-    if (this._activeCharacter < 0) {
-      this._activeCharacter = this.characters.length - 1;
+    if (this._activeCharacterIndex < 0) {
+      this._activeCharacterIndex = this.characters.length - 1;
       this._roundCounter -= 1;
 
       if (this.roundCounter < 1) {
         this._roundCounter = 1;
-        this._activeCharacter = 0;
+        this._activeCharacterIndex = 0;
       }
     }
   }

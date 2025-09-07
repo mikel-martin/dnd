@@ -35,7 +35,7 @@ export class CombatComponent {
   }
 
   private _scrollToSelected() {
-    const index = this.combat.activeCharacter;
+    const index = this.combat.activeCharacterIndex;
     const el = this.characterEls.get(index)?.nativeElement as HTMLElement;
 
     if (!el) return;

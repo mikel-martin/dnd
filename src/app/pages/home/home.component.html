@@ -61,8 +61,13 @@
         </div>
 
         <div class="character-list">
-          @for (character of combat.characters(); track character.id) {
+          @for (
+            character of combat.characters();
+            track character.id;
+            let index = $index
+          ) {
             <app-character-item
+              [active]="combat.activeCharacterIndex === index"
               [character]="character"
               mode="encounter"></app-character-item>
           }

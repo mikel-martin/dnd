@@ -1,6 +1,9 @@
-<article (click)="edit($event)" [ngClass]="[mode]" class="character-sheet">
+<article
+  (click)="edit($event)"
+  [ngClass]="[mode, active ? 'active' : '']"
+  class="character-sheet">
   <section class="heading">
-    @if (mode === 'encounter') {
+    @if (mode !== 'edition') {
       <app-d20
         [value]="character?.initiative"
         [clickable]="true"
