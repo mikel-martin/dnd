@@ -20,7 +20,6 @@
   }
 
   &.active {
-    // border: 2px solid var(--danger);
     background-color: var(--mat-sys-surface-variant);
     animation: blink-border 0.75s infinite alternate;
   }
@@ -91,7 +90,7 @@
 
       &.prompted:hover {
         cursor: pointer;
-        background-color: var(--mat-sys-primary-container);
+        background-color: var(--mat-sys-surface-container);
       }
     }
   }
