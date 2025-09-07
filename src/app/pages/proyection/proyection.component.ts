@@ -1,7 +1,7 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {ProyectionService} from '../../services/proyection.service';
 import {CommonModule} from '@angular/common';
-import {CombatComponent} from '../combat/combat.component';
+import {CombatComponent} from './combat/combat.component';
 import {CombatService} from '../../services/combat.service';
 import {ProyectionEventType} from '../../enums/proyection-event-type.interface';
 

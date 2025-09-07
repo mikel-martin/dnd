@@ -1,4 +1,4 @@
-import {ProyectionService} from './../../services/proyection.service';
+import {ProyectionService} from '../../../services/proyection.service';
 import {
   Component,
   ElementRef,
@@ -8,8 +8,8 @@ import {
 } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import {CombatService} from '../../services/combat.service';
-import {CharacterItemComponent} from '../../shared/components/character-item/character-item.component';
+import {CombatService} from '../../../services/combat.service';
+import {CharacterItemComponent} from '../../../shared/components/character-item/character-item.component';
 
 @Component({
   selector: 'app-combat',
