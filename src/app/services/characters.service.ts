@@ -3,13 +3,13 @@ import {inject, Injectable, signal} from '@angular/core';
 import type {Character} from '../interfaces/characters.interface';
 import {map, Subject, type Observable} from 'rxjs';
 import {FirebaseUtils} from '../shared/utils/firebase.utils';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CharactersService {
-  private baseURL =
-    'https://no-dungeons-no-dragons-c8f58-default-rtdb.europe-west1.firebasedatabase.app/characters';
+  private baseURL = `${environment.firabseURL}/characters`;
 
   private http = inject(HttpClient);
 
