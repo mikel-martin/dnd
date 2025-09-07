@@ -1,17 +1,17 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {CombatTimerComponent} from './combat-timer.component';
+import {EncounterTimerComponent} from './encounter-timer.component';
 
 describe('CombatTimerComponent', () => {
-  let component: CombatTimerComponent;
-  let fixture: ComponentFixture<CombatTimerComponent>;
+  let component: EncounterTimerComponent;
+  let fixture: ComponentFixture<EncounterTimerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CombatTimerComponent],
+      imports: [EncounterTimerComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CombatTimerComponent);
+    fixture = TestBed.createComponent(EncounterTimerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

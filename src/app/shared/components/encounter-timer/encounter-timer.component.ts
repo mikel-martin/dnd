@@ -4,12 +4,12 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 
 @Component({
-  selector: 'app-combat-timer',
+  selector: 'app-encounter-timer',
   imports: [MatButtonModule, MatIconModule, DecimalPipe],
-  templateUrl: './combat-timer.component.html',
-  styleUrl: './combat-timer.component.scss',
+  templateUrl: './encounter-timer.component.html',
+  styleUrl: './encounter-timer.component.scss',
 })
-export class CombatTimerComponent implements OnDestroy {
+export class EncounterTimerComponent implements OnDestroy {
   running = signal(false);
 
   private _intervalId: any;

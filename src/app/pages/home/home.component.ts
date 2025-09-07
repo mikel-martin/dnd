@@ -15,7 +15,7 @@ import type {Character} from '../../interfaces/characters.interface';
 import {MatSelectModule} from '@angular/material/select';
 import {CombatService} from '../../services/combat.service';
 import {CharacterItemComponent} from '../../shared/components/character-item/character-item.component';
-import {CombatTimerComponent} from '../../shared/components/combat-timer/combat-timer.component';
+import {EncounterTimerComponent} from '../../shared/components/encounter-timer/encounter-timer.component';
 
 const REFRESH_TIMEOUT = 500;
 
@@ -23,7 +23,7 @@ const REFRESH_TIMEOUT = 500;
   selector: 'app-home',
   imports: [
     CharacterItemComponent,
-    CombatTimerComponent,
+    EncounterTimerComponent,
     FileInputComponent,
     MatButtonModule,
     MatIconModule,

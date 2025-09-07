@@ -1,13 +1,13 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {ProyectionService} from '../../services/proyection.service';
 import {CommonModule} from '@angular/common';
-import {CombatComponent} from './combat/combat.component';
+import {EcnounterComponent} from './encounter/encounter.component';
 import {CombatService} from '../../services/combat.service';
 import {ProyectionEventType} from '../../enums/proyection-event-type.interface';
 
 @Component({
   selector: 'app-proyection',
-  imports: [CommonModule, CombatComponent],
+  imports: [CommonModule, EcnounterComponent],
   templateUrl: './proyection.component.html',
   styleUrl: './proyection.component.scss',
 })

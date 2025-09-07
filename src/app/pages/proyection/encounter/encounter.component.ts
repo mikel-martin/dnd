@@ -12,12 +12,12 @@ import {CombatService} from '../../../services/combat.service';
 import {CharacterItemComponent} from '../../../shared/components/character-item/character-item.component';
 
 @Component({
-  selector: 'app-combat',
+  selector: 'app-encounter',
   imports: [CharacterItemComponent, MatButtonModule, MatIconModule],
-  templateUrl: './combat.component.html',
-  styleUrl: './combat.component.scss',
+  templateUrl: './encounter.component.html',
+  styleUrl: './encounter.component.scss',
 })
-export class CombatComponent {
+export class EcnounterComponent {
   combat = inject(CombatService);
 
   proyection = inject(ProyectionService);

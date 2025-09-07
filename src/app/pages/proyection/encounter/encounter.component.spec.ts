@@ -1,17 +1,17 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {CombatComponent} from './combat.component';
+import {EcnounterComponent} from './encounter.component';
 
 describe('CombatComponent', () => {
-  let component: CombatComponent;
-  let fixture: ComponentFixture<CombatComponent>;
+  let component: EcnounterComponent;
+  let fixture: ComponentFixture<EcnounterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CombatComponent],
+      imports: [EcnounterComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(CombatComponent);
+    fixture = TestBed.createComponent(EcnounterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
