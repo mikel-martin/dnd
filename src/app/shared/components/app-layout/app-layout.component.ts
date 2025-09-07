@@ -16,6 +16,7 @@ const REFRESH_TIMEOUT = 500;
 })
 export class AppLayoutComponent {
   homeRoute = appRoutes.HOME;
+  partiesRoute = appRoutes.PARTIES;
   charactersRoute = appRoutes.CHARACTERS;
 
   private router = inject(Router);

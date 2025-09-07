@@ -28,7 +28,14 @@ export class PartyService {
   }
 
   create(party: Party) {
-    return this.http.post(`${this.baseURL}.json`, party);
+    return this.http.post<Party>(`${this.baseURL}.json`, party).pipe(
+      map(res => {
+        return {
+          id: res.name,
+          name: party.name,
+        } as Party;
+      })
+    );
   }
 
   delete(id: string) {

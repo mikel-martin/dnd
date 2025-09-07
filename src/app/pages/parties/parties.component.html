@@ -1,0 +1,15 @@
+<section class="parties container">
+  <div class="actions">
+    <h3 class="title">Parties</h3>
+    <button mat-flat-button (click)="create()">
+      Create new party
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <div class="party-list">
+    @for (party of parties; track party.id; let index = $index) {
+      <app-party-item [party]="party"></app-party-item>
+    }
+  </div>
+</section>

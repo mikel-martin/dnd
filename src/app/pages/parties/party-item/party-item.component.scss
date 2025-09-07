@@ -1,0 +1,29 @@
+:host {
+  width: 100%;
+}
+
+.party {
+  padding: 0.25rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: var(--mat-sys-corner-medium);
+  border: 2px solid transparent;
+  transition:
+    background-color 0.15s ease,
+    transform 0.15s ease;
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--mat-sys-surface);
+    transform: translateX(5px);
+  }
+
+  .name {
+    margin: 0;
+  }
+
+  .counter {
+    opacity: 0.75;
+  }
+}

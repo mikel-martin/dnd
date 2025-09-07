@@ -6,6 +6,7 @@ export const appRoutes = {
   HOME: 'home',
   CHARACTERS: 'characters',
   PROYECTION: 'proyection',
+  PARTIES: 'parties',
 };
 
 export const routes: Routes = [
@@ -28,6 +29,11 @@ export const routes: Routes = [
         path: appRoutes.CHARACTERS,
         loadChildren: () =>
           import('./pages/characters/character.routes').then(m => m.routes),
+      },
+      {
+        path: appRoutes.PARTIES,
+        loadChildren: () =>
+          import('./pages/parties/parties.routes').then(m => m.routes),
       },
       {
         path: '**',
