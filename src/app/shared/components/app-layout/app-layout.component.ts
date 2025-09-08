@@ -2,8 +2,8 @@ import {Component, inject} from '@angular/core';
 import {Router, RouterModule} from '@angular/router';
 import {appRoutes} from '../../../app.routes';
 import {MatButtonModule} from '@angular/material/button';
-import {ProyectionService} from '../../../services/proyection.service';
-import {ProyectionEventType} from '../../../enums/proyection-event-type.interface';
+import {ProjectionService} from '../../../services/projection.service';
+import {ProjectionEventType} from '../../../enums/projection-event-type.interface';
 import {EncounterService} from '../../../services/encounter.service';
 import {MatIconModule} from '@angular/material/icon';
 import {MobileNavbarComponent} from '../mobile-navbar/mobile-navbar.component';
@@ -30,7 +30,7 @@ export class AppLayoutComponent {
 
   private encounter = inject(EncounterService);
 
-  private proyection = inject(ProyectionService);
+  private projection = inject(ProjectionService);
 
   showSidemenu = false;
 
@@ -38,13 +38,13 @@ export class AppLayoutComponent {
     this.router.navigate([route]);
   }
 
-  openProyection() {
-    window.open(`/${appRoutes.PROYECTION}`, '_blank');
+  openProjection() {
+    window.open(`/${appRoutes.PROJECTION}`, '_blank');
     setTimeout(() => {
-      this.encounter.refreshProyection();
-      this.proyection.emit({
-        type: ProyectionEventType.IMAGE,
-        data: this.proyection.backgroundImage(),
+      this.encounter.refreshProjection();
+      this.projection.emit({
+        type: ProjectionEventType.IMAGE,
+        data: this.projection.backgroundImage(),
       });
     }, REFRESH_TIMEOUT);
   }

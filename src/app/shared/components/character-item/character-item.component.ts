@@ -36,7 +36,7 @@ import {EncounterService} from '../../../services/encounter.service';
   styleUrl: './character-item.component.scss',
 })
 export class CharacterItemComponent {
-  @Input() mode: 'encounter' | 'proyection' | 'edition' = 'edition';
+  @Input() mode: 'encounter' | 'projection' | 'edition' = 'edition';
 
   @Input() character?: Character;
 

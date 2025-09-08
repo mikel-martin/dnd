@@ -1,8 +1,8 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import {ProyectionService} from '../../services/proyection.service';
-import {ProyectionEventType} from '../../enums/proyection-event-type.interface';
+import {ProjectionService} from '../../services/projection.service';
+import {ProjectionEventType} from '../../enums/projection-event-type.interface';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
@@ -37,7 +37,7 @@ const REFRESH_TIMEOUT = 500;
   styleUrl: './home.component.scss',
 })
 export class HomeComponent implements OnInit {
-  private proyection = inject(ProyectionService);
+  private projection = inject(ProjectionService);
 
   private charactersService = inject(CharactersService);
 
@@ -50,29 +50,29 @@ export class HomeComponent implements OnInit {
   showingEncounterMenu = false;
 
   ngOnInit() {
-    this.showingEncounterMenu = this.proyection.showingEncounterMenu();
+    this.showingEncounterMenu = this.projection.showingEncounterMenu();
 
     this.charactersService.all().subscribe({
       next: res => (this.characters = res),
     });
   }
 
-  refreshCOmbatProyection() {
+  refreshCOmbatProjection() {
     setTimeout(() => {
-      this.encounter.refreshProyection();
+      this.encounter.refreshProjection();
     }, REFRESH_TIMEOUT);
   }
 
   encounterToggleChange(event: any) {
     this.showingEncounterMenu = event.checked;
-    this.proyection.emit({
-      type: ProyectionEventType.COMBAT_VISIBILITY,
+    this.projection.emit({
+      type: ProjectionEventType.COMBAT_VISIBILITY,
       data: event.checked,
     });
   }
 
   clearBackgroundImage() {
-    this.proyection.emit({type: ProyectionEventType.IMAGE, data: null});
+    this.projection.emit({type: ProjectionEventType.IMAGE, data: null});
   }
 
   async setBackgroundImage(event: Event) {
@@ -82,8 +82,8 @@ export class HomeComponent implements OnInit {
     const file = input.files[0];
     const base64 = await EncodingUtils.toBase64(file);
 
-    // this.proyection.backgroundImage.set(base64);
-    this.proyection.emit({type: ProyectionEventType.IMAGE, data: base64});
+    // this.projection.backgroundImage.set(base64);
+    this.projection.emit({type: ProjectionEventType.IMAGE, data: base64});
   }
 
   addCharacters() {

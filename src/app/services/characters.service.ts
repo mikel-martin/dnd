@@ -55,7 +55,7 @@ export class CharactersService {
     return this.http.delete(url);
   }
 
-  refreshProyection() {
+  refreshProjection() {
     this.charactersChanged$.next(this.characters());
   }
 }

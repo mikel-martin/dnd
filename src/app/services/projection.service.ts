@@ -1,6 +1,6 @@
 import {inject, Injectable, Injector, signal, OnDestroy} from '@angular/core';
 import {Subject, type Observable} from 'rxjs';
-import {ProyectionEventType} from '../enums/proyection-event-type.interface';
+import {ProjectionEventType} from '../enums/projection-event-type.interface';
 import {EncounterService} from './encounter.service';
 
 const SHOWING_COMVAT_MENU_KEY = 'encounter.showing';
@@ -8,7 +8,7 @@ const SHOWING_COMVAT_MENU_KEY = 'encounter.showing';
 @Injectable({
   providedIn: 'root',
 })
-export class ProyectionService implements OnDestroy {
+export class ProjectionService implements OnDestroy {
   public backgroundImage = signal<string | undefined | null>('');
 
   public timer = signal<{
@@ -21,7 +21,7 @@ export class ProyectionService implements OnDestroy {
 
   public showingEncounterMenu = signal(false);
 
-  private channel = new BroadcastChannel('proyection');
+  private channel = new BroadcastChannel('projection');
 
   private injector = inject(Injector);
 
@@ -49,15 +49,15 @@ export class ProyectionService implements OnDestroy {
   }
 
   private _handleEvent(event: any) {
-    if (event.type === ProyectionEventType.IMAGE) {
+    if (event.type === ProjectionEventType.IMAGE) {
       this._handleImageEvent(event.data);
-    } else if (event.type === ProyectionEventType.COMBAT_UPDATE) {
+    } else if (event.type === ProjectionEventType.COMBAT_UPDATE) {
       this._handleEncounterEvent(event.data);
-    } else if (event.type === ProyectionEventType.COMBAT_VISIBILITY) {
+    } else if (event.type === ProjectionEventType.COMBAT_VISIBILITY) {
       this._handleEncounterMenuVisibility(event.data);
-    } else if (event.type === ProyectionEventType.COMBAT_ACTIVE_CHARACTER) {
+    } else if (event.type === ProjectionEventType.COMBAT_ACTIVE_CHARACTER) {
       this._handleActiveCharacterEvent(event.data);
-    } else if (event.type === ProyectionEventType.TIMER) {
+    } else if (event.type === ProjectionEventType.TIMER) {
       this._handleTimerEvent(event.data);
     }
   }

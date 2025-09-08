@@ -1,8 +1,8 @@
 import {inject, Injectable, signal} from '@angular/core';
 import type {EncounterCharacter} from '../interfaces/encounter-character.interface';
 import type {Character} from '../interfaces/characters.interface';
-import {ProyectionService} from './proyection.service';
-import {ProyectionEventType} from '../enums/proyection-event-type.interface';
+import {ProjectionService} from './projection.service';
+import {ProjectionEventType} from '../enums/projection-event-type.interface';
 import {CharactersService} from './characters.service';
 
 @Injectable({
@@ -17,7 +17,7 @@ export class EncounterService {
 
   private _characterService = inject(CharactersService);
 
-  private _proyection = inject(ProyectionService);
+  private _projection = inject(ProjectionService);
 
   get activeCharacterIndex(): number {
     return this._activeCharacterIndex;
@@ -68,7 +68,7 @@ export class EncounterService {
 
     this.characters.set(result);
 
-    this.refreshProyection();
+    this.refreshProjection();
   }
 
   addCharacters(characters: Character[]): void {
@@ -97,12 +97,12 @@ export class EncounterService {
 
     this.characters.set(result);
 
-    this.refreshProyection();
+    this.refreshProjection();
   }
 
   reset(): void {
     this.characters.set([]);
-    this.refreshProyection();
+    this.refreshProjection();
   }
 
   updateCharacterInfo(characters: Character[]) {
@@ -120,7 +120,7 @@ export class EncounterService {
 
     result.sort((a, b) => (b.initiative ?? 0) - (a.initiative ?? 0));
 
-    this.refreshProyection();
+    this.refreshProjection();
   }
 
   characterInEncounter(character: Character): boolean {
@@ -132,7 +132,7 @@ export class EncounterService {
       ...this.characters().filter(c => c.id !== character.id),
     ]);
 
-    this.refreshProyection();
+    this.refreshProjection();
   }
 
   next(): void {
@@ -151,7 +151,7 @@ export class EncounterService {
       this._roundCounter += 1;
     }
 
-    this.refreshProyection();
+    this.refreshProjection();
   }
 
   previous(): void {
@@ -175,16 +175,16 @@ export class EncounterService {
       }
     }
 
-    this.refreshProyection();
+    this.refreshProjection();
   }
 
-  refreshProyection() {
-    this._proyection.emit({
-      type: ProyectionEventType.COMBAT_UPDATE,
+  refreshProjection() {
+    this._projection.emit({
+      type: ProjectionEventType.COMBAT_UPDATE,
       data: this.characters(),
     });
-    this._proyection.emit({
-      type: ProyectionEventType.COMBAT_ACTIVE_CHARACTER,
+    this._projection.emit({
+      type: ProjectionEventType.COMBAT_ACTIVE_CHARACTER,
       data: this.activeCharacter,
     });
   }

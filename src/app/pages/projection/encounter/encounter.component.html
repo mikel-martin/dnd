@@ -10,7 +10,7 @@
   @if (encounter.characters().length > 0) {
     <section class="header">
       <span>{{ encounter.activeCharacter?.name }}'s turn</span>
-      <app-encounter-timer mode="proyection"></app-encounter-timer>
+      <app-encounter-timer mode="projection"></app-encounter-timer>
     </section>
     <section class="encounter-list">
       @for (
@@ -20,7 +20,7 @@
       ) {
         <app-character-item
           #character
-          mode="proyection"
+          mode="projection"
           [active]="encounter.activeCharacterIndex === index"
           [character]="character"></app-character-item>
       }

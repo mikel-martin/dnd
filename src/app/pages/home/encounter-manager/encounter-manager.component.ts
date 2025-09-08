@@ -9,8 +9,8 @@ import {EncounterService} from '../../../services/encounter.service';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import type {Character} from '../../../interfaces/characters.interface';
 import {CharactersService} from '../../../services/characters.service';
-import {ProyectionService} from '../../../services/proyection.service';
-import {ProyectionEventType} from '../../../enums/proyection-event-type.interface';
+import {ProjectionService} from '../../../services/projection.service';
+import {ProjectionEventType} from '../../../enums/projection-event-type.interface';
 import {MatButtonModule} from '@angular/material/button';
 import {PromptService} from '../../../services/prompt.service';
 import {PartyService} from '../../../services/party.service';
@@ -38,7 +38,7 @@ export class EncounterManagerComponent implements OnInit {
 
   private partyService = inject(PartyService);
 
-  private proyection = inject(ProyectionService);
+  private projection = inject(ProjectionService);
 
   private prompt = inject(PromptService);
 
@@ -55,7 +55,7 @@ export class EncounterManagerComponent implements OnInit {
   selectedCharactersControl = new FormControl<Character[]>([]);
 
   ngOnInit() {
-    this.showingEncounterMenu = this.proyection.showingEncounterMenu();
+    this.showingEncounterMenu = this.projection.showingEncounterMenu();
 
     this.charactersService.all().subscribe({
       next: res => (this.characters = res),
@@ -102,8 +102,8 @@ export class EncounterManagerComponent implements OnInit {
 
   encounterToggleChange(event: any) {
     this.showingEncounterMenu = event.checked;
-    this.proyection.emit({
-      type: ProyectionEventType.COMBAT_VISIBILITY,
+    this.projection.emit({
+      type: ProjectionEventType.COMBAT_VISIBILITY,
       data: event.checked,
     });
   }

@@ -1,4 +1,4 @@
-export enum ProyectionEventType {
+export enum ProjectionEventType {
   IMAGE = 'IMAGE',
   COMBAT_UPDATE = 'COMBAT_UPDATE',
   COMBAT_VISIBILITY = 'COMBAT_VISIBILITY',

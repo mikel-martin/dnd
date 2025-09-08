@@ -1,20 +1,20 @@
 import {Routes} from '@angular/router';
-import {ProyectionComponent} from './pages/proyection/proyection.component';
+import {ProjectionComponent} from './pages/projection/projection.component';
 import {AppLayoutComponent} from './shared/components/app-layout/app-layout.component';
 
 export const appRoutes = {
   HOME: 'home',
   CHARACTERS: 'characters',
-  PROYECTION: 'proyection',
+  PROJECTION: 'projection',
   PARTIES: 'parties',
 };
 
 export const routes: Routes = [
   {
-    path: appRoutes.PROYECTION,
-    component: ProyectionComponent,
+    path: appRoutes.PROJECTION,
+    component: ProjectionComponent,
     loadChildren: () =>
-      import('./pages/proyection/proyection.routes').then(m => m.routes),
+      import('./pages/projection/projection.routes').then(m => m.routes),
   },
   {
     path: '',

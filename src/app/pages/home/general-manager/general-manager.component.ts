@@ -1,7 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {FileInputComponent} from '../../../shared/components/file-input/file-input.component';
-import {ProyectionService} from '../../../services/proyection.service';
-import {ProyectionEventType} from '../../../enums/proyection-event-type.interface';
+import {ProjectionService} from '../../../services/projection.service';
+import {ProjectionEventType} from '../../../enums/projection-event-type.interface';
 import {EncodingUtils} from '../../../shared/utils/encoding.utils';
 
 @Component({
@@ -11,10 +11,10 @@ import {EncodingUtils} from '../../../shared/utils/encoding.utils';
   styleUrl: './general-manager.component.scss',
 })
 export class GeneralManagerComponent {
-  private proyection = inject(ProyectionService);
+  private projection = inject(ProjectionService);
 
   clearBackgroundImage() {
-    this.proyection.emit({type: ProyectionEventType.IMAGE, data: null});
+    this.projection.emit({type: ProjectionEventType.IMAGE, data: null});
   }
 
   async setBackgroundImage(event: Event) {
@@ -24,6 +24,6 @@ export class GeneralManagerComponent {
     const file = input.files[0];
     const base64 = await EncodingUtils.toBase64(file);
 
-    this.proyection.emit({type: ProyectionEventType.IMAGE, data: base64});
+    this.projection.emit({type: ProjectionEventType.IMAGE, data: base64});
   }
 }

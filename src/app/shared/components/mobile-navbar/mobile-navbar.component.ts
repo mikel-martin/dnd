@@ -3,7 +3,6 @@ import {SidemenuService} from '../../../services/sidemenu.service';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
 import {CommonModule} from '@angular/common';
-import {Router} from '@angular/router';
 import {SidemenuItemComponent} from './sidemenu-item/sidemenu-item.component';
 
 @Component({
@@ -18,9 +17,7 @@ import {SidemenuItemComponent} from './sidemenu-item/sidemenu-item.component';
   styleUrl: './mobile-navbar.component.scss',
 })
 export class MobileNavbarComponent {
-  @Output() private openProyection = new EventEmitter<void>();
-
-  private router = inject(Router);
+  @Output() private openProjection = new EventEmitter<void>();
 
   sidemenu = inject(SidemenuService);
 
@@ -30,7 +27,7 @@ export class MobileNavbarComponent {
     this.sidemenu.close();
   }
 
-  proyection() {
-    this.openProyection.emit();
+  projection() {
+    this.openProjection.emit();
   }
 }

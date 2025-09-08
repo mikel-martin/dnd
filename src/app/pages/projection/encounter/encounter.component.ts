@@ -1,4 +1,4 @@
-import {ProyectionService} from '../../../services/proyection.service';
+import {ProjectionService} from '../../../services/projection.service';
 import {
   Component,
   ElementRef,
@@ -26,7 +26,7 @@ import {EncounterTimerComponent} from '../../../shared/components/encounter-time
 export class EcnounterComponent {
   encounter = inject(EncounterService);
 
-  proyection = inject(ProyectionService);
+  projection = inject(ProjectionService);
 
   @ViewChildren('character', {read: ElementRef})
   characterEls!: QueryList<ElementRef>;

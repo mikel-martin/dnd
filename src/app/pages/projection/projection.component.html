@@ -1,5 +1,5 @@
-<section class="proyection">
-  @if (proyection.showingEncounterMenu()) {
+<section class="projection">
+  @if (projection.showingEncounterMenu()) {
     <div
       class="encounter-menu animate__animated animate__fadeInLeft animate__faster">
       <app-encounter></app-encounter>
@@ -8,6 +8,6 @@
   <article
     class="background-image"
     [ngStyle]="{
-      'background-image': 'url(' + proyection.backgroundImage() + ')',
+      'background-image': 'url(' + projection.backgroundImage() + ')',
     }"></article>
 </section>

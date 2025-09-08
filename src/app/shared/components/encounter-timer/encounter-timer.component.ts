@@ -9,8 +9,8 @@ import {
 } from '@angular/core';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
-import {ProyectionService} from '../../../services/proyection.service';
-import {ProyectionEventType} from '../../../enums/proyection-event-type.interface';
+import {ProjectionService} from '../../../services/projection.service';
+import {ProjectionEventType} from '../../../enums/projection-event-type.interface';
 
 @Component({
   selector: 'app-encounter-timer',
@@ -19,9 +19,9 @@ import {ProyectionEventType} from '../../../enums/proyection-event-type.interfac
   styleUrl: './encounter-timer.component.scss',
 })
 export class EncounterTimerComponent implements OnDestroy {
-  mode = input<'normal' | 'proyection'>('normal');
+  mode = input<'normal' | 'projection'>('normal');
 
-  proyection = inject(ProyectionService);
+  projection = inject(ProjectionService);
 
   private _intervalId: any;
 
@@ -48,7 +48,7 @@ export class EncounterTimerComponent implements OnDestroy {
     this._lastStart = Date.now();
     this._intervalId = setInterval(() => {
       this.elapsed.set(this._accumulated + (Date.now() - this._lastStart));
-      this._refreshProyection();
+      this._refreshProjection();
     }, 10);
     this.running.set(true);
   }
@@ -65,12 +65,12 @@ export class EncounterTimerComponent implements OnDestroy {
     this._accumulated = 0;
     this.elapsed.set(0);
     this.running.set(false);
-    this._refreshProyection();
+    this._refreshProjection();
   }
 
-  private _refreshProyection() {
-    this.proyection.emit({
-      type: ProyectionEventType.TIMER,
+  private _refreshProjection() {
+    this.projection.emit({
+      type: ProjectionEventType.TIMER,
       data: {
         seconds: this.seconds(),
         milliseconds: this.milliseconds(),
