@@ -15,6 +15,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {PromptService} from '../../../services/prompt.service';
 import {PartyService} from '../../../services/party.service';
 import type {Party} from '../../../interfaces/party.interface';
+import {ModalService} from '../../../services/modal.service';
 
 @Component({
   selector: 'app-encounter-manager',
@@ -40,6 +41,8 @@ export class EncounterManagerComponent implements OnInit {
   private proyection = inject(ProyectionService);
 
   private prompt = inject(PromptService);
+
+  private modal = inject(ModalService);
 
   encounter = inject(EncounterService);
 
@@ -85,9 +88,16 @@ export class EncounterManagerComponent implements OnInit {
   }
 
   clearEncounter() {
-    if (confirm('Are you sure yo want to reset the encounter?')) {
-      this.encounter.reset();
-    }
+    this.modal
+      .confirm({
+        title: 'Reseting encounter',
+        description: 'Are you sure you want reset this encounter?',
+      })
+      .subscribe(confirm => {
+        if (confirm) {
+          this.encounter.reset();
+        }
+      });
   }
 
   encounterToggleChange(event: any) {

@@ -18,6 +18,7 @@ import {
   CharacterTypes,
 } from '../../../enums/character-type.enum';
 import {appRoutes} from '../../../app.routes';
+import {ModalService} from '../../../services/modal.service';
 
 @Component({
   selector: 'app-character-form',
@@ -38,6 +39,8 @@ export class CharacterFormComponent implements OnInit {
   private router = inject(Router);
 
   private route = inject(ActivatedRoute);
+
+  private modal = inject(ModalService);
 
   characterTypes = CharacterTypes;
 
@@ -89,13 +92,21 @@ export class CharacterFormComponent implements OnInit {
   }
 
   remove() {
-    if (
-      this.character?.id &&
-      confirm('Are you sure you want to delete this character?')
-    ) {
-      this.characters.delete(this.character.id).subscribe({
-        next: () => this.router.navigate([appRoutes.CHARACTERS]),
-      });
+    if (this.character?.id) {
+      this.modal
+        .confirm({
+          title: `Deleting '${this.character.name}'`,
+          description: 'Are you sure you want to delete this character?',
+          acceptText: 'Yes',
+          cancelText: 'No',
+        })
+        .subscribe(confirm => {
+          if (confirm) {
+            this.characters.delete(this.character?.id ?? '').subscribe({
+              next: () => this.router.navigate([appRoutes.CHARACTERS]),
+            });
+          }
+        });
     }
   }
 

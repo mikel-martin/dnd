@@ -16,6 +16,7 @@ import {CharactersService} from '../../../services/characters.service';
 import type {Character} from '../../../interfaces/characters.interface';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
+import {ModalService} from '../../../services/modal.service';
 
 @Component({
   selector: 'app-party-form',
@@ -39,6 +40,8 @@ export class PartyFormComponent implements OnInit {
 
   private router = inject(Router);
 
+  private modal = inject(ModalService);
+
   party?: Party;
 
   characters: Character[] = [];
@@ -54,13 +57,21 @@ export class PartyFormComponent implements OnInit {
   }
 
   remove() {
-    if (
-      this.party?.id &&
-      confirm('Are you sure you want to delete this party?')
-    ) {
-      this.partyService.delete(this.party.id).subscribe({
-        next: () => this.router.navigate([appRoutes.PARTIES]),
-      });
+    if (this.party?.id) {
+      this.modal
+        .confirm({
+          title: `Deleting '${this.party.name}'`,
+          description: 'Are you sure you want to delete this party?',
+          acceptText: 'Yes',
+          cancelText: 'No',
+        })
+        .subscribe(confirm => {
+          if (confirm) {
+            this.partyService.delete(this.party?.id ?? '').subscribe({
+              next: () => this.router.navigate([appRoutes.PARTIES]),
+            });
+          }
+        });
     }
   }
 
