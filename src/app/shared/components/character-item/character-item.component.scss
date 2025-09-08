@@ -42,6 +42,10 @@
     }
 
     .type {
+      &.plain {
+        opacity: 0.5;
+      }
+
       &.player {
         color: var(--info);
       }

@@ -1,0 +1,9 @@
+<div
+  matRipple
+  (click)="click()"
+  [routerLink]="item()?.routerLink"
+  routerLinkActive="active"
+  class="sidemenu-item">
+  <mat-icon class="icon">{{ item()?.icon }}</mat-icon>
+  <span class="label">{{ item()?.label }}</span>
+</div>

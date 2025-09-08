@@ -57,7 +57,21 @@ $navbar-height: 60px;
   }
 }
 
+.mobile-navbar {
+  display: none;
+}
+
 .app {
   overflow: auto;
   height: calc(100% - #{$navbar-height});
+}
+
+@media (max-width: 680px) {
+  .navbar {
+    display: none;
+  }
+
+  .mobile-navbar {
+    display: block;
+  }
 }

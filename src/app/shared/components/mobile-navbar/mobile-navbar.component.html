@@ -1,0 +1,42 @@
+<nav class="mobile-navbar">
+  <h4 class="mobile-navbar__title">
+    <a routerLink="home" class="route">nD&nD</a>
+  </h4>
+
+  <button mat-icon-button (click)="sidemenu.open()">
+    <mat-icon>menu</mat-icon>
+  </button>
+</nav>
+
+<section [ngClass]="{opened: sidemenu.isOpened}" class="sidemenu">
+  <div
+    (click)="sidemenu.close()"
+    class="backdrop animate__animated animate__fadeIn animate__faster"></div>
+  <div class="content animate__animated animate__slideInLeft animate__faster">
+    <header class="header">
+      <h4 class="mobile-navbar__title">
+        <a routerLink="home" class="route">nD&nD</a>
+      </h4>
+      <button mat-icon-button (click)="proyection()">
+        <mat-icon>monitor</mat-icon>
+      </button>
+    </header>
+
+    <div class="divider"></div>
+
+    <div class="items">
+      @for (item of sidemenu.sidemenuItems; track item.id; let index = $index) {
+        <app-sidemenu-item
+          [item]="item"
+          (itemClicked)="itemClicked()"></app-sidemenu-item>
+      }
+    </div>
+
+    <!-- <div class="divider"></div>
+
+    <button mat-button>
+      Settings
+      <mat-icon>monitor</mat-icon>
+    </button> -->
+  </div>
+</section>

@@ -6,12 +6,18 @@ import {ProyectionService} from '../../../services/proyection.service';
 import {ProyectionEventType} from '../../../enums/proyection-event-type.interface';
 import {EncounterService} from '../../../services/encounter.service';
 import {MatIconModule} from '@angular/material/icon';
+import {MobileNavbarComponent} from '../mobile-navbar/mobile-navbar.component';
 
 const REFRESH_TIMEOUT = 500;
 
 @Component({
   selector: 'app-app-layout',
-  imports: [RouterModule, MatButtonModule, MatIconModule],
+  imports: [
+    RouterModule,
+    MobileNavbarComponent,
+    MatButtonModule,
+    MatIconModule,
+  ],
   templateUrl: './app-layout.component.html',
   styleUrl: './app-layout.component.scss',
 })
@@ -25,6 +31,8 @@ export class AppLayoutComponent {
   private encounter = inject(EncounterService);
 
   private proyection = inject(ProyectionService);
+
+  showSidemenu = false;
 
   route(route: string) {
     this.router.navigate([route]);

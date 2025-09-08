@@ -27,3 +27,11 @@
     justify-content: space-between;
   }
 }
+
+@media (max-width: 680px) {
+  .character-form {
+    .form-row {
+      flex-direction: column;
+    }
+  }
+}
