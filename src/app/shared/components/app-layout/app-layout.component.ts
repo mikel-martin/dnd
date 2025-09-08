@@ -5,12 +5,13 @@ import {MatButtonModule} from '@angular/material/button';
 import {ProyectionService} from '../../../services/proyection.service';
 import {ProyectionEventType} from '../../../enums/proyection-event-type.interface';
 import {EncounterService} from '../../../services/encounter.service';
+import {MatIconModule} from '@angular/material/icon';
 
 const REFRESH_TIMEOUT = 500;
 
 @Component({
   selector: 'app-app-layout',
-  imports: [RouterModule, MatButtonModule],
+  imports: [RouterModule, MatButtonModule, MatIconModule],
   templateUrl: './app-layout.component.html',
   styleUrl: './app-layout.component.scss',
 })

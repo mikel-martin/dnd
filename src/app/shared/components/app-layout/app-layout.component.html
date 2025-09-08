@@ -1,30 +1,38 @@
-<nav class="navbar">
-  <section>
-    <h4 class="navbar__title">
-      <a routerLink="home" class="route">nD&nD</a>
-    </h4>
-  </section>
+<div class="main">
+  <nav class="navbar">
+    <section>
+      <h4 class="navbar__title">
+        <a routerLink="home" class="route">nD&nD</a>
+      </h4>
+    </section>
 
-  <section class="navbar__routes">
-    <a [routerLink]="homeRoute" routerLinkActive="active" class="navbar__route"
-      >Home</a
-    >
-    <a
-      [routerLink]="charactersRoute"
-      routerLinkActive="active"
-      class="navbar__route"
-      >Characters</a
-    >
-    <a
-      [routerLink]="partiesRoute"
-      routerLinkActive="active"
-      class="navbar__route"
-      >Parties</a
-    >
-    <button mat-flat-button (click)="openProyection()">Proyection</button>
-  </section>
-</nav>
+    <section class="navbar__routes">
+      <a
+        [routerLink]="homeRoute"
+        routerLinkActive="active"
+        class="navbar__route"
+        >Home</a
+      >
+      <a
+        [routerLink]="charactersRoute"
+        routerLinkActive="active"
+        class="navbar__route"
+        >Characters</a
+      >
+      <a
+        [routerLink]="partiesRoute"
+        routerLinkActive="active"
+        class="navbar__route"
+        >Parties</a
+      >
+      <button mat-flat-button (click)="openProyection()">
+        Proyection
+        <mat-icon>monitor</mat-icon>
+      </button>
+    </section>
+  </nav>
 
-<main class="app">
-  <router-outlet></router-outlet>
-</main>
+  <main class="app">
+    <router-outlet></router-outlet>
+  </main>
+</div>

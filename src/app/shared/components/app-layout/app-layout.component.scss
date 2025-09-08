@@ -1,12 +1,21 @@
 $navbar-height: 60px;
 
+.main {
+  overflow: auto;
+  height: 100%;
+  background:
+    linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5)),
+    url('../../../../../public/img/background.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .navbar {
   height: $navbar-height;
   padding: 0rem 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  // background-color: var(--mat-sys-surface);
 
   &__title {
     cursor: pointer;
@@ -51,9 +60,4 @@ $navbar-height: 60px;
 .app {
   overflow: auto;
   height: calc(100% - #{$navbar-height});
-  background:
-    linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0.5)),
-    url('../../../../../public/img/background.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
 }
