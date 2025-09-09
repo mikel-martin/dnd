@@ -1,0 +1,23 @@
+<section
+  class="spells container animate__animated animate__fadeInLeft animate__faster">
+  <div class="actions">
+    <h3 class="title">Spells</h3>
+  </div>
+
+  @if (spells.length > 5) {
+    <mat-form-field appearance="outline">
+      <mat-label>Search</mat-label>
+      <input
+        matInput
+        placeholder="Search by name"
+        [formControl]="searchControl" />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  }
+
+  <div class="spell-list">
+    @for (spell of filteredSpells; track spell.id; let index = $index) {
+      <app-spell-item [spell]="spell" (click)="detail(spell)"></app-spell-item>
+    }
+  </div>
+</section>

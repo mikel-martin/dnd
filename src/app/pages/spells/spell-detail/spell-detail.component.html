@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>{{ spell.name }}</h2>
+<mat-dialog-content>
+  <section class="details">
+    <span>Level {{ spell.level }}</span>
+    <span>{{ spell.range }}</span>
+    <span>{{ spell.components }}</span>
+    @if (spell.concentration) {
+      <span>{{ spell.concentration ? 'Concentration' : '' }}</span>
+    }
+  </section>
+  <p>{{ spell.description }}</p>
+  <p>{{ spell.higherLevel }}</p>
+</mat-dialog-content>

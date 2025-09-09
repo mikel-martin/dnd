@@ -1,0 +1,32 @@
+:host {
+  width: 100%;
+}
+
+.spell {
+  padding: 0.5rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: var(--mat-sys-corner-medium);
+  border: 2px solid transparent;
+  transition:
+    background-color 0.15s ease,
+    transform 0.15s ease;
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--mat-sys-surface);
+    transform: translateX(5px);
+  }
+
+  .name {
+    font-size: 1rem;
+    white-space: nowrap;
+    font-weight: normal;
+    margin: 0;
+  }
+
+  .level {
+    opacity: 0.75;
+  }
+}

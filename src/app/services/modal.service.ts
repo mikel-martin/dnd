@@ -2,12 +2,25 @@ import {inject, Injectable} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
 import {type Observable} from 'rxjs';
 import {ConfirmationModalComponent} from '../shared/components/confirmation-modal/confirmation-modal.component';
+import {ComponentType} from '@angular/cdk/portal';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ModalService {
   private dialog = inject(MatDialog);
+  modal(
+    title: string,
+    component: ComponentType<any>,
+    options?: any
+  ): Observable<string | null> {
+    const dialogRef = this.dialog.open(component, {
+      data: options,
+      width: '400px',
+    });
+
+    return dialogRef.afterClosed();
+  }
 
   confirm(options: {
     title: string;

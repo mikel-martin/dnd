@@ -10,6 +10,7 @@ export const appRoutes = {
   CHARACTERS: 'characters',
   PROJECTION: 'projection',
   PARTIES: 'parties',
+  SPELLS: 'spells',
 };
 
 export const routes: Routes = [
@@ -44,6 +45,13 @@ export const routes: Routes = [
         path: appRoutes.PARTIES,
         loadChildren: () =>
           import('./pages/parties/parties.routes').then(m => m.routes),
+      },
+      {
+        path: appRoutes.SPELLS,
+        loadComponent: () =>
+          import('./pages/spells/spells.component').then(
+            m => m.SpellsComponent
+          ),
       },
       {
         path: '**',
