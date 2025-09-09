@@ -8,6 +8,8 @@ import {
   signOut,
 } from '@angular/fire/auth';
 import type {GoogleAuth} from '../interfaces/google-auth';
+import {Router} from '@angular/router';
+import {appRoutes} from '../app.routes';
 
 const AUTH_TOKEN_KEY = 'authToken';
 
@@ -16,6 +18,8 @@ const AUTH_TOKEN_KEY = 'authToken';
 })
 export class AuthService {
   private auth = inject(Auth);
+
+  private router = inject(Router);
 
   user = signal<GoogleAuth | undefined>(undefined);
 
@@ -57,27 +61,39 @@ export class AuthService {
     return user;
   }
 
-  async getUserFromIdToken(idToken: string): Promise<GoogleAuth | undefined> {
-    const firebaseAuth = getAuth();
-    const currentUser = firebaseAuth.currentUser;
-    console.log('currentUser', currentUser);
-    if (currentUser) {
-      const user: GoogleAuth = {
-        id: currentUser.uid,
-        accessToken: idToken,
-        email: currentUser.email ?? undefined,
-        displayName: currentUser.displayName ?? undefined,
-        profileImage: currentUser.photoURL ?? undefined,
-      };
-      this.user.set(user);
-      return user;
-    }
-    return undefined;
+  async validSession(): Promise<boolean> {
+    return new Promise(resolve => {
+      const firebaseAuth = getAuth();
+      const unsubscribe = onAuthStateChanged(
+        firebaseAuth,
+        async currentUser => {
+          unsubscribe();
+          if (currentUser) {
+            const token = await currentUser.getIdToken(true);
+            const user: GoogleAuth = {
+              id: currentUser.uid,
+              accessToken: token,
+              email: currentUser.email ?? undefined,
+              displayName: currentUser.displayName ?? undefined,
+              profileImage: currentUser.photoURL ?? undefined,
+            };
+            this.user.set(user);
+            localStorage.setItem(AUTH_TOKEN_KEY, token);
+            resolve(true);
+          } else {
+            this.user.set(undefined);
+            localStorage.removeItem(AUTH_TOKEN_KEY);
+            resolve(false);
+          }
+        }
+      );
+    });
   }
 
   logout() {
     this.user.set(undefined);
     localStorage.removeItem(AUTH_TOKEN_KEY);
+    this.router.navigate([appRoutes.AUTH]);
     return signOut(this.auth);
   }
 }

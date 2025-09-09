@@ -8,27 +8,32 @@
 
     <section class="navbar__routes">
       <a
-        [routerLink]="homeRoute"
+        [routerLink]="appRoutes.HOME"
         routerLinkActive="active"
         class="navbar__route"
         >Home</a
       >
       <a
-        [routerLink]="charactersRoute"
+        [routerLink]="appRoutes.CHARACTERS"
         routerLinkActive="active"
         class="navbar__route"
         >Characters</a
       >
       <a
-        [routerLink]="partiesRoute"
+        [routerLink]="appRoutes.PARTIES"
         routerLinkActive="active"
         class="navbar__route"
         >Parties</a
       >
-      <button mat-flat-button (click)="openProjection()">
-        Projection
-        <mat-icon>monitor</mat-icon>
-      </button>
+      <a
+        [routerLink]="appRoutes.PROJECTION"
+        routerLinkActive="active"
+        target="_blank"
+        (click)="openProjection()"
+        class="navbar__route"
+        >Projection</a
+      >
+      <app-avatar [matMenuTriggerFor]="profileMenu"></app-avatar>
     </section>
   </nav>
 
@@ -40,3 +45,10 @@
     <router-outlet></router-outlet>
   </main>
 </div>
+
+<mat-menu #profileMenu>
+  <button mat-menu-item (click)="auth.logout()">
+    <mat-icon>logout</mat-icon>
+    <span>Logout</span>
+  </button>
+</mat-menu>

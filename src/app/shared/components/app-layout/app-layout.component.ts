@@ -7,6 +7,9 @@ import {ProjectionEventType} from '../../../enums/projection-event-type.interfac
 import {EncounterService} from '../../../services/encounter.service';
 import {MatIconModule} from '@angular/material/icon';
 import {MobileNavbarComponent} from '../mobile-navbar/mobile-navbar.component';
+import {AvatarComponent} from '../avatar/avatar.component';
+import {MatMenuModule} from '@angular/material/menu';
+import {AuthService} from '../../../services/auth.service';
 
 const REFRESH_TIMEOUT = 500;
 
@@ -15,22 +18,24 @@ const REFRESH_TIMEOUT = 500;
   imports: [
     RouterModule,
     MobileNavbarComponent,
+    AvatarComponent,
     MatButtonModule,
     MatIconModule,
+    MatMenuModule,
   ],
   templateUrl: './app-layout.component.html',
   styleUrl: './app-layout.component.scss',
 })
 export class AppLayoutComponent {
-  homeRoute = appRoutes.HOME;
-  partiesRoute = appRoutes.PARTIES;
-  charactersRoute = appRoutes.CHARACTERS;
-
   private router = inject(Router);
 
   private encounter = inject(EncounterService);
 
   private projection = inject(ProjectionService);
+
+  auth = inject(AuthService);
+
+  appRoutes = appRoutes;
 
   showSidemenu = false;
 

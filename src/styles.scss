@@ -127,6 +127,10 @@ body {
   }
 }
 
+.mat-mdc-menu-item {
+  min-width: 200px;
+}
+
 /* These tokens are generated using https://themes.angular-material.dev/ */
 /* Preview: https://themes.angular-material.dev/?bold-font-weight=700&brand-font-family=Roboto&medium-font-weight=500&plain-font-family=Roboto&regular-font-weight=400&seed-error=%23ba1a1a&seed-neutral=%23757872&seed-neutral-variant=%2370796e&seed-primary=%2361a068&seed-secondary=%234c644c&seed-tertiary=%23006688 */
 /* Seed Colors: primary: #61a068, secondary: #4c644c, tertiary: #006688, error: #ba1a1a, neutral: #757872, neutral-variant: #70796e */
