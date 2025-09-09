@@ -4,14 +4,17 @@ import type {Party} from '../interfaces/party.interface';
 import {HttpClient} from '@angular/common/http';
 import {map, type Observable} from 'rxjs';
 import {FirebaseUtils} from '../shared/utils/firebase.utils';
+import {AuthService} from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class PartyService {
-  private baseURL = `${environment.firabseURL}/parties`;
+  private auth = inject(AuthService);
 
   private http = inject(HttpClient);
+
+  private baseURL = `${environment.firebase.databaseURL}/${this.auth.user()?.id}/parties`;
 
   all() {
     return this.http

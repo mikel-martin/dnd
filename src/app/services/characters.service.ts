@@ -4,14 +4,17 @@ import type {Character} from '../interfaces/characters.interface';
 import {map, Subject, type Observable} from 'rxjs';
 import {FirebaseUtils} from '../shared/utils/firebase.utils';
 import {environment} from '../../environments/environment';
+import {AuthService} from './auth.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CharactersService {
-  private baseURL = `${environment.firabseURL}/characters`;
+  private auth = inject(AuthService);
 
   private http = inject(HttpClient);
+
+  private baseURL = `${environment.firebase.databaseURL}/${this.auth.user()?.id}/characters`;
 
   characters = signal<Character[]>([]);
 

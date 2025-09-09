@@ -8,14 +8,20 @@
     </button>
   </div>
 
-  <mat-form-field appearance="outline">
-    <mat-label>Search</mat-label>
-    <input
-      matInput
-      placeholder="Search by name"
-      [formControl]="searchControl" />
-    <mat-icon matSuffix>search</mat-icon>
-  </mat-form-field>
+  @if (characters.length > 0) {
+    <mat-form-field appearance="outline">
+      <mat-label>Search</mat-label>
+      <input
+        matInput
+        placeholder="Search by name"
+        [formControl]="searchControl" />
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+  }
+
+  @if (characters.length === 0) {
+    <small class="empty">No characters created yet</small>
+  }
 
   <div class="characters-list">
     @for (

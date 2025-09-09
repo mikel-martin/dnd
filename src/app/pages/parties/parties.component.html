@@ -8,6 +8,10 @@
     </button>
   </div>
 
+  @if (parties.length === 0) {
+    <small class="empty">No parties created yet</small>
+  }
+
   <div class="party-list">
     @for (party of parties; track party.id; let index = $index) {
       <app-party-item [party]="party"></app-party-item>
