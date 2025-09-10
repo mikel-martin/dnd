@@ -1,0 +1,9 @@
+.content {
+  gap: 1rem;
+  display: flex;
+
+  .monster-image {
+    border-radius: var(--mat-sys-corner-medium);
+    max-width: 300px;
+  }
+}

@@ -1,6 +1,20 @@
-<section class="settings page container">
-  <div class="actions">
-    <h3 class="title">Monsters</h3>
-    <small>Work in progress</small>
+<section class="monsters page container">
+  <h3 class="title">Monsters</h3>
+
+  <mat-form-field appearance="outline" class="search">
+    <mat-label>Search</mat-label>
+    <input
+      matInput
+      placeholder="Search by name"
+      [formControl]="searchControl" />
+    <mat-icon matSuffix>search</mat-icon>
+  </mat-form-field>
+
+  <div class="monster-list">
+    @for (monster of filteredMonsters; track monster.id) {
+      <app-monster-item
+        [monster]="monster"
+        (click)="detail(monster)"></app-monster-item>
+    }
   </div>
 </section>

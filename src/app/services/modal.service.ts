@@ -12,11 +12,13 @@ export class ModalService {
   modal(
     title: string,
     component: ComponentType<any>,
-    options?: any
+    data?: any,
+    options: any = {}
   ): Observable<string | null> {
     const dialogRef = this.dialog.open(component, {
-      data: options,
-      width: '400px',
+      data: data,
+      minWidth: '400px',
+      ...options,
     });
 
     return dialogRef.afterClosed();

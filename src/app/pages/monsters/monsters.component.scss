@@ -1,0 +1,26 @@
+.monsters {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+
+  .title {
+    margin: 0;
+  }
+
+  .title,
+  .search {
+    flex: 0 0 auto;
+  }
+
+  .monster-list {
+    overflow-y: auto;
+    overflow-x: hidden;
+    width: 100%;
+    gap: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}

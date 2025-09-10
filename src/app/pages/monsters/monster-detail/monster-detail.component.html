@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>
+  {{ monster.name }}
+</h2>
+<mat-dialog-content class="content">
+  <section class="details">
+    <p>CR {{ monster.challengeRating }}</p>
+    <p>Type: {{ monster.type }}</p>
+    <p>Size: {{ monster.type }}</p>
+    <p>Alignment: {{ monster.alignment }}</p>
+    <p>CA: {{ monster.armorClass.value }}</p>
+    <p>Hit points: {{ monster.hitPoints }} ({{ monster.hitPointsRoll }})</p>
+    <div class="speed">
+      <p>
+        Speed: walk {{ monster.speed.walk }}, fly {{ monster.speed.fly }}, swim
+        {{ monster.speed.swim }}
+      </p>
+    </div>
+  </section>
+  <img [src]="monster.imageURL" [alt]="monster.name" class="monster-image" />
+</mat-dialog-content>
