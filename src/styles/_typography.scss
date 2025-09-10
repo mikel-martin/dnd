@@ -1,0 +1,17 @@
+@font-face {
+  font-family: 'Roboto';
+  src: url('../../public/fonts/Roboto-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Deutsch';
+  src: url('../../public/fonts/Deutsch.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+.text-medieval {
+  font-family: Deutsch;
+}

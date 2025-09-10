@@ -1,0 +1,19 @@
+@use './variables' as *;
+@use './theme' as *;
+@use './material' as *;
+@use './typography' as *;
+
+@use './components/container' as *;
+@use './components/misc' as *;
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}

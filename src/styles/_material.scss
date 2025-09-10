@@ -1,0 +1,23 @@
+.mat-icon {
+  font-family: 'Material Symbols Outlined';
+}
+
+.mat-mdc-dialog-actions {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+}
+
+.mat-mdc-form-field-subscript-wrapper {
+  display: none;
+}
+
+.mat-mdc-slide-toggle {
+  .mat-internal-form-field > label {
+    padding-left: 8px;
+  }
+}
+
+.mat-mdc-menu-item {
+  min-width: 200px;
+}
