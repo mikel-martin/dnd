@@ -6,12 +6,13 @@
 }
 
 @font-face {
-  font-family: 'Deutsch';
-  src: url('../../public/fonts/Deutsch.ttf') format('truetype');
+  font-family: 'BlackCastle';
+  src: url('../../public/fonts/BlackCastleMF.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
 }
 
 .text-medieval {
-  font-family: Deutsch;
+  font-weight: lighter;
+  font-family: BlackCastle;
 }
