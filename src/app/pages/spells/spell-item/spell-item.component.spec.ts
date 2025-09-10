@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SpellItemComponent } from './spell-item.component';
+import {SpellItemComponent} from './spell-item.component';
 
 describe('SpellItemComponent', () => {
   let component: SpellItemComponent;
@@ -8,9 +8,8 @@ describe('SpellItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SpellItemComponent]
-    })
-    .compileComponents();
+      imports: [SpellItemComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SpellItemComponent);
     component = fixture.componentInstance;

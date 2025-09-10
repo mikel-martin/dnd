@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SidemenuItemComponent } from './sidemenu-item.component';
+import {SidemenuItemComponent} from './sidemenu-item.component';
 
 describe('SidemenuItemComponent', () => {
   let component: SidemenuItemComponent;
@@ -8,9 +8,8 @@ describe('SidemenuItemComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SidemenuItemComponent]
-    })
-    .compileComponents();
+      imports: [SidemenuItemComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(SidemenuItemComponent);
     component = fixture.componentInstance;

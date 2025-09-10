@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { EncounterManagerComponent } from './encounter-manager.component';
+import {EncounterManagerComponent} from './encounter-manager.component';
 
 describe('EncounterManagerComponent', () => {
   let component: EncounterManagerComponent;
@@ -8,9 +8,8 @@ describe('EncounterManagerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [EncounterManagerComponent]
-    })
-    .compileComponents();
+      imports: [EncounterManagerComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(EncounterManagerComponent);
     component = fixture.componentInstance;

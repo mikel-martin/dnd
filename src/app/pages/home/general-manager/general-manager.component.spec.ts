@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { GeneralManagerComponent } from './general-manager.component';
+import {GeneralManagerComponent} from './general-manager.component';
 
 describe('GeneralManagerComponent', () => {
   let component: GeneralManagerComponent;
@@ -8,9 +8,8 @@ describe('GeneralManagerComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GeneralManagerComponent]
-    })
-    .compileComponents();
+      imports: [GeneralManagerComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(GeneralManagerComponent);
     component = fixture.componentInstance;

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PartyFormComponent } from './party-form.component';
+import {PartyFormComponent} from './party-form.component';
 
 describe('PartyFormComponent', () => {
   let component: PartyFormComponent;
@@ -8,9 +8,8 @@ describe('PartyFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PartyFormComponent]
-    })
-    .compileComponents();
+      imports: [PartyFormComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PartyFormComponent);
     component = fixture.componentInstance;

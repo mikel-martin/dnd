@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AvatarComponent } from './avatar.component';
+import {AvatarComponent} from './avatar.component';
 
 describe('AvatarComponent', () => {
   let component: AvatarComponent;
@@ -8,9 +8,8 @@ describe('AvatarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AvatarComponent]
-    })
-    .compileComponents();
+      imports: [AvatarComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AvatarComponent);
     component = fixture.componentInstance;

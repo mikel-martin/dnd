@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { SidemenuService } from './sidemenu.service';
+import {SidemenuService} from './sidemenu.service';
 
 describe('SidemenuService', () => {
   let service: SidemenuService;
