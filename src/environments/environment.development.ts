@@ -1,6 +1,5 @@
 export const environment = {
-  firabseURL:
-    'https://no-dungeons-no-dragons-c8f58-default-rtdb.europe-west1.firebasedatabase.app',
+  dnd5eURL: 'https://www.dnd5eapi.co/api/2014',
   clientId:
     '264600896188-9nd1jlnih0pso99br8fekrdij5mo8qa9.apps.googleusercontent.com',
   firebase: {

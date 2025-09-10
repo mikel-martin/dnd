@@ -3,7 +3,9 @@
   (click)="click()"
   [routerLink]="item()?.routerLink"
   routerLinkActive="active"
+  [matTooltip]="item()?.label"
+  matTooltipPosition="right"
+  [ngClass]="[disabled() ? 'disabled' : '']"
   class="sidemenu-item">
   <mat-icon class="icon">{{ item()?.icon }}</mat-icon>
-  <span class="label">{{ item()?.label }}</span>
 </div>

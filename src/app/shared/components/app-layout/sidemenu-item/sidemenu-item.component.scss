@@ -1,0 +1,29 @@
+.sidemenu-item {
+  $size: 54px;
+  gap: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border-radius: var(--mat-sys-corner-medium);
+  width: $size;
+  height: $size;
+  transition: background-color 0.15s ease;
+
+  &.active {
+    color: var(--mat-sys-primary);
+  }
+
+  &:hover {
+    background-color: var(--mat-sys-surface-container);
+
+    .icon {
+      transform: scale(1.25);
+    }
+  }
+
+  .icon {
+    transition: transform 0.15s ease;
+  }
+}

@@ -3,12 +3,13 @@ import type {Spell} from '../interfaces/spell.interface';
 import {map, type Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import type {SpellDetail} from '../interfaces/spell-detail.interface';
+import {environment} from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SpellsService {
-  private baseURL = 'https://www.dnd5eapi.co/api/2014/spells';
+  private baseURL = `${environment.dnd5eURL}/spells`;
 
   private http = inject(HttpClient);
 

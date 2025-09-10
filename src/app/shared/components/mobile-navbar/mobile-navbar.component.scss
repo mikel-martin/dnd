@@ -61,13 +61,16 @@ $navbar-height: 60px;
     }
 
     .items {
-      flex: 1;
       min-height: 0;
       overflow-y: auto;
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
       overflow-x: hidden;
+
+      &.heading {
+        flex: 1;
+      }
     }
 
     .projection-button {

@@ -12,31 +12,28 @@
   <div
     (click)="sidemenu.close()"
     class="backdrop animate__animated animate__fadeIn animate__faster"></div>
-  <div class="content animate__animated animate__slideInLeft animate__faster">
+  <div class="content animate__animated animate__fadeInRight animate__faster">
     <header class="header">
       <h4 class="mobile-navbar__title">
         <a routerLink="home" class="route">nD&nD</a>
       </h4>
-      <button mat-icon-button (click)="projection()">
-        <mat-icon>monitor</mat-icon>
-      </button>
     </header>
 
-    <div class="divider"></div>
-
-    <div class="items">
+    <div class="items heading">
       @for (item of sidemenu.sidemenuItems; track item.id; let index = $index) {
-        <app-sidemenu-item
+        <app-mobile-sidemenu-item
           [item]="item"
-          (itemClicked)="itemClicked()"></app-sidemenu-item>
+          (itemClicked)="itemClicked()"></app-mobile-sidemenu-item>
       }
     </div>
 
-    <!-- <div class="divider"></div>
-
-    <button mat-button>
-      Settings
-      <mat-icon>monitor</mat-icon>
-    </button> -->
+    <div class="items trailing">
+      <app-mobile-sidemenu-item
+        [item]="sidemenu.projectionItem"
+        (itemClicked)="itemClicked(); projection()"></app-mobile-sidemenu-item>
+      <app-mobile-sidemenu-item
+        [item]="sidemenu.settingsItem"
+        (itemClicked)="itemClicked()"></app-mobile-sidemenu-item>
+    </div>
   </div>
 </section>

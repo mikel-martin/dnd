@@ -3,15 +3,18 @@ import type {SideMenuItem} from '../../../../interfaces/sidemenu-item.interface'
 import {MatIconModule} from '@angular/material/icon';
 import {MatRippleModule} from '@angular/material/core';
 import {RouterModule} from '@angular/router';
+import {CommonModule} from '@angular/common';
 
 @Component({
-  selector: 'app-sidemenu-item',
-  imports: [RouterModule, MatIconModule, MatRippleModule],
-  templateUrl: './sidemenu-item.component.html',
-  styleUrl: './sidemenu-item.component.scss',
+  selector: 'app-mobile-sidemenu-item',
+  imports: [CommonModule, RouterModule, MatIconModule, MatRippleModule],
+  templateUrl: './mobile-sidemenu-item.component.html',
+  styleUrl: './mobile-sidemenu-item.component.scss',
 })
-export class SidemenuItemComponent {
+export class MobileSidemenuItemComponent {
   item = input<SideMenuItem>();
+
+  disabled = input<boolean>(false);
 
   @Output() itemClicked = new EventEmitter<SideMenuItem>();
 

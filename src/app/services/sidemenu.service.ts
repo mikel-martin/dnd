@@ -12,7 +12,7 @@ export class SidemenuService {
     {
       id: 'home',
       label: 'Home',
-      icon: 'home',
+      icon: 'castle',
       routerLink: [appRoutes.HOME],
     },
     {
@@ -27,7 +27,33 @@ export class SidemenuService {
       icon: 'group',
       routerLink: [appRoutes.PARTIES],
     },
+    {
+      id: 'monster',
+      label: 'Monsters',
+      icon: 'skull',
+      routerLink: [appRoutes.MONSTERS],
+    },
+    {
+      id: 'spells',
+      label: 'Spells',
+      icon: 'wand_stars',
+      routerLink: [appRoutes.SPELLS],
+    },
   ];
+
+  readonly projectionItem: SideMenuItem = {
+    id: 'projection',
+    label: 'Projection',
+    icon: 'monitor',
+    target: '_blank',
+  };
+
+  readonly settingsItem: SideMenuItem = {
+    id: 'settings',
+    label: 'Settings',
+    icon: 'settings',
+    routerLink: [appRoutes.SETTINGS],
+  };
 
   get isOpened(): boolean {
     return this._opened;

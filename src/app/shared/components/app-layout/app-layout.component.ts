@@ -10,12 +10,15 @@ import {MobileNavbarComponent} from '../mobile-navbar/mobile-navbar.component';
 import {AvatarComponent} from '../avatar/avatar.component';
 import {MatMenuModule} from '@angular/material/menu';
 import {AuthService} from '../../../services/auth.service';
+import {SidemenuService} from '../../../services/sidemenu.service';
+import {SidemenuItemComponent} from './sidemenu-item/sidemenu-item.component';
 
 const REFRESH_TIMEOUT = 500;
 
 @Component({
   selector: 'app-app-layout',
   imports: [
+    SidemenuItemComponent,
     RouterModule,
     MobileNavbarComponent,
     AvatarComponent,
@@ -32,6 +35,8 @@ export class AppLayoutComponent {
   private encounter = inject(EncounterService);
 
   private projection = inject(ProjectionService);
+
+  sidemenu = inject(SidemenuService);
 
   auth = inject(AuthService);
 

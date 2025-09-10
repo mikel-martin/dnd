@@ -11,6 +11,8 @@ export const appRoutes = {
   PROJECTION: 'projection',
   PARTIES: 'parties',
   SPELLS: 'spells',
+  MONSTERS: 'monsters',
+  SETTINGS: 'settings',
 };
 
 export const routes: Routes = [
@@ -47,10 +49,22 @@ export const routes: Routes = [
           import('./pages/parties/parties.routes').then(m => m.routes),
       },
       {
+        path: appRoutes.MONSTERS,
+        loadChildren: () =>
+          import('./pages/monsters/monsters.routes').then(m => m.routes),
+      },
+      {
         path: appRoutes.SPELLS,
         loadComponent: () =>
           import('./pages/spells/spells.component').then(
             m => m.SpellsComponent
+          ),
+      },
+      {
+        path: appRoutes.SETTINGS,
+        loadComponent: () =>
+          import('./pages/settings/settings.component').then(
+            m => m.SettingsComponent
           ),
       },
       {

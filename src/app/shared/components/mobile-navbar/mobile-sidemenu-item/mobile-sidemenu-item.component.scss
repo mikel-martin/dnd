@@ -11,6 +11,9 @@
 
   &.active {
     color: var(--mat-sys-primary);
+    .icon {
+      fill: var(--mat-sys-primary);
+    }
   }
 
   &:hover {

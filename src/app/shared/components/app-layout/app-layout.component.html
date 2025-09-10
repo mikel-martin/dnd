@@ -6,46 +6,26 @@
       </h4>
     </section>
 
-    <section class="navbar__routes">
-      <a
-        [routerLink]="appRoutes.HOME"
-        routerLinkActive="active"
-        class="navbar__route"
-        >Home</a
-      >
-      <a
-        [routerLink]="appRoutes.SPELLS"
-        routerLinkActive="active"
-        class="navbar__route"
-        >Spells</a
-      >
-      <a
-        [routerLink]="appRoutes.CHARACTERS"
-        routerLinkActive="active"
-        class="navbar__route"
-        >Characters</a
-      >
-      <a
-        [routerLink]="appRoutes.PARTIES"
-        routerLinkActive="active"
-        class="navbar__route"
-        >Parties</a
-      >
-      <a
-        [routerLink]="appRoutes.PROJECTION"
-        routerLinkActive="active"
-        target="_blank"
-        (click)="openProjection()"
-        class="navbar__route"
-        >Projection</a
-      >
-      <app-avatar [matMenuTriggerFor]="profileMenu"></app-avatar>
-    </section>
+    <app-avatar [matMenuTriggerFor]="profileMenu"></app-avatar>
   </nav>
 
   <app-mobile-navbar
     (openProjection)="openProjection()"
     class="mobile-navbar"></app-mobile-navbar>
+
+  <section class="sidemenu">
+    <div class="heading">
+      @for (item of sidemenu.sidemenuItems; track item.id; let index = $index) {
+        <app-sidemenu-item [item]="item"></app-sidemenu-item>
+      }
+    </div>
+    <div class="trailing">
+      <app-sidemenu-item
+        [item]="sidemenu.projectionItem"
+        (click)="openProjection()"></app-sidemenu-item>
+      <app-sidemenu-item [item]="sidemenu.settingsItem"></app-sidemenu-item>
+    </div>
+  </section>
 
   <main class="app">
     <router-outlet></router-outlet>
