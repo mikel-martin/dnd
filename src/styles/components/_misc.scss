@@ -1,3 +1,9 @@
 .status-menu {
   max-height: 400px;
 }
+
+.page {
+  padding: 2rem;
+  animation: fadeIn;
+  animation-duration: var(--animate-duration);
+}
