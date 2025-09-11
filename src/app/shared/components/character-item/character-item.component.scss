@@ -3,6 +3,7 @@
 }
 
 .character-sheet {
+  gap: 1rem;
   padding: 0.25rem 1rem;
   display: flex;
   align-items: center;
@@ -39,6 +40,9 @@
       white-space: nowrap;
       font-weight: normal;
       margin: 0;
+      width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .type {
@@ -130,5 +134,29 @@
   100% {
     // border-color: var(--danger);
     background-color: var(--mat-sys-surface-variant);
+  }
+}
+
+@media (max-width: 815px) {
+  .character-sheet {
+    gap: 0.5rem;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    .header {
+      .name {
+        max-width: 100px;
+      }
+    }
+  }
+}
+
+@media (max-width: 770px) {
+  .character-sheet {
+    .header {
+      .name {
+        max-width: 100px;
+      }
+    }
   }
 }
