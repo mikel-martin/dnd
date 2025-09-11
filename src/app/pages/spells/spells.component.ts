@@ -57,7 +57,7 @@ export class SpellsComponent implements OnInit {
   detail(spell: Spell) {
     this.spellsService.search(spell).subscribe({
       next: res => {
-        this.modal.modal(res.name, SpellDetailComponent, res);
+        this.modal.modal(SpellDetailComponent, res);
       },
     });
   }

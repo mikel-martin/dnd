@@ -1,0 +1,28 @@
+.app {
+  grid-area: content;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: relative;
+
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: var(--mat-sys-primary) transparent;
+
+  /* Chrome, Edge, Safari */
+  &::-webkit-scrollbar {
+    width: 16px !important;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var(--mat-sys-primary);
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: var(--mat-sys-primary-hover, #555);
+  }
+}

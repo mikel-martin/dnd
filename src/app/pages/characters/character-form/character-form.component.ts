@@ -49,7 +49,9 @@ export class CharacterFormComponent implements OnInit {
   form = new FormGroup({
     id: new FormControl(),
     name: new FormControl('', [Validators.required]),
-    type: new FormControl(CharacterType.NEUTRAL, [Validators.required]),
+    type: new FormControl<CharacterType | undefined>(undefined, [
+      Validators.required,
+    ]),
     maxhitPoints: new FormControl(),
     passivePerception: new FormControl(),
     classArmour: new FormControl(),

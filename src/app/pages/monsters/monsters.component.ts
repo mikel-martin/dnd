@@ -60,7 +60,7 @@ export class MonstersComponent implements OnInit {
   detail(monster: Monster) {
     this.monstersService.detail(monster).subscribe({
       next: res => {
-        this.modal.modal(res.name, MonsterDetailComponent, res, {
+        this.modal.modal(MonsterDetailComponent, res, {
           with: '600px',
         });
       },

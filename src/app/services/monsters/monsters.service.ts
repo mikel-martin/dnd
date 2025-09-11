@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import type {Monster} from '../../interfaces/monster.interface';
-import {map, type Observable} from 'rxjs';
+import {map, of, type Observable} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {MonsterMapper} from './monster.mapper';
@@ -15,10 +15,19 @@ export class MonstersService {
 
   private http = inject(HttpClient);
 
+  private monsters: Monster[] = [];
+
   all(): Observable<Monster[]> {
-    return this.http
-      .get(this.baseURL)
-      .pipe(map((res: any) => res.results.map(MonsterMapper._fromApiToDomain)));
+    if (this.monsters) {
+      return of(this.monsters);
+    }
+    return this.http.get(this.baseURL).pipe(
+      map((res: any) => {
+        const monsters = res.results.map(MonsterMapper._fromApiToDomain);
+        this.monsters = monsters;
+        return monsters;
+      })
+    );
   }
 
   search(search: string): Observable<Monster[]> {

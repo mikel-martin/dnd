@@ -10,7 +10,6 @@ import {ComponentType} from '@angular/cdk/portal';
 export class ModalService {
   private dialog = inject(MatDialog);
   modal(
-    title: string,
     component: ComponentType<any>,
     data?: any,
     options: any = {}

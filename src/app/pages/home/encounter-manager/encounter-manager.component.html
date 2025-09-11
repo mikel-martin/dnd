@@ -1,12 +1,15 @@
 <section class="encounter-section">
   <div class="actions">
-    <mat-slide-toggle
+    <!-- <mat-slide-toggle
       labelPosition="before"
       [(ngModel)]="showingEncounterMenu"
       (change)="encounterToggleChange($event)"
       labelPosition="after"
       >Show encounter menu</mat-slide-toggle
-    >
+    > -->
+    <button mat-icon-button (click)="addToEncounter()">
+      <mat-icon>Add</mat-icon>
+    </button>
     <div>
       <button mat-icon-button (click)="clearEncounter()">
         <mat-icon>refresh</mat-icon>

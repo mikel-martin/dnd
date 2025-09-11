@@ -1,6 +1,6 @@
 import {inject, Injectable} from '@angular/core';
 import type {Spell} from '../interfaces/spell.interface';
-import {map, type Observable} from 'rxjs';
+import {map, Observable, of} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
 import type {SpellDetail} from '../interfaces/spell-detail.interface';
 import {environment} from '../../environments/environment';
@@ -13,17 +13,21 @@ export class SpellsService {
 
   private http = inject(HttpClient);
 
+  private spells: Spell[] = [];
+
   all(): Observable<Spell[]> {
+    if (this.spells) {
+      return of(this.spells);
+    }
     return this.http.get(this.baseURL).pipe(
       map((res: any) => {
-        return res.results.map((i: any) => {
-          const spell: Spell = {
-            id: i.index,
-            name: i.name,
-            level: i.level,
-          };
-          return spell;
-        });
+        const spells = res.results.map((i: any) => ({
+          id: i.index,
+          name: i.name,
+          level: i.level,
+        }));
+        this.spells = spells;
+        return spells;
       })
     );
   }

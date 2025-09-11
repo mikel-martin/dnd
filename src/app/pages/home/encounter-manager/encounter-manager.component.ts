@@ -16,6 +16,7 @@ import {PromptService} from '../../../services/prompt.service';
 import {PartyService} from '../../../services/party.service';
 import type {Party} from '../../../interfaces/party.interface';
 import {ModalService} from '../../../services/modal.service';
+import {AddCharacterModalComponent} from './add-character-modal/add-character-modal.component';
 
 @Component({
   selector: 'app-encounter-manager',
@@ -111,5 +112,9 @@ export class EncounterManagerComponent implements OnInit {
   addCharacters(characters: Character[]) {
     this.encounter.addCharacters(characters);
     this.selectedCharactersControl.reset([]);
+  }
+
+  addToEncounter() {
+    this.modal.modal(AddCharacterModalComponent);
   }
 }
