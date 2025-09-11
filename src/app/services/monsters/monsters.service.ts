@@ -18,7 +18,7 @@ export class MonstersService {
   private monsters: Monster[] = [];
 
   all(): Observable<Monster[]> {
-    if (this.monsters) {
+    if (this.monsters && this.monsters.length > 0) {
       return of(this.monsters);
     }
     return this.http.get(this.baseURL).pipe(

@@ -13,7 +13,7 @@ export class ModalService {
     component: ComponentType<any>,
     data?: any,
     options: any = {}
-  ): Observable<string | null> {
+  ): Observable<any> {
     const dialogRef = this.dialog.open(component, {
       data: data,
       minWidth: '400px',

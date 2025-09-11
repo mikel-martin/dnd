@@ -3,6 +3,7 @@ import type {CharacterStatus} from './character-status.interface';
 
 export interface Character {
   id?: string;
+  monsterId?: string;
   name: string;
   type: CharacterType;
   maxHitPoints?: number;

@@ -21,3 +21,15 @@
 .mat-mdc-menu-item {
   min-width: 200px;
 }
+
+.mat-mdc-tab-body-content {
+  padding: 2rem 0rem;
+}
+
+.mat-mdc-tab-body.mat-mdc-tab-body-active {
+  overflow-y: inherit;
+}
+
+.mat-mdc-tab-body-wrapper {
+  display: block !important;
+}

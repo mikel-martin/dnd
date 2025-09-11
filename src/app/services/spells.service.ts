@@ -16,7 +16,7 @@ export class SpellsService {
   private spells: Spell[] = [];
 
   all(): Observable<Spell[]> {
-    if (this.spells) {
+    if (this.spells && this.spells.length > 0) {
       return of(this.spells);
     }
     return this.http.get(this.baseURL).pipe(

@@ -1,1 +1,87 @@
-<p>add-character-modal works!</p>
+<h2 mat-dialog-title>
+  @if (selectedTabIndex === 0) {
+    <span>Add characters</span>
+  } @else if (selectedTabIndex === 1) {
+    <span>Add party</span>
+  } @else if (selectedTabIndex === 2) {
+    <span>Add monster</span>
+  }
+</h2>
+<mat-dialog-content>
+  <mat-tab-group
+    [formGroup]="form"
+    [selectedIndex]="selectedTabIndex"
+    (focusChange)="tabChanged($event)">
+    <mat-tab label="Characters" class="tab">
+      <mat-form-field appearance="outline" class="select">
+        <mat-label>Characters</mat-label>
+        <mat-select multiple formControlName="characters">
+          @for (character of data.characters; track character) {
+            @if (encounter.characterInEncounter(character)) {
+              <mat-option [value]="character">{{ character.name }}</mat-option>
+            }
+          }
+        </mat-select>
+      </mat-form-field>
+    </mat-tab>
+    <mat-tab label="Party" class="tab">
+      <mat-form-field appearance="outline" class="select">
+        <mat-label>Party</mat-label>
+        <mat-select formControlName="party">
+          @for (party of data.parties; track party.id) {
+            <mat-option [value]="party">{{ party.name }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </mat-tab>
+    <mat-tab formGroupName="monster" label="Monsters" class="tab">
+      <section class="monsters">
+        <mat-form-field appearance="outline" class="select">
+          <mat-label>Monster</mat-label>
+          <mat-select formControlName="monster">
+            @for (monster of monsters; track monster.id) {
+              <mat-option [value]="monster">{{ monster.name }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="select">
+          <mat-label>Amount</mat-label>
+          <input
+            matInput
+            type="number"
+            min="1"
+            placeholder="Amount"
+            formControlName="amount" />
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="select">
+          <mat-label>Type</mat-label>
+          <mat-select formControlName="type">
+            @for (type of characterTypes; track type) {
+              <mat-option [value]="type.value">{{ type.label }}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+      </section>
+    </mat-tab>
+  </mat-tab-group>
+</mat-dialog-content>
+<mat-dialog-actions class="actions">
+  <div></div>
+  <button
+    mat-flat-button
+    [disabled]="!validForm"
+    color="primary"
+    (click)="add()">
+    @if (selectedTabIndex === 0) {
+      <span>Add characters</span>
+    } @else if (selectedTabIndex === 1) {
+      <span>Add party</span>
+    } @else if (selectedTabIndex === 2) {
+      <span>Add monsters</span>
+    }
+    <span></span>
+    <mat-icon>add</mat-icon>
+  </button>
+</mat-dialog-actions>

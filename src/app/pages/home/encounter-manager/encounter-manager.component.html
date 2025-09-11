@@ -1,45 +1,24 @@
 <section class="encounter-section">
   <div class="actions">
-    <!-- <mat-slide-toggle
+    <mat-slide-toggle
       labelPosition="before"
       [(ngModel)]="showingEncounterMenu"
       (change)="encounterToggleChange($event)"
-      labelPosition="after"
-      >Show encounter menu</mat-slide-toggle
-    > -->
-    <button mat-icon-button (click)="addToEncounter()">
-      <mat-icon>Add</mat-icon>
-    </button>
+      labelPosition="after">
+      @if (showingEncounterMenu) {
+        <span>Encounter</span>
+      } @else {
+        <span>Encounter</span>
+      }
+    </mat-slide-toggle>
     <div>
       <button mat-icon-button (click)="clearEncounter()">
         <mat-icon>refresh</mat-icon>
       </button>
-      <button mat-icon-button (click)="addParty()">
-        <mat-icon>group_add</mat-icon>
+      <button mat-icon-button (click)="addToEncounter()">
+        <mat-icon>Add</mat-icon>
       </button>
     </div>
-  </div>
-
-  <div class="add-characters">
-    <mat-form-field appearance="outline" class="select">
-      <mat-label>Characters</mat-label>
-      <mat-select multiple [formControl]="selectedCharactersControl">
-        @for (character of characters; track character) {
-          @if (encounter.characterInEncounter(character)) {
-            <mat-option [value]="character">{{ character.name }}</mat-option>
-          }
-        }
-      </mat-select>
-    </mat-form-field>
-
-    <button
-      mat-flat-button
-      color="primary"
-      [disabled]="selectedCharactersControl.value?.length === 0"
-      (click)="addCharacters(this.selectedCharactersControl.value || [])">
-      Add characters
-      <mat-icon>add</mat-icon>
-    </button>
   </div>
 
   @if (encounter.characters().length > 1) {
@@ -58,10 +37,15 @@
     </div>
   }
 
-  <div class="character-list">
+  <div
+    [ngClass]="{empty: encounter.characters().length === 0}"
+    class="character-list">
+    @if (encounter.characters().length === 0) {
+      <small>No characters added to the encounter yet</small>
+    }
     @for (
       character of encounter.characters();
-      track character.id;
+      track character;
       let index = $index
     ) {
       <app-character-item

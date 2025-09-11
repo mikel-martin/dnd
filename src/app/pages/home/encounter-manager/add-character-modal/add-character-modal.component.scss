@@ -1,0 +1,15 @@
+.monsters {
+  gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.select {
+  width: 100%;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}

@@ -55,6 +55,8 @@ export class HomeComponent implements OnInit {
     this.charactersService.all().subscribe({
       next: res => (this.characters = res),
     });
+
+    this.addCharacters();
   }
 
   refreshCOmbatProjection() {

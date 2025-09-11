@@ -1,4 +1,7 @@
+import {Party} from './../../../interfaces/party.interface';
+import {Character} from './../../../interfaces/characters.interface';
 import {Component, inject, OnInit} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {EncounterTimerComponent} from '../../../shared/components/encounter-timer/encounter-timer.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -7,20 +10,20 @@ import {MatIconModule} from '@angular/material/icon';
 import {CharacterItemComponent} from '../../../shared/components/character-item/character-item.component';
 import {EncounterService} from '../../../services/encounter.service';
 import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import type {Character} from '../../../interfaces/characters.interface';
 import {CharactersService} from '../../../services/characters.service';
 import {ProjectionService} from '../../../services/projection.service';
 import {ProjectionEventType} from '../../../enums/projection-event-type.interface';
 import {MatButtonModule} from '@angular/material/button';
 import {PromptService} from '../../../services/prompt.service';
 import {PartyService} from '../../../services/party.service';
-import type {Party} from '../../../interfaces/party.interface';
 import {ModalService} from '../../../services/modal.service';
 import {AddCharacterModalComponent} from './add-character-modal/add-character-modal.component';
+import {forkJoin} from 'rxjs';
 
 @Component({
   selector: 'app-encounter-manager',
   imports: [
+    CommonModule,
     ReactiveFormsModule,
     MatSlideToggleModule,
     MatSelectModule,
@@ -58,34 +61,18 @@ export class EncounterManagerComponent implements OnInit {
   ngOnInit() {
     this.showingEncounterMenu = this.projection.showingEncounterMenu();
 
-    this.charactersService.all().subscribe({
-      next: res => (this.characters = res),
-    });
-
-    this.partyService.all().subscribe({
-      next: res => (this.parties = res),
+    forkJoin({
+      characters: this.charactersService.all(),
+      parties: this.partyService.all(),
+    }).subscribe(({characters, parties}) => {
+      this.characters = characters;
+      this.parties = parties;
     });
   }
 
-  addParty() {
-    this.prompt
-      .open({
-        title: 'Select party',
-        description: 'Select the party you want to add to the encounter',
-        label: 'Party',
-        type: 'select',
-        options: this.parties.map(i => ({
-          value: i.id,
-          label: i.name,
-        })),
-      })
-      .subscribe(partyId => {
-        const party = this.parties.find(i => i.id === partyId);
-        const partyCharacters = this.characters.filter(i =>
-          party?.characters?.includes(i.id || '')
-        );
-        this.addCharacters(partyCharacters);
-      });
+  private _addCharacters(characters: Character[]) {
+    this.encounter.addCharacters(characters);
+    this.selectedCharactersControl.reset([]);
   }
 
   clearEncounter() {
@@ -109,12 +96,20 @@ export class EncounterManagerComponent implements OnInit {
     });
   }
 
-  addCharacters(characters: Character[]) {
-    this.encounter.addCharacters(characters);
-    this.selectedCharactersControl.reset([]);
-  }
-
   addToEncounter() {
-    this.modal.modal(AddCharacterModalComponent);
+    this.modal
+      .modal(
+        AddCharacterModalComponent,
+        {
+          characters: this.characters,
+          parties: this.parties,
+        },
+        {
+          minWidth: '600px',
+        }
+      )
+      .subscribe(characters => {
+        this._addCharacters(characters);
+      });
   }
 }
