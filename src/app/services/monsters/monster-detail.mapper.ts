@@ -4,7 +4,7 @@ import type {MonsterDetail} from '../../interfaces/monster-detail.interface';
 export class MonsterDetailMapper {
   public static _fromApiToDomain(res: any): MonsterDetail {
     const monster: MonsterDetail = {
-      id: res.id,
+      id: res.index,
       name: res.name,
       size: res.size,
       type: res.type,

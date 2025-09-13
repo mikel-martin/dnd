@@ -113,21 +113,26 @@ export class AddCharacterModalComponent implements OnInit {
     } else if (this.selectedTabIndex === 2) {
       // Monsters
 
-      const selected = this.form.get('monster')?.get('monster')?.value;
-      const amount = this.form.get('monster')?.get('amount')?.value ?? 1;
-      const type = this.form.get('monster')?.get('type')?.value;
+      const monsterForm = this.form.get('monster');
+      const selected = monsterForm?.get('monster')?.value;
+      const amount = monsterForm?.get('amount')?.value ?? 1;
+      const type = monsterForm?.get('type')?.value;
 
       if (selected) {
         this.monstersService.detail(selected).subscribe({
           next: monster => {
+            const existing = this.encounter
+              .characters()
+              .filter(c => c.monsterId === selected.id);
+            const lastIndex = existing.length;
             result = Array.from(
               {length: amount},
               (_, index) =>
                 ({
                   type,
-                  id: `${monster.id}-${index}`,
+                  id: `${monster.id}-${lastIndex + index + 1}`,
                   monsterId: monster.id,
-                  name: `${monster.name} ${amount > 1 ? index + 1 : ''}`.trim(),
+                  name: `${monster.name} ${lastIndex + index + 1 > 1 ? lastIndex + index + 1 : ''}`.trim(),
                   maxHitPoints: monster.hitPoints,
                   currentHitPoints: monster.hitPoints,
                   passivePerception: 10 + monster.wisdom,
@@ -137,6 +142,7 @@ export class AddCharacterModalComponent implements OnInit {
             this.dialogRef.close(result);
           },
         });
+        return;
       }
     }
   }
