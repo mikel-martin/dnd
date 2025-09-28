@@ -119,7 +119,7 @@ export class AddCharacterModalComponent implements OnInit {
       const type = monsterForm?.get('type')?.value;
 
       if (selected) {
-        this.monstersService.detail(selected).subscribe({
+        this.monstersService.detail(selected.id).subscribe({
           next: monster => {
             const existing = this.encounter
               .characters()

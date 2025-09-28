@@ -11,7 +11,14 @@
     }
 
     <div class="header">
-      <h5 class="name">{{ character?.name }}</h5>
+      <h5
+        class="name"
+        (click)="monsterDetail()"
+        [ngClass]="{
+          'monster-info': mode === 'encounter' && character?.monsterId,
+        }">
+        {{ character?.name }}
+      </h5>
       @if (mode === 'edition') {
         <small class="type plain">{{ typeLabel(character?.type) }}</small>
       } @else {

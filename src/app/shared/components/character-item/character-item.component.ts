@@ -19,6 +19,7 @@ import {PromptService} from '../../../services/prompt.service';
 import {CharacterUtils} from '../../utils/character.utils';
 import {CharacterStatusBadgeComponent} from '../character-status-badge/character-status-badge.component';
 import {EncounterService} from '../../../services/encounter.service';
+import {MonstersService} from '../../../services/monsters/monsters.service';
 
 @Component({
   selector: 'app-character-item',
@@ -43,6 +44,8 @@ export class CharacterItemComponent {
   @Input() active = false;
 
   private characters = inject(CharactersService);
+
+  private monsters = inject(MonstersService);
 
   private encounter = inject(EncounterService);
 
@@ -143,6 +146,12 @@ export class CharacterItemComponent {
       this.character?.currentHitPoints ?? 0,
       this.character?.maxHitPoints ?? 0
     );
+  }
+
+  monsterDetail() {
+    if (this.character?.monsterId) {
+      this.monsters.openDetailModal(this.character.monsterId);
+    }
   }
 
   private _addHitPoints(amount: number) {

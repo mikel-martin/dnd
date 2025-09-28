@@ -16,7 +16,7 @@
 
   &.edition:hover {
     cursor: pointer;
-    background-color: var(--mat-sys-surface);
+    background-color: var(--mat-sys-surface-a50);
     transform: translateX(5px);
   }
 
@@ -43,6 +43,14 @@
       width: 200px;
       overflow: hidden;
       text-overflow: ellipsis;
+
+      &.monster-info {
+        cursor: pointer;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
 
     .type {

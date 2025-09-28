@@ -87,6 +87,8 @@ OR
   --mat-sys-on-background: white;
   --mat-sys-primary-hover: #85c28a;
 
+  --mat-sys-surface-a50: #292929b4;
+
   @include mat.theme-overrides(
     (
       primary: #94d699,

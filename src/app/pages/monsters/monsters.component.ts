@@ -10,7 +10,6 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatButtonModule} from '@angular/material/button';
-import {MonsterDetailComponent} from './monster-detail/monster-detail.component';
 
 const SEARCH_DEBOUNCE_TIME = 300;
 
@@ -58,12 +57,6 @@ export class MonstersComponent implements OnInit {
   }
 
   detail(monster: Monster) {
-    this.monstersService.detail(monster).subscribe({
-      next: res => {
-        this.modal.modal(MonsterDetailComponent, res, {
-          with: '600px',
-        });
-      },
-    });
+    this.monstersService.openDetailModal(monster.id);
   }
 }
