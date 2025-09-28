@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AddCharacterModalComponent } from './add-character-modal.component';
+import {AddCharacterModalComponent} from './add-character-modal.component';
 
 describe('AddCharacterModalComponent', () => {
   let component: AddCharacterModalComponent;
@@ -8,9 +8,8 @@ describe('AddCharacterModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AddCharacterModalComponent]
-    })
-    .compileComponents();
+      imports: [AddCharacterModalComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(AddCharacterModalComponent);
     component = fixture.componentInstance;
