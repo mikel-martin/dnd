@@ -68,7 +68,6 @@ export class MonsterDetailMapper {
       proficiencies: [],
       imageURL: `${environment.dnd5eURL.replace('/2014', '')}/images/monsters/${res.index}.png`,
     };
-    console.log(monster);
     return monster;
   }
 }

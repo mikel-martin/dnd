@@ -10,6 +10,8 @@ import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatButtonModule} from '@angular/material/button';
+import {Router} from '@angular/router';
+import {appRoutes} from '../../app.routes';
 
 const SEARCH_DEBOUNCE_TIME = 300;
 
@@ -28,9 +30,11 @@ const SEARCH_DEBOUNCE_TIME = 300;
   styleUrl: './monsters.component.scss',
 })
 export class MonstersComponent implements OnInit {
-  private monstersService = inject(MonstersService);
+  private _monstersService = inject(MonstersService);
 
-  private modal = inject(ModalService);
+  private _router = inject(Router);
+
+  private _modal = inject(ModalService);
 
   searchControl = new FormControl('');
   searchInput = '';
@@ -45,11 +49,8 @@ export class MonstersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.monstersService.all().subscribe({
-      next: res => {
-        this.monsters = res;
-        this.detail(this.monsters[2]);
-      },
+    this._monstersService.all().subscribe({
+      next: res => (this.monsters = res),
     });
 
     this.searchControl.valueChanges
@@ -60,6 +61,6 @@ export class MonstersComponent implements OnInit {
   }
 
   detail(monster: Monster) {
-    this.monstersService.openDetailModal(monster.id);
+    this._router.navigate([appRoutes.MONSTERS, monster.id]);
   }
 }

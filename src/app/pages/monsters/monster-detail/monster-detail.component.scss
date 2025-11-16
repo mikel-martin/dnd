@@ -1,3 +1,33 @@
+.detail-title {
+  display: block;
+  position: relative;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  margin: 0 0 1px;
+  padding: 24px 0;
+  color: white;
+  font-family: var(
+    --mdc-dialog-subhead-font,
+    var(--mat-sys-headline-small-font, inherit)
+  );
+  line-height: var(
+    --mdc-dialog-subhead-line-height,
+    var(--mat-sys-headline-small-line-height, 1.5rem)
+  );
+  font-size: var(
+    --mdc-dialog-subhead-size,
+    var(--mat-sys-headline-small-size, 1rem)
+  );
+  font-weight: var(
+    --mdc-dialog-subhead-weight,
+    var(--mat-sys-headline-small-weight, 400)
+  );
+  letter-spacing: var(
+    --mdc-dialog-subhead-tracking,
+    var(--mat-sys-headline-small-tracking, 0.03125em)
+  );
+}
+
 .content {
   color: white;
   gap: 0.5rem;
