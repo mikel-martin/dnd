@@ -65,7 +65,7 @@ export class AddCharacterModalComponent implements OnInit {
         Validators.required,
       ]),
       amount: new FormControl<number>(1, [Validators.min(1)]),
-      type: new FormControl<CharacterType | undefined>(undefined),
+      type: new FormControl<CharacterType>(CharacterType.NEUTRAL),
     }),
   });
 

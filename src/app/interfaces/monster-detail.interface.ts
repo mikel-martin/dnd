@@ -4,13 +4,19 @@ export interface MonsterDetail {
   size: string;
   type: string;
   alignment: string;
+  damageImmunities: string[];
   armorClass: {
     type: string;
     value: number;
   };
+  senses: {
+    name: string;
+    value: string;
+  }[];
   hitPoints: number;
   hitDice: string;
   hitPointsRoll: string;
+  languages: string;
   speed: {
     walk: string;
     fly: string;
@@ -35,10 +41,41 @@ export interface MonsterDetail {
   challengeRating: number;
   proficiencyBonus: number;
   experience: number;
-  specialHabilities: {
+  actions: {
     name: string;
-    description: string;
+    desc: string;
+    damage: {
+      type: string;
+      dice: string;
+    }[];
+  }[];
+  specialAbilities: {
+    name: string;
+    desc: string;
     damage: any[];
+    usage: {
+      type: string;
+      times: number;
+      rest: string[];
+    };
+  }[];
+  legendaryActions: {
+    name: string;
+    desc: string;
+    damage: {
+      damageType: {
+        name: string;
+      };
+      damageDice: string;
+    }[];
+  }[];
+  savingThrows?: {
+    name: string;
+    value: number;
+  }[];
+  abilities?: {
+    name: string;
+    value: number;
   }[];
   imageURL: string;
 }

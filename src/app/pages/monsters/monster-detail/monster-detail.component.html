@@ -1,20 +1,210 @@
-<h2 mat-dialog-title>
+<div mat-dialog-title class="header">
   {{ monster.name }}
-</h2>
-<mat-dialog-content class="content">
-  <section class="details">
-    <p>CR {{ monster.challengeRating }}</p>
-    <p>Type: {{ monster.type }}</p>
-    <p>Size: {{ monster.type }}</p>
-    <p>Alignment: {{ monster.alignment }}</p>
-    <p>CA: {{ monster.armorClass.value }}</p>
-    <p>Hit points: {{ monster.hitPoints }} ({{ monster.hitPointsRoll }})</p>
+  <small>{{ monster.type }}</small>
+</div>
+<!-- <div class="monster-image-container">
+  <img [src]="monster.imageURL" [alt]="monster.name" class="monster-image" />
+</div> -->
+<mat-dialog-content [style.background-image]="monster.imageURL" class="content">
+  <p>
+    <i>{{ monster.size | titlecase }}, {{ monster.alignment | titlecase }}</i>
+  </p>
+
+  <section class="section details">
+    <p>
+      <span class="label">Category: </span>
+      <span class="value">{{ monster.type | titlecase }}</span>
+    </p>
+    <p>
+      <span class="label">CA: </span>
+      <span class="value">{{ monster.armorClass.value }} (natural armor)</span>
+    </p>
+    <p>
+      <span class="label">Hit points: </span>
+      <span class="value"
+        >{{ monster.hitPoints }} ({{ monster.hitPointsRoll }})</span
+      >
+    </p>
     <div class="speed">
       <p>
-        Speed: walk {{ monster.speed.walk }}, fly {{ monster.speed.fly }}, swim
-        {{ monster.speed.swim }}
+        <span class="label">Speed: </span>
+        @if (monster.speed.walk) {
+          <span>{{ monster.speed.walk }}</span>
+        }
+        @if (monster.speed.walk && monster.speed.fly) {
+          <span>, </span>
+        }
+        @if (monster.speed.fly) {
+          <span>{{ monster.speed.fly }} flying</span>
+        }
+        @if (monster.speed.fly || monster.speed.walk || monster.speed.swim) {
+          <span>, </span>
+        }
+        @if (monster.speed.swim) {
+          <span>{{ monster.speed.swim }} swimming</span>
+        }
       </p>
     </div>
   </section>
-  <img [src]="monster.imageURL" [alt]="monster.name" class="monster-image" />
+
+  <section class="section">
+    <div class="stats">
+      <div class="stat">
+        <span class="label">Str.</span>
+        <span
+          >{{ monster.strength }} ({{ getStatBonus(monster.strength) }})</span
+        >
+      </div>
+      <div class="stat">
+        <span class="label">Dex.</span>
+        <span
+          >{{ monster.dexterity }} ({{ getStatBonus(monster.dexterity) }})</span
+        >
+      </div>
+      <div class="stat">
+        <span class="label">Con.</span>
+        <span
+          >{{ monster.constitution }} ({{
+            getStatBonus(monster.constitution)
+          }})</span
+        >
+      </div>
+      <div class="stat">
+        <span class="label">Int.</span>
+        <span
+          >{{ monster.intelligence }} ({{
+            getStatBonus(monster.intelligence)
+          }})</span
+        >
+      </div>
+      <div class="stat">
+        <span class="label">Wis.</span>
+        <span>{{ monster.wisdom }} ({{ getStatBonus(monster.wisdom) }})</span>
+      </div>
+      <div class="stat">
+        <span class="label">Cha.</span>
+        <span
+          >{{ monster.charisma }} ({{ getStatBonus(monster.charisma) }})</span
+        >
+      </div>
+    </div>
+  </section>
+
+  <section>
+    @if (monster.savingThrows && monster.savingThrows.length > 0) {
+      <p>
+        <span class="label">Saving throws:</span>
+        <span class="value">
+          @for (ability of monster.savingThrows; track $index) {
+            {{ ability.name | titlecase }}. +{{ ability.value }}
+            @if ($index < monster.savingThrows.length - 1) {
+              ,
+            }
+          }
+        </span>
+      </p>
+    }
+
+    @if (monster.abilities && monster.abilities.length > 0) {
+      <p>
+        <span class="label">Abilities:</span>
+        <span class="value">
+          @for (ability of monster.abilities; track $index) {
+            {{ ability.name | titlecase }} +{{ ability.value }}
+            @if ($index < monster.abilities.length - 1) {
+              ,
+            }
+          }
+        </span>
+      </p>
+    }
+
+    @if (monster.damageImmunities && monster.damageImmunities.length > 0) {
+      <p>
+        <span class="label">Damage immunities:</span>
+        <span class="value">
+          @for (immunity of monster.damageImmunities; track $index) {
+            {{ immunity | titlecase }}
+            @if ($index < monster.damageImmunities.length - 1) {
+              ,
+            }
+          }
+        </span>
+      </p>
+    }
+
+    @if (monster.senses && monster.senses.length > 0) {
+      <p>
+        <span class="label">Senses:</span>
+        <span class="value">
+          @for (sense of monster.senses; track $index) {
+            {{ sense.name | titlecase }} {{ sense.value }}
+            @if ($index < monster.senses.length - 1) {
+              ,
+            }
+          }
+        </span>
+      </p>
+    }
+
+    <p>
+      <span class="label">Languages: </span
+      ><span class="value">{{ monster.languages | titlecase }}</span>
+    </p>
+
+    <p>
+      <span class="label">Challenge: </span>
+      <span class="value"
+        >{{ monster.challengeRating }} ({{ monster.experience }} XP)</span
+      >
+    </p>
+  </section>
+
+  <section>
+    @if (monster.specialAbilities.length > 0) {
+      <h4 class="title">Special abilities</h4>
+
+      @for (ability of monster.specialAbilities; track $index) {
+        <p>
+          <span class="label">{{ ability.name }}</span
+          >.
+          <span class="value">
+            @if (ability.usage) {
+              ({{ ability.usage.times }}
+              {{ ability.usage.type }}
+              {{ ability.usage.rest ? 'per' : '' }}
+              {{ (ability.usage.rest || []).join(' or ') }})
+            }
+            {{ ability.desc }}</span
+          >
+        </p>
+      }
+    }
+  </section>
+
+  <section>
+    @if (monster.actions.length > 0) {
+      <h4 class="title">Actions</h4>
+
+      @for (action of monster.actions; track $index) {
+        <p>
+          <span class="label">{{ action.name }}</span
+          >. <span class="value">{{ action.desc }}</span>
+        </p>
+      }
+    }
+  </section>
+
+  <section>
+    @if (monster.legendaryActions.length > 0) {
+      <h4 class="title">Legendary actions</h4>
+
+      @for (action of monster.legendaryActions; track $index) {
+        <p>
+          <span class="label">{{ action.name }}</span
+          >. <span class="value">{{ action.desc }}</span>
+        </p>
+      }
+    }
+  </section>
 </mat-dialog-content>

@@ -50,7 +50,9 @@ export class MonstersService {
     this.detail(id).subscribe({
       next: res => {
         this.modal.modal(MonsterDetailComponent, res, {
-          with: '600px',
+          with: '100%',
+          minWidth: '500px',
+          maxWidth: '70vw',
         });
       },
     });

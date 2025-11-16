@@ -46,7 +46,10 @@ export class MonstersComponent implements OnInit {
 
   ngOnInit() {
     this.monstersService.all().subscribe({
-      next: res => (this.monsters = res),
+      next: res => {
+        this.monsters = res;
+        this.detail(this.monsters[2]);
+      },
     });
 
     this.searchControl.valueChanges
