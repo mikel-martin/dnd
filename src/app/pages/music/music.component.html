@@ -1,0 +1,21 @@
+<section class="music page container">
+  <div class="actions">
+    <h3 class="title">Playlists</h3>
+    <button mat-flat-button (click)="create()">
+      Create new playlist
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  @if (playslists.length === 0) {
+    <small class="empty">No playlists created yet</small>
+  }
+
+  <div class="playlist-list">
+    @for (playlist of playslists; track playlist.id) {
+      <app-playlist-item
+        [playlist]="playlist"
+        (detail)="detail(playlist)"></app-playlist-item>
+    }
+  </div>
+</section>

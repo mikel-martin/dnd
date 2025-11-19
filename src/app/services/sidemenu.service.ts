@@ -39,6 +39,12 @@ export class SidemenuService {
       icon: 'wand_stars',
       routerLink: [appRoutes.SPELLS],
     },
+    {
+      id: 'music',
+      label: 'Music',
+      icon: 'library_music',
+      routerLink: [appRoutes.MUSIC],
+    },
   ];
 
   readonly projectionItem: SideMenuItem = {

@@ -1,0 +1,72 @@
+<form
+  [formGroup]="form"
+  class="playlist-form container animate__animated animate__fadeIn animate__faster">
+  <div class="header">
+    @if (playlist?.id) {
+      <h3>Editing "{{ playlist?.name }}"</h3>
+    } @else {
+      <h3>Creating new playlist</h3>
+    }
+
+    <div>
+      @if (playlist?.id) {
+        <button mat-icon-button (click)="remove()">
+          <mat-icon>delete</mat-icon>
+        </button>
+      }
+    </div>
+  </div>
+
+  <div class="form-row">
+    <mat-form-field appearance="outline">
+      <mat-label>Playlist name</mat-label>
+      <input matInput placeholder="Name" formControlName="name" />
+    </mat-form-field>
+  </div>
+
+  <div class="divider"></div>
+
+  <div [formGroup]="track" class="new-track">
+    <mat-form-field appearance="outline">
+      <mat-label>Track name</mat-label>
+      <input
+        matInput
+        type="text"
+        placeholder="Track name"
+        formControlName="name" />
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>New URL</mat-label>
+      <input matInput type="text" placeholder="New URL" formControlName="url" />
+    </mat-form-field>
+    <button
+      mat-icon-button
+      [disabled]="form.get('track')?.invalid"
+      (click)="addTrack()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <div class="tracks">
+    @for (track of tracks; track $index) {
+      <div class="track">
+        <section>
+          <a mat-icon-button [href]="track.url" target="_blank">
+            <mat-icon>link</mat-icon>
+          </a>
+          <span class="name">{{ track.name }}</span>
+        </section>
+        <button mat-icon-button (click)="removeTrack(track)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+    }
+  </div>
+
+  <section class="actions">
+    <button mat-button (click)="cancel()">Cancel</button>
+    <button mat-flat-button [disabled]="form.invalid" (click)="save()">
+      {{ playlist?.id ? 'Save' : 'Create' }}
+    </button>
+  </section>
+</form>

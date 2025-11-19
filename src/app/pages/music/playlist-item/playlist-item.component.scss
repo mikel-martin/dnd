@@ -1,0 +1,60 @@
+:host {
+  width: 100%;
+}
+
+.playlist {
+  padding: 0.5rem 1rem;
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid transparent;
+
+  .header {
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: var(--mat-sys-corner-medium);
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    transition: background-color 0.15s ease;
+
+    &:hover {
+      cursor: pointer;
+      background-color: var(--mat-sys-surface-a50);
+    }
+  }
+
+  .name {
+    font-size: 1rem;
+    white-space: nowrap;
+    font-weight: normal;
+    margin: 0;
+  }
+
+  .tracks {
+    .track {
+      padding: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-radius: var(--mat-sys-corner-medium);
+      transition: background-color 0.15s ease;
+
+      &:hover {
+        cursor: pointer;
+        background-color: var(--mat-sys-surface-a50);
+      }
+
+      .player {
+        display: none;
+      }
+
+      .heading {
+        gap: 0.5rem;
+        display: flex;
+        align-items: center;
+      }
+    }
+  }
+}

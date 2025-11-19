@@ -12,6 +12,7 @@ export const appRoutes = {
   PARTIES: 'parties',
   SPELLS: 'spells',
   MONSTERS: 'monsters',
+  MUSIC: 'music',
   SETTINGS: 'settings',
 };
 
@@ -59,6 +60,11 @@ export const routes: Routes = [
           import('./pages/spells/spells.component').then(
             m => m.SpellsComponent
           ),
+      },
+      {
+        path: appRoutes.MUSIC,
+        loadChildren: () =>
+          import('./pages/music/music.routes').then(m => m.routes),
       },
       {
         path: appRoutes.SETTINGS,

@@ -1,0 +1,35 @@
+<article class="playlist">
+  <header (click)="onDetail()" class="header">
+    <h5 class="name">{{ playlist.name }}</h5>
+    <mat-icon class="mat-18">chevron_right</mat-icon>
+  </header>
+  <section class="tracks">
+    @for (track of playlist.tracks; track track) {
+      <article class="track">
+        <section class="heading">
+          <a [href]="playlistUrls[$index]" target="_blank" mat-icon-button>
+            <mat-icon>link</mat-icon>
+          </a>
+          <span class="name">{{ track.name }}</span>
+        </section>
+
+        <div [id]="'player-' + playlist.id + '-' + $index"></div>
+
+        <div class="controls">
+          <button mat-icon-button color="primary" (click)="togglePlay($index)">
+            <mat-icon>{{ playing[$index] ? 'pause' : 'play_arrow' }}</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            [disabled]="!playing[$index]"
+            (click)="reset($index)">
+            <mat-icon>restart_alt</mat-icon>
+          </button>
+          <button mat-icon-button (click)="toggleLoop($index)">
+            <mat-icon>{{ looping[$index] ? 'repeat_one' : 'repeat' }}</mat-icon>
+          </button>
+        </div>
+      </article>
+    }
+  </section>
+</article>
