@@ -5,10 +5,17 @@ import {ProjectionEventType} from '../../../enums/projection-event-type.interfac
 import {EncodingUtils} from '../../../shared/utils/encoding.utils';
 import {ImageViewerComponent} from '../../../shared/components/image-viewer/image-viewer.component';
 import type {ImageEvent} from '../../../shared/components/image-viewer/image-event.interface';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-general-manager',
-  imports: [FileInputComponent, ImageViewerComponent],
+  imports: [
+    FileInputComponent,
+    ImageViewerComponent,
+    MatButtonModule,
+    MatIconModule,
+  ],
   templateUrl: './general-manager.component.html',
   styleUrl: './general-manager.component.scss',
 })
@@ -18,6 +25,7 @@ export class GeneralManagerComponent {
   image: string | null = null;
 
   clearBackgroundImage() {
+    this.image = null;
     this.projection.emit({type: ProjectionEventType.IMAGE, data: null});
   }
 
@@ -31,6 +39,10 @@ export class GeneralManagerComponent {
     this.image = base64;
 
     this.projection.emit({type: ProjectionEventType.IMAGE, data: base64});
+  }
+
+  refresh() {
+    this.projection.emit({type: ProjectionEventType.IMAGE, data: this.image});
   }
 
   imageViewChanged(event: ImageEvent) {
