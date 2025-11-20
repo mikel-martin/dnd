@@ -93,22 +93,6 @@ $navbar-height: 60px;
   grid-area: content;
   overflow-x: hidden;
   overflow-y: auto;
-  // height: calc(100% - #{$navbar-height});
-  -webkit-mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 1) 85%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  -webkit-mask-repeat: no-repeat;
-  -webkit-mask-size: 100% 100%;
-
-  mask-image: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 1) 85%,
-    rgba(0, 0, 0, 0) 100%
-  );
-  mask-repeat: no-repeat;
-  mask-size: 100% 100%;
 }
 
 @media (max-width: 680px) {

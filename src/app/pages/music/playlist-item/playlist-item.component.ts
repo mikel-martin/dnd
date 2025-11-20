@@ -14,12 +14,18 @@ import {MatButtonModule} from '@angular/material/button';
 import {SafeResourceUrl, DomSanitizer} from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
 import {YoutubeService} from '../../../services/youtube.service';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 declare let YT: any;
 
 @Component({
   selector: 'app-playlist-item',
-  imports: [CommonModule, MatButtonModule, MatIconModule],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatIconModule,
+    MatProgressSpinnerModule,
+  ],
   templateUrl: './playlist-item.component.html',
   styleUrl: './playlist-item.component.scss',
 })

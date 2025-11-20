@@ -5,7 +5,7 @@
   </header>
   <section class="tracks">
     @for (track of playlist.tracks; track track) {
-      <article class="track">
+      <article [ngClass]="{playing: playing[$index]}" class="track">
         <section class="heading">
           <a [href]="playlistUrls[$index]" target="_blank" mat-icon-button>
             <mat-icon>link</mat-icon>
@@ -16,13 +16,14 @@
         <div [id]="'player-' + playlist.id + '-' + $index"></div>
 
         <div class="controls">
-          <button mat-icon-button color="primary" (click)="togglePlay($index)">
-            <mat-icon>{{ playing[$index] ? 'pause' : 'play_arrow' }}</mat-icon>
-          </button>
           <button
             mat-icon-button
-            [disabled]="!playing[$index]"
-            (click)="reset($index)">
+            [disabled]="!readyPlayers[$index]"
+            color="primary"
+            (click)="togglePlay($index)">
+            <mat-icon>{{ playing[$index] ? 'pause' : 'play_arrow' }}</mat-icon>
+          </button>
+          <button mat-icon-button (click)="reset($index)">
             <mat-icon>restart_alt</mat-icon>
           </button>
           <button mat-icon-button (click)="toggleLoop($index)">
