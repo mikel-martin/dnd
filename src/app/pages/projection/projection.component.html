@@ -5,9 +5,25 @@
       <app-encounter></app-encounter>
     </div>
   }
-  <article
+  <!-- <article
     class="background-image"
     [ngStyle]="{
       'background-image': 'url(' + projection.backgroundImage() + ')',
-    }"></article>
+      transform:
+        'translate(' +
+        projection.imageView()?.translateX +
+        'px,' +
+        projection.imageView()?.translateY +
+        'px) ' +
+        'scale(' +
+        projection.imageView()?.scale +
+        ')',
+    }"></article> -->
+  <div class="image-container">
+    <img
+      class="projected-image"
+      [src]="projection.backgroundImage()"
+      [style.transform]="projectedTransform"
+      alt="" />
+  </div>
 </section>

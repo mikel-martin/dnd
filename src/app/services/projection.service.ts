@@ -2,6 +2,7 @@ import {inject, Injectable, Injector, signal, OnDestroy} from '@angular/core';
 import {Subject, type Observable} from 'rxjs';
 import {ProjectionEventType} from '../enums/projection-event-type.interface';
 import {EncounterService} from './encounter.service';
+import type {ImageEvent} from '../shared/components/image-viewer/image-event.interface';
 
 const SHOWING_COMVAT_MENU_KEY = 'encounter.showing';
 
@@ -10,6 +11,8 @@ const SHOWING_COMVAT_MENU_KEY = 'encounter.showing';
 })
 export class ProjectionService implements OnDestroy {
   public backgroundImage = signal<string | undefined | null>('');
+
+  public imageView = signal<ImageEvent | undefined>(undefined);
 
   public timer = signal<{
     seconds: number;
@@ -43,7 +46,7 @@ export class ProjectionService implements OnDestroy {
     this.channel.close();
   }
 
-  emit(event: any): void {
+  emit(event: {type: ProjectionEventType; data: any}): void {
     this.channel.postMessage(event);
     this._handleEvent(event);
   }
@@ -51,6 +54,8 @@ export class ProjectionService implements OnDestroy {
   private _handleEvent(event: any) {
     if (event.type === ProjectionEventType.IMAGE) {
       this._handleImageEvent(event.data);
+    } else if (event.type === ProjectionEventType.IMAGE_VIEW_CHANGE) {
+      this._handleImageViewChangeEvent(event.data);
     } else if (event.type === ProjectionEventType.COMBAT_UPDATE) {
       this._handleEncounterEvent(event.data);
     } else if (event.type === ProjectionEventType.COMBAT_VISIBILITY) {
@@ -68,6 +73,11 @@ export class ProjectionService implements OnDestroy {
 
   private _handleImageEvent(data: any): void {
     this.backgroundImage.set(data);
+  }
+
+  private _handleImageViewChangeEvent(data: any): void {
+    this.imageView.set(data);
+    console.log(data);
   }
 
   private _handleTimerEvent(data: any): void {

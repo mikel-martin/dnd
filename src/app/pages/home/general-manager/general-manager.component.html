@@ -5,5 +5,11 @@
     accept="image/*"
     (clear)="clearBackgroundImage()"
     (change)="setBackgroundImage($event)"></app-file-input>
-  <div></div>
+  @if (image) {
+    <div class="image-container">
+      <app-image-viewer
+        [src]="image"
+        (viewChange)="imageViewChanged($event)"></app-image-viewer>
+    </div>
+  }
 </div>

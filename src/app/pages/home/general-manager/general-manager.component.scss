@@ -1,5 +1,13 @@
 .general-manager {
   gap: 2rem;
   display: flex;
-  justify-content: start;
+  flex-direction: column;
+
+  .image-container {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 500px;
+    object-fit: contain;
+    object-position: center;
+  }
 }

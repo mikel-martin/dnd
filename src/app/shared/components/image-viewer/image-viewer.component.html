@@ -1,0 +1,24 @@
+<div
+  #viewport
+  class="viewer"
+  (wheel)="onWheel($event)"
+  (mousedown)="onMouseDown($event)"
+  (mousemove)="onMouseMove($event)"
+  (mouseup)="onMouseUp()"
+  (mouseleave)="onMouseUp()">
+  <img
+    #image
+    [src]="src"
+    class="img"
+    [style.transform]="
+      'translate(' +
+      translateX +
+      'px,' +
+      translateY +
+      'px) scale(' +
+      scale +
+      ')'
+    "
+    draggable="false"
+    alt="" />
+</div>

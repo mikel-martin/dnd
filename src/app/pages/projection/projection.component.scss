@@ -2,37 +2,48 @@
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  position: relative;
+  background: black;
 
-  .background-image {
-    z-index: 0;
+  .image-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
+  }
+
+  .projected-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform-origin: 0 0;
+    will-change: transform;
+
+    /* Evita que la imagen se deforme */
+    user-select: none;
+    -webkit-user-drag: none;
+
+    /* Muy importante:
+       igual que en el visor original,
+       la imagen NO debe tener width/height al 100%,
+       debe usar su tamaño real y transformarse.
+    */
+    width: auto;
+    height: auto;
+    max-width: none;
+    max-height: none;
   }
 
   .encounter-menu {
-    z-index: 1;
+    z-index: 10;
     overflow: hidden;
     position: absolute;
     top: 0;
     left: 0;
     padding: 1rem;
-    // width: 300px;
     height: 100vh;
     background: var(--mat-sys-surface);
-  }
-}
-
-@keyframes fade {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
   }
 }

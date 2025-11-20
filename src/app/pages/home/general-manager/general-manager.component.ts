@@ -3,15 +3,19 @@ import {FileInputComponent} from '../../../shared/components/file-input/file-inp
 import {ProjectionService} from '../../../services/projection.service';
 import {ProjectionEventType} from '../../../enums/projection-event-type.interface';
 import {EncodingUtils} from '../../../shared/utils/encoding.utils';
+import {ImageViewerComponent} from '../../../shared/components/image-viewer/image-viewer.component';
+import type {ImageEvent} from '../../../shared/components/image-viewer/image-event.interface';
 
 @Component({
   selector: 'app-general-manager',
-  imports: [FileInputComponent],
+  imports: [FileInputComponent, ImageViewerComponent],
   templateUrl: './general-manager.component.html',
   styleUrl: './general-manager.component.scss',
 })
 export class GeneralManagerComponent {
   private projection = inject(ProjectionService);
+
+  image: string | null = null;
 
   clearBackgroundImage() {
     this.projection.emit({type: ProjectionEventType.IMAGE, data: null});
@@ -24,6 +28,15 @@ export class GeneralManagerComponent {
     const file = input.files[0];
     const base64 = await EncodingUtils.toBase64(file);
 
+    this.image = base64;
+
     this.projection.emit({type: ProjectionEventType.IMAGE, data: base64});
+  }
+
+  imageViewChanged(event: ImageEvent) {
+    this.projection.emit({
+      type: ProjectionEventType.IMAGE_VIEW_CHANGE,
+      data: event,
+    });
   }
 }
