@@ -18,6 +18,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 declare let YT: any;
 
+export const PINNED_PLAYLIST_KEY = 'pinnedPlaylist';
+
 @Component({
   selector: 'app-playlist-item',
   imports: [
@@ -26,11 +28,15 @@ declare let YT: any;
     MatIconModule,
     MatProgressSpinnerModule,
   ],
+  standalone: true,
   templateUrl: './playlist-item.component.html',
   styleUrl: './playlist-item.component.scss',
 })
 export class PlaylistItemComponent implements OnInit, AfterViewInit {
   @Input({required: true}) playlist!: Playlist;
+
+  @Input() navigateToDetail = true;
+
   @Output() detail = new EventEmitter<void>();
 
   players: any[] = [];
@@ -44,6 +50,10 @@ export class PlaylistItemComponent implements OnInit, AfterViewInit {
   private youtube = inject(YoutubeService);
 
   private zone = inject(NgZone);
+
+  get pinned(): boolean {
+    return localStorage.getItem(PINNED_PLAYLIST_KEY) === this.playlist.id;
+  }
 
   ngOnInit() {
     this.playlistUrls = this.playlist.tracks.map(track =>
@@ -121,6 +131,16 @@ export class PlaylistItemComponent implements OnInit, AfterViewInit {
     });
   }
 
+  pin(event: Event) {
+    event.stopPropagation();
+    if (this.pinned) {
+      localStorage.removeItem(PINNED_PLAYLIST_KEY);
+    } else {
+      localStorage.setItem(PINNED_PLAYLIST_KEY, this.playlist.id || '');
+    }
+    console.log('Pin', localStorage.getItem(PINNED_PLAYLIST_KEY));
+  }
+
   togglePlay(index: number) {
     if (!this.readyPlayers[index]) return;
     const player = this.players[index];
@@ -142,6 +162,8 @@ export class PlaylistItemComponent implements OnInit, AfterViewInit {
   }
 
   onDetail() {
-    this.detail.emit();
+    if (this.navigateToDetail) {
+      this.detail.emit();
+    }
   }
 }

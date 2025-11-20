@@ -1,7 +1,18 @@
 <article class="playlist">
   <header (click)="onDetail()" class="header">
-    <h5 class="name">{{ playlist.name }}</h5>
-    <mat-icon class="mat-18">chevron_right</mat-icon>
+    <section class="heading">
+      @if (navigateToDetail) {
+        <button mat-icon-button (click)="pin($event)">
+          <mat-icon>{{ pinned ? 'keep' : 'keep_off' }}</mat-icon>
+        </button>
+      }
+      <h5 class="name">{{ playlist.name }}</h5>
+    </section>
+    @if (navigateToDetail) {
+      <mat-icon class="mat-18">chevron_right</mat-icon>
+    } @else {
+      <div></div>
+    }
   </header>
   <section class="tracks">
     @for (track of playlist.tracks; track track) {

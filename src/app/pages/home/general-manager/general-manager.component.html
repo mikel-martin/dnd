@@ -19,4 +19,11 @@
         (viewChange)="imageViewChanged($event)"></app-image-viewer>
     </div>
   }
+  <section>
+    @if (playlist) {
+      <app-playlist-item
+        [playlist]="playlist"
+        [navigateToDetail]="false"></app-playlist-item>
+    }
+  </section>
 </div>

@@ -19,6 +19,12 @@
     border-bottom-right-radius: 0;
     transition: background-color 0.15s ease;
 
+    .heading {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
     &:hover {
       cursor: pointer;
       background-color: var(--mat-sys-surface-a50);
@@ -37,6 +43,8 @@
   }
 
   .tracks {
+    padding-left: 2rem;
+
     .track {
       padding: 0.5rem;
       display: flex;
