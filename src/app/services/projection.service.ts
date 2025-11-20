@@ -77,7 +77,6 @@ export class ProjectionService implements OnDestroy {
 
   private _handleImageViewChangeEvent(data: any): void {
     this.imageView.set(data);
-    console.log(data);
   }
 
   private _handleTimerEvent(data: any): void {
