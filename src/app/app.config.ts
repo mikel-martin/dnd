@@ -5,8 +5,9 @@ import {provideFirebaseApp, initializeApp} from '@angular/fire/app';
 import {provideAuth, getAuth} from '@angular/fire/auth';
 
 import {routes} from './app.routes';
-import {provideHttpClient} from '@angular/common/http';
+import {provideHttpClient, withInterceptors} from '@angular/common/http';
 import {environment} from '../environments/environment';
+import {AuthInterceptor} from './interceptors/auth.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,6 +15,6 @@ export const appConfig: ApplicationConfig = {
     provideAuth(() => getAuth()),
     provideZoneChangeDetection({eventCoalescing: true}),
     provideRouter(routes),
-    provideHttpClient(),
+    provideHttpClient(withInterceptors([AuthInterceptor])),
   ],
 };
