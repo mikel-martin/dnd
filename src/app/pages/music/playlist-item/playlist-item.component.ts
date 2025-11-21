@@ -55,6 +55,10 @@ export class PlaylistItemComponent implements OnInit, AfterViewInit {
     return localStorage.getItem(PINNED_PLAYLIST_KEY) === this.playlist.id;
   }
 
+  get anyTrackPlaying(): boolean {
+    return this.playing.some(isPlaying => isPlaying);
+  }
+
   ngOnInit() {
     this.playlistUrls = this.playlist.tracks.map(track =>
       this.sanitizer.bypassSecurityTrustResourceUrl(
@@ -71,11 +75,6 @@ export class PlaylistItemComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.youtube.ready().then(() => this.initPlayers());
-    // if ((window as any).YT) {
-    //   this.initPlayers();
-    // } else {
-    //   (window as any).onYouTubeIframeAPIReady = () => this.initPlayers();
-    // }
   }
 
   private getYouTubeEmbedUrl(url: string): string {
@@ -131,6 +130,17 @@ export class PlaylistItemComponent implements OnInit, AfterViewInit {
     });
   }
 
+  stopAll(event: Event) {
+    event.stopPropagation();
+    this.players.forEach((player, index) => {
+      if (this.playing[index]) {
+        player.pauseVideo();
+        this.reset(index);
+        this.playing[index] = false;
+      }
+    });
+  }
+
   pin(event: Event) {
     event.stopPropagation();
     if (this.pinned) {
@@ -138,7 +148,6 @@ export class PlaylistItemComponent implements OnInit, AfterViewInit {
     } else {
       localStorage.setItem(PINNED_PLAYLIST_KEY, this.playlist.id || '');
     }
-    console.log('Pin', localStorage.getItem(PINNED_PLAYLIST_KEY));
   }
 
   togglePlay(index: number) {

@@ -8,20 +8,25 @@
       }
       <h5 class="name">{{ playlist.name }}</h5>
     </section>
-    @if (navigateToDetail) {
-      <mat-icon class="mat-18">chevron_right</mat-icon>
-    } @else {
-      <div></div>
-    }
+    <section class="actions">
+      @if (anyTrackPlaying) {
+        <button mat-icon-button (click)="stopAll($event)">
+          <mat-icon>stop</mat-icon>
+        </button>
+      }
+      @if (navigateToDetail) {
+        <mat-icon class="mat-18">chevron_right</mat-icon>
+      }
+    </section>
   </header>
   <section class="tracks">
     @for (track of playlist.tracks; track track) {
       <article [ngClass]="{playing: playing[$index]}" class="track">
         <section class="heading">
-          <a [href]="playlistUrls[$index]" target="_blank" mat-icon-button>
-            <mat-icon>link</mat-icon>
-          </a>
-          <span class="name">{{ track.name }}</span>
+          <small class="index">{{ $index + 1 }}</small>
+          <a [href]="playlistUrls[$index]" target="_blank" class="name">{{
+            track.name
+          }}</a>
         </section>
 
         <div [id]="'player-' + playlist.id + '-' + $index"></div>

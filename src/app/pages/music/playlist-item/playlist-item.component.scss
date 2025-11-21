@@ -3,8 +3,6 @@
 }
 
 .playlist {
-  padding: 0.5rem 1rem;
-  gap: 1rem;
   display: flex;
   flex-direction: column;
   border: 2px solid transparent;
@@ -14,10 +12,10 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-radius: var(--mat-sys-corner-medium);
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
+    border-top-left-radius: var(--mat-sys-corner-medium);
+    border-top-right-radius: var(--mat-sys-corner-medium);
     transition: background-color 0.15s ease;
+    background-color: var(--mat-sys-surface-a50);
 
     .heading {
       display: flex;
@@ -25,9 +23,15 @@
       gap: 0.5rem;
     }
 
+    .actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
     &:hover {
       cursor: pointer;
-      background-color: var(--mat-sys-surface-a50);
+      background-color: var(--mat-sys-surface);
     }
   }
 
@@ -40,18 +44,31 @@
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    color: inherit;
+    text-decoration: none;
   }
 
   .tracks {
-    padding-left: 2rem;
+    border-bottom-left-radius: var(--mat-sys-corner-medium);
+    border-bottom-right-radius: var(--mat-sys-corner-medium);
 
     .track {
       padding: 0.5rem;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      border-radius: var(--mat-sys-corner-medium);
-      transition: background-color 0.15s ease;
+      transition:
+        background-color 0.15s ease,
+        transform 0.15s ease;
+
+      &:not(:last-child) {
+        border-bottom: 1px solid var(--mat-sys-surface-bright);
+      }
+
+      &:last-child {
+        border-bottom-left-radius: var(--mat-sys-corner-medium);
+        border-bottom-right-radius: var(--mat-sys-corner-medium);
+      }
 
       &.playing {
         color: var(--mat-sys-primary);
@@ -59,7 +76,7 @@
 
       &:hover {
         cursor: pointer;
-        background-color: var(--mat-sys-surface-a50);
+        background-color: var(--mat-sys-surface-a25);
       }
 
       .player {
@@ -67,9 +84,14 @@
       }
 
       .heading {
-        gap: 0.5rem;
+        gap: 1rem;
         display: flex;
         align-items: center;
+        padding-left: 1rem;
+
+        .index {
+          opacity: 0.5;
+        }
       }
     }
   }
