@@ -15,6 +15,7 @@ import {SafeResourceUrl, DomSanitizer} from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
 import {YoutubeService} from '../../../services/youtube.service';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatRippleModule} from '@angular/material/core';
 
 declare let YT: any;
 
@@ -26,6 +27,7 @@ export const PINNED_PLAYLIST_KEY = 'pinnedPlaylist';
     CommonModule,
     MatButtonModule,
     MatIconModule,
+    MatRippleModule,
     MatProgressSpinnerModule,
   ],
   standalone: true,

@@ -35,6 +35,12 @@
     }
   }
 
+  &:not(.detail) {
+    .header {
+      padding-left: 1rem;
+    }
+  }
+
   .name {
     font-size: 1rem;
     white-space: nowrap;
@@ -77,6 +83,10 @@
       &:hover {
         cursor: pointer;
         background-color: var(--mat-sys-surface-a25);
+      }
+
+      .name:hover {
+        text-decoration: underline;
       }
 
       .player {

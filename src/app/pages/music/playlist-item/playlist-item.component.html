@@ -1,5 +1,5 @@
-<article class="playlist">
-  <header (click)="onDetail()" class="header">
+<article [ngClass]="{detail: navigateToDetail}" class="playlist">
+  <header matRipple (click)="onDetail()" class="header">
     <section class="heading">
       @if (navigateToDetail) {
         <button mat-icon-button (click)="pin($event)">
